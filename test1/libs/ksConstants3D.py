@@ -1,11 +1,11 @@
 # -*- coding: mbcs -*-
 # Created by makepy.py version 0.5.01
-# By python version 3.9.5 (tags/v3.9.5:0a7dcbd, May  3 2021, 17:27:52) [MSC v.1928 64 bit (AMD64)]
+# By python version 3.2.5 (default, May 15 2013, 23:06:03) [MSC v.1500 32 bit (Intel)]
 # From type library 'ksConstants3D.tlb'
-# On Thu Jul 22 12:29:50 2021
+# On Mon Jan 14 11:59:38 2019
 ''
 makepy_version = '0.5.01'
-python_version = 0x30905f0
+python_version = 0x30205f0
 
 import win32com.client.CLSIDToClass, pythoncom, pywintypes
 import win32com.client.util
@@ -293,14 +293,10 @@ class constants:
 	o3d_CircularPatternAnyCopy    =592        # from enum Obj3dType
 	o3d_CloudPointsSurface        =527        # from enum Obj3dType
 	o3d_CollectionGeometry        =590        # from enum Obj3dType
-	o3d_CollisionObject           =622        # from enum Obj3dType
 	o3d_ConnectCurve              =510        # from enum Obj3dType
 	o3d_ConnectCurveObject        =511        # from enum Obj3dType
-	o3d_ContinuityCheck           =624        # from enum Obj3dType
 	o3d_Contour3D                 =568        # from enum Obj3dType
 	o3d_CopyGeometry              =589        # from enum Obj3dType
-	o3d_CurvatureCheckObject      =623        # from enum Obj3dType
-	o3d_CurvatureGraph            =621        # from enum Obj3dType
 	o3d_Curve3DWithoutHistory     =560        # from enum Obj3dType
 	o3d_CurveBy2Projections       =561        # from enum Obj3dType
 	o3d_CurveByLaw                =562        # from enum Obj3dType
@@ -355,7 +351,6 @@ class constants:
 	o3d_PolygonalLineVertexParam  =158        # from enum Obj3dType
 	o3d_ProjectionCurve           =567        # from enum Obj3dType
 	o3d_RadialUnhistoriedDimension=599        # from enum Obj3dType
-	o3d_RestoredSurface           =620        # from enum Obj3dType
 	o3d_RotatedSurface            =61         # from enum Obj3dType
 	o3d_RuledSurface              =515        # from enum Obj3dType
 	o3d_Scaling3D                 =531        # from enum Obj3dType
@@ -364,7 +359,6 @@ class constants:
 	o3d_SketchBreakLinearDimension=605        # from enum Obj3dType
 	o3d_SketchBreakRadialDimension=581        # from enum Obj3dType
 	o3d_SketchDiametralDimension  =582        # from enum Obj3dType
-	o3d_SketchFace                =625        # from enum Obj3dType
 	o3d_SketchLinearDimension     =577        # from enum Obj3dType
 	o3d_SketchRadialDimension     =580        # from enum Obj3dType
 	o3d_SpecRough3D               =604        # from enum Obj3dType
@@ -683,8 +677,6 @@ class constants:
 	ksCLawX                       =0          # from enum ksCoordLawEnum
 	ksCLawY                       =1          # from enum ksCoordLawEnum
 	ksCLawZ                       =2          # from enum ksCoordLawEnum
-	ksCGBTBodyFaceGrouping        =1          # from enum ksCopyGeometryBuildingTypeEnum
-	ksCGBTWithoutGrouping         =0          # from enum ksCopyGeometryBuildingTypeEnum
 	ksCTDepthAngle                =1          # from enum ksCountersinkTypeEnum
 	ksCTDiameterAngle             =0          # from enum ksCountersinkTypeEnum
 	ksCTDiameterDepth             =2          # from enum ksCountersinkTypeEnum
@@ -825,25 +817,6 @@ class constants:
 	ksLoftAuto                    =0          # from enum ksLoftBuildingType
 	ksLoftByNormal                =1          # from enum ksLoftBuildingType
 	ksLoftByObject                =2          # from enum ksLoftBuildingType
-	ksLoftCupola                  =3          # from enum ksLoftBuildingType
-	ksManipulatorModeDefault      =1          # from enum ksManipulatorModeEnum
-	ksManipulatorModeNotHandleEditor=2          # from enum ksManipulatorModeEnum
-	ksMPAxisX                     =1          # from enum ksManipulatorPrimitiveEnum
-	ksMPAxisY                     =2          # from enum ksManipulatorPrimitiveEnum
-	ksMPAxisZ                     =3          # from enum ksManipulatorPrimitiveEnum
-	ksMPConturXY                  =7          # from enum ksManipulatorPrimitiveEnum
-	ksMPConturXZ                  =8          # from enum ksManipulatorPrimitiveEnum
-	ksMPConturYZ                  =9          # from enum ksManipulatorPrimitiveEnum
-	ksMPNone                      =0          # from enum ksManipulatorPrimitiveEnum
-	ksMPOriginal                  =13         # from enum ksManipulatorPrimitiveEnum
-	ksMPPlaceXOY                  =4          # from enum ksManipulatorPrimitiveEnum
-	ksMPPlaceXOZ                  =5          # from enum ksManipulatorPrimitiveEnum
-	ksMPPlaceYOZ                  =6          # from enum ksManipulatorPrimitiveEnum
-	ksMPTextX                     =10         # from enum ksManipulatorPrimitiveEnum
-	ksMPTextY                     =11         # from enum ksManipulatorPrimitiveEnum
-	ksMPTextZ                     =12         # from enum ksManipulatorPrimitiveEnum
-	ksEditDoubleManipulator       =2          # from enum ksManipulatorTypeEnum
-	ksPlacement3DManipulator      =1          # from enum ksManipulatorTypeEnum
 	ksMCAlignmentClosest          =0          # from enum ksMateConstraintAlignmentEnum
 	ksMCAlignmentCooriented       =1          # from enum ksMateConstraintAlignmentEnum
 	ksMCAlignmentOpposite         =-1         # from enum ksMateConstraintAlignmentEnum
@@ -920,10 +893,9 @@ class constants:
 	ksEvolutionSurface            =10         # from enum ksMathSurface3DTypeEnum
 	ksExactionSurface             =11         # from enum ksMathSurface3DTypeEnum
 	ksExpansionSurface            =12         # from enum ksMathSurface3DTypeEnum
-	ksExplorationSurface          =42         # from enum ksMathSurface3DTypeEnum
 	ksExtrusionSurface            =8          # from enum ksMathSurface3DTypeEnum
 	ksFilletSurface               =33         # from enum ksMathSurface3DTypeEnum
-	ksFreeSurface                 =200        # from enum ksMathSurface3DTypeEnum
+	ksFreeSurface                 =42         # from enum ksMathSurface3DTypeEnum
 	ksGridSurface                 =20         # from enum ksMathSurface3DTypeEnum
 	ksHermitSurface               =18         # from enum ksMathSurface3DTypeEnum
 	ksJoinSurface                 =35         # from enum ksMathSurface3DTypeEnum
@@ -975,8 +947,6 @@ class constants:
 	ksMOAllParam                  =1          # from enum ksModelObjectParamTypeEnum
 	ksMOCurrentLSKAllParam        =3          # from enum ksModelObjectParamTypeEnum
 	ksMOPartAllParam              =2          # from enum ksModelObjectParamTypeEnum
-	ksArbitraryThicknesses        =0          # from enum ksMultiThicknessGroupTypeEnum
-	ksSetsThicknesses             =1          # from enum ksMultiThicknessGroupTypeEnum
 	ksFilterAll                   =0          # from enum ksObjectsFilter3DEnum
 	ksFilterBodies                =7          # from enum ksObjectsFilter3DEnum
 	ksFilterCAxis                 =5          # from enum ksObjectsFilter3DEnum
@@ -1043,12 +1013,6 @@ class constants:
 	ksPressFormingAllHeight       =0          # from enum ksPressFormingHeightTypeEnum
 	ksPressFormingInHeight        =2          # from enum ksPressFormingHeightTypeEnum
 	ksPressFormingOutHeight       =1          # from enum ksPressFormingHeightTypeEnum
-	ksProcessFilterBodies         =0          # from enum ksProcessObjectsFilter3DEnum
-	ksProcessFilterExcludeExternalObjects=1000       # from enum ksProcessObjectsFilter3DEnum
-	ksProcessFilterObjects        =2          # from enum ksProcessObjectsFilter3DEnum
-	ksProcessFilterOperations     =3          # from enum ksProcessObjectsFilter3DEnum
-	ksProcessFilterParts          =4          # from enum ksProcessObjectsFilter3DEnum
-	ksProcessFilterSurfaces       =1          # from enum ksProcessObjectsFilter3DEnum
 	ksPOByLayer                   =2          # from enum ksProjectionOptionEnum
 	ksPODisable                   =0          # from enum ksProjectionOptionEnum
 	ksPOEnable                    =1          # from enum ksProjectionOptionEnum
@@ -1076,8 +1040,6 @@ class constants:
 	ksSmHeight                    =3          # from enum ksSegmentationMethodEnum
 	ksSmLength                    =1          # from enum ksSegmentationMethodEnum
 	ksSmQuantity                  =0          # from enum ksSegmentationMethodEnum
-	ksSelectionNoBand             =0          # from enum ksSelectionBandMode
-	ksSelectionWhenNoNearestObject=2          # from enum ksSelectionBandMode
 	ksShoulderAngle               =4          # from enum ksShoulderBuildingTypeEnum
 	ksShoulderAngleOff            =-4         # from enum ksShoulderBuildingTypeEnum
 	ksShoulderCircleByHeightRadius2=18         # from enum ksShoulderBuildingTypeEnum
@@ -1140,10 +1102,6 @@ class constants:
 	ksSpaceStep                   =1          # from enum ksStepTypeEnum
 	ksTEFGeometryOnly             =1          # from enum ksTextExportFormEnum
 	ksTEFTextOnly                 =0          # from enum ksTextExportFormEnum
-	ksBaseProperties              =-1         # from enum ksTextureTypeEnum
-	ksCutting                     =2          # from enum ksTextureTypeEnum
-	ksRelief                      =1          # from enum ksTextureTypeEnum
-	ksTexture                     =0          # from enum ksTextureTypeEnum
 	ksTRCoefficient               =4          # from enum ksToleranceRecalcsEnum
 	ksTRLowerLimit                =1          # from enum ksToleranceRecalcsEnum
 	ksTRMiddle                    =3          # from enum ksToleranceRecalcsEnum

@@ -2,7 +2,7 @@
 # Created by makepy.py version 0.5.01
 # By python version 3.9.5 (tags/v3.9.5:0a7dcbd, May  3 2021, 17:27:52) [MSC v.1928 64 bit (AMD64)]
 # From type library 'kApi7.tlb'
-# On Thu Jul 22 12:30:18 2021
+# On Fri Jul 23 10:00:23 2021
 ''
 makepy_version = '0.5.01'
 python_version = 0x30905f0

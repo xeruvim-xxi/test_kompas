@@ -1,41 +1,65 @@
-import os
-import re
-import subprocess
+
 import pythoncom
+import subprocess
 from win32com.client import Dispatch, gencache
+from win32com.client.dynamic import debug_print
 
-# Подключение к API7 программы Компас 3D
+from libs.KompasAPI7 import *
+from libs.Kompas6API5 import *
+# import libs.ksConstants
+# import libs.ksConstants3D
+# import libs.LDefin2D
+# import libs.MiscellaneousHelpers as MH
+
+# Подключение к API5 программы Kompas 3D
+def get_kompas_api5():
+    kompas6_api5_module = gencache.EnsureModule("{0422828C-F174-495E-AC5D-D31014DBBE87}", 0, 1, 0)
+    kompas_object = KompasObject(kompas6_api5_module.KompasObject(Dispatch("Kompas.Application.5")._oleobj_.QueryInterface(kompas6_api5_module.KompasObject.CLSID, pythoncom.IID_IDispatch)))
+    #MH.iKompasObject  = kompas_object
+    return kompas6_api5_module, kompas_object
+
+# Подключение к API7 программы Kompas 3D
 def get_kompas_api7():
-    module = gencache.EnsureModule("{69AC2981-37C0-4379-84FD-5DD2F3C0A520}", 0, 1, 0)
-    api = module.IKompasAPIObject(
-        Dispatch("Kompas.Application.7")._oleobj_.QueryInterface(module.IKompasAPIObject.CLSID,
-                                                                 pythoncom.IID_IDispatch))
-    const = gencache.EnsureModule("{75C9F5D0-B5B8-4526-8681-9903C567D2ED}", 0, 1, 0).constants
-    return module, api, const
+    kompas_api7_module = gencache.EnsureModule("{69AC2981-37C0-4379-84FD-5DD2F3C0A520}", 0, 1, 0)
+    kompas_api7_object = IKompasAPIObject(kompas_api7_module.IKompasAPIObject(Dispatch("Kompas.Application.7")._oleobj_.QueryInterface(kompas_api7_module.IKompasAPIObject.CLSID, pythoncom.IID_IDispatch)))
+    #MH.iApplication  = application    
+    return kompas_api7_module, kompas_api7_object
 
-module7, api7, const7 = get_kompas_api7()   # Подключаемся к API7 
-app7 = api7.Application                     # Получаем основной интерфейс
-app7.Visible = True                         # Показываем окно пользователю (если скрыто)
-app7.HideMessage = const7.ksHideMessageNo   # Отвечаем НЕТ на любые вопросы программы
-print(app7.ApplicationName(FullName=True))  # Печатаем название программы
+#  Подключим константы API Компас
+def get_kompas_constants():
+    kompas6_constants = gencache.EnsureModule("{75C9F5D0-B5B8-4526-8681-9903C567D2ED}", 0, 1, 0).constants
+    return kompas6_constants
 
-""" # Функция проверки, запущена-ли программа КОМПАС 3D
-def is_running():
-    proc_list = \
-    subprocess.Popen('tasklist /NH /FI "IMAGENAME eq KOMPAS*"', shell=False, stdout=subprocess.PIPE).communicate()[0]
-    return True if proc_list else False
+#  Подключим константы 3D API Компас
+def get_kompas_constants3D():
+    kompas6_constants_3d = gencache.EnsureModule("{2CAF168C-7961-4B90-9DA2-701419BEEFE3}", 0, 1, 0).constants
+    return kompas6_constants_3d
 
-def start():
-    is_run = is_running()  # True, если программа Компас уже запущена
+# Функция проверяет, запущена ли программа Kompas 3D
+def is_running():    
+    proc_list = str(subprocess.Popen('tasklist /NH /FI "IMAGENAME eq KOMPAS*"',
+                                 shell=False,
+                                 stdout=subprocess.PIPE).communicate()[0])  
+    if (proc_list.find("KOMPAS.Exe") == -1):
+        return False
+    else:
+        return True
 
-    module7, api7, const7 = get_kompas_api7()  # Подключаемся к программе
-    app7 = api7.Application  # Получаем основной интерфейс программы
-    app7.Visible = True  # Показываем окно пользователю (если скрыто)
-    app7.HideMessage = const7.ksHideMessageNo  # Отвечаем НЕТ на любые вопросы программы
+is_run = is_running()                           # Установим флаг, который нам говорит, запущена ли программа до запуска нашего скрипта
 
-    app7.MessageBox("Привет!!!")
+module_api5, kompas5 = get_kompas_api5()
+module_api7, kompas_api7_object = get_kompas_api7()
+constants = get_kompas_constants()
+constants3D = get_kompas_constants3D()
 
-    if not is_run: app7.Quit()  # Закрываем программу при необходимости
+komp7 = IApplication(kompas_api7_object.Application)
+komp7.Visible = True
+#komp7.HideMessage = constants.ksHideMessageNo   # Отвечаем НЕТ на любые вопросы программы
 
-if __name__ == "__main__":    
-    start() """
+Documents = komp7.Documents
+
+kompas5.ksMessage("Привет")
+
+print(komp7.ApplicationName(FullName=True))
+
+if not is_run: komp7.Quit()                     # Выходим из программы

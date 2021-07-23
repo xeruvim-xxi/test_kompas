@@ -1,11 +1,11 @@
 # -*- coding: mbcs -*-
 # Created by makepy.py version 0.5.01
-# By python version 3.9.5 (tags/v3.9.5:0a7dcbd, May  3 2021, 17:27:52) [MSC v.1928 64 bit (AMD64)]
+# By python version 3.2.5 (default, May 15 2013, 23:06:03) [MSC v.1500 32 bit (Intel)]
 # From type library 'ksConstants.tlb'
-# On Thu Jul 22 12:29:19 2021
+# On Mon Jan 14 11:59:38 2019
 ''
 makepy_version = '0.5.01'
-python_version = 0x30905f0
+python_version = 0x30205f0
 
 import win32com.client.CLSIDToClass, pythoncom, pywintypes
 import win32com.client.util
@@ -131,7 +131,6 @@ class constants:
 	ksDrDrawText                  =4          # from enum DrawingObjectTypeEnum
 	ksDrEllipse                   =32         # from enum DrawingObjectTypeEnum
 	ksDrEllipseArc                =34         # from enum DrawingObjectTypeEnum
-	ksDrEllipseArcAxis            =86         # from enum DrawingObjectTypeEnum
 	ksDrEquid                     =37         # from enum DrawingObjectTypeEnum
 	ksDrExternalView              =63         # from enum DrawingObjectTypeEnum
 	ksDrFragment                  =30         # from enum DrawingObjectTypeEnum
@@ -307,8 +306,6 @@ class constants:
 	etError214                    =214        # from enum ErrorType
 	etError215                    =215        # from enum ErrorType
 	etError216                    =216        # from enum ErrorType
-	etError217                    =217        # from enum ErrorType
-	etError218                    =218        # from enum ErrorType
 	etError22                     =22         # from enum ErrorType
 	etError23                     =23         # from enum ErrorType
 	etError24                     =24         # from enum ErrorType
@@ -530,8 +527,6 @@ class constants:
 	ksObjectColouring             =13119      # from enum KompasAPIObjectTypeEnum
 	ksObjectColourings            =13118      # from enum KompasAPIObjectTypeEnum
 	ksObjectColumnInfo            =10505      # from enum KompasAPIObjectTypeEnum
-	ksObjectConditionIntersect    =13170      # from enum KompasAPIObjectTypeEnum
-	ksObjectConditionIntersects   =13171      # from enum KompasAPIObjectTypeEnum
 	ksObjectConicCurve            =13160      # from enum KompasAPIObjectTypeEnum
 	ksObjectConicCurves           =13159      # from enum KompasAPIObjectTypeEnum
 	ksObjectConicHoleParameters   =11255      # from enum KompasAPIObjectTypeEnum
@@ -563,10 +558,8 @@ class constants:
 	ksObjectCurveCopyObjectParam  =13138      # from enum KompasAPIObjectTypeEnum
 	ksObjectCurveOutLine          =11147      # from enum KompasAPIObjectTypeEnum
 	ksObjectCurveOutLines         =11148      # from enum KompasAPIObjectTypeEnum
-	ksObjectCurveStyle            =10520      # from enum KompasAPIObjectTypeEnum
 	ksObjectCurveVertexParam      =11046      # from enum KompasAPIObjectTypeEnum
 	ksObjectCurvesBy2Projectionses=11160      # from enum KompasAPIObjectTypeEnum
-	ksObjectCurvesStyles          =10516      # from enum KompasAPIObjectTypeEnum
 	ksObjectCut                   =11269      # from enum KompasAPIObjectTypeEnum
 	ksObjectCutExtrusion          =11010      # from enum KompasAPIObjectTypeEnum
 	ksObjectCutLine               =13067      # from enum KompasAPIObjectTypeEnum
@@ -612,7 +605,6 @@ class constants:
 	ksObjectEdge                  =11280      # from enum KompasAPIObjectTypeEnum
 	ksObjectEdgeLengthMeasurement3D=11299      # from enum KompasAPIObjectTypeEnum
 	ksObjectEdgeLengthMeasurements3D=11298      # from enum KompasAPIObjectTypeEnum
-	ksObjectEditDoubleManipulator =13168      # from enum KompasAPIObjectTypeEnum
 	ksObjectEllipse               =13093      # from enum KompasAPIObjectTypeEnum
 	ksObjectEllipseArc            =13095      # from enum KompasAPIObjectTypeEnum
 	ksObjectEllipseArcs           =13094      # from enum KompasAPIObjectTypeEnum
@@ -644,7 +636,6 @@ class constants:
 	ksObjectFilletCurve           =11116      # from enum KompasAPIObjectTypeEnum
 	ksObjectFilletCurves          =11115      # from enum KompasAPIObjectTypeEnum
 	ksObjectFillets               =11258      # from enum KompasAPIObjectTypeEnum
-	ksObjectFindObjectParameters  =13165      # from enum KompasAPIObjectTypeEnum
 	ksObjectFont                  =10079      # from enum KompasAPIObjectTypeEnum
 	ksObjectFragmentDocument      =10022      # from enum KompasAPIObjectTypeEnum
 	ksObjectFragmentDocumentSettings=10043      # from enum KompasAPIObjectTypeEnum
@@ -652,9 +643,7 @@ class constants:
 	ksObjectFullFillets           =11325      # from enum KompasAPIObjectTypeEnum
 	ksObjectHatch                 =13117      # from enum KompasAPIObjectTypeEnum
 	ksObjectHatchParam            =13112      # from enum KompasAPIObjectTypeEnum
-	ksObjectHatchStyle            =10521      # from enum KompasAPIObjectTypeEnum
 	ksObjectHatches               =13116      # from enum KompasAPIObjectTypeEnum
-	ksObjectHatchsStyles          =10517      # from enum KompasAPIObjectTypeEnum
 	ksObjectHeightDimension       =13045      # from enum KompasAPIObjectTypeEnum
 	ksObjectHeightDimensions      =13046      # from enum KompasAPIObjectTypeEnum
 	ksObjectHole3D                =11251      # from enum KompasAPIObjectTypeEnum
@@ -730,7 +719,6 @@ class constants:
 	ksObjectMacroObject3D         =11289      # from enum KompasAPIObjectTypeEnum
 	ksObjectMacroObjects          =13080      # from enum KompasAPIObjectTypeEnum
 	ksObjectMacroObjects3D        =11288      # from enum KompasAPIObjectTypeEnum
-	ksObjectManipulators          =13166      # from enum KompasAPIObjectTypeEnum
 	ksObjectMarkInsideForm        =13012      # from enum KompasAPIObjectTypeEnum
 	ksObjectMarkLeader            =13056      # from enum KompasAPIObjectTypeEnum
 	ksObjectMarkLeader3D          =11051      # from enum KompasAPIObjectTypeEnum
@@ -750,7 +738,6 @@ class constants:
 	ksObjectModelObject           =11001      # from enum KompasAPIObjectTypeEnum
 	ksObjectMoldCavities          =11286      # from enum KompasAPIObjectTypeEnum
 	ksObjectMoldCavity            =11287      # from enum KompasAPIObjectTypeEnum
-	ksObjectMouseEnterLeaveParameters=13169      # from enum KompasAPIObjectTypeEnum
 	ksObjectMultiTextLeader       =13020      # from enum KompasAPIObjectTypeEnum
 	ksObjectMultiTextLeaders      =13021      # from enum KompasAPIObjectTypeEnum
 	ksObjectMultiline             =13070      # from enum KompasAPIObjectTypeEnum
@@ -786,7 +773,6 @@ class constants:
 	ksObjectPathPatternAnyCopy    =11215      # from enum KompasAPIObjectTypeEnum
 	ksObjectPhantom2D             =13153      # from enum KompasAPIObjectTypeEnum
 	ksObjectPlacement3D           =11223      # from enum KompasAPIObjectTypeEnum
-	ksObjectPlacement3DManipulator=13167      # from enum KompasAPIObjectTypeEnum
 	ksObjectPlane3D               =11197      # from enum KompasAPIObjectTypeEnum
 	ksObjectPlane3DBy2Edge        =11209      # from enum KompasAPIObjectTypeEnum
 	ksObjectPlane3DBy3Points      =11201      # from enum KompasAPIObjectTypeEnum
@@ -892,8 +878,6 @@ class constants:
 	ksObjectReportProcess         =10510      # from enum KompasAPIObjectTypeEnum
 	ksObjectReportStyle           =10512      # from enum KompasAPIObjectTypeEnum
 	ksObjectReportStyleColumn     =10513      # from enum KompasAPIObjectTypeEnum
-	ksObjectRestoredSurface       =11343      # from enum KompasAPIObjectTypeEnum
-	ksObjectRestoredSurfaces      =11342      # from enum KompasAPIObjectTypeEnum
 	ksObjectRib                   =11263      # from enum KompasAPIObjectTypeEnum
 	ksObjectRibs                  =11262      # from enum KompasAPIObjectTypeEnum
 	ksObjectRotated               =11128      # from enum KompasAPIObjectTypeEnum
@@ -974,7 +958,6 @@ class constants:
 	ksObjectSpecificationSectionStyle=10065      # from enum KompasAPIObjectTypeEnum
 	ksObjectSpecificationSectionStyles=10064      # from enum KompasAPIObjectTypeEnum
 	ksObjectSpecificationStyle    =10061      # from enum KompasAPIObjectTypeEnum
-	ksObjectSpecificationStyles   =10522      # from enum KompasAPIObjectTypeEnum
 	ksObjectSpecificationSubsection=10070      # from enum KompasAPIObjectTypeEnum
 	ksObjectSpecificationSubsections=10069      # from enum KompasAPIObjectTypeEnum
 	ksObjectSpecificationTuning   =10066      # from enum KompasAPIObjectTypeEnum
@@ -990,8 +973,6 @@ class constants:
 	ksObjectSpotfacingHoleParameters=11253      # from enum KompasAPIObjectTypeEnum
 	ksObjectStamp                 =10108      # from enum KompasAPIObjectTypeEnum
 	ksObjectStraightAxis          =13003      # from enum KompasAPIObjectTypeEnum
-	ksObjectStyle                 =10519      # from enum KompasAPIObjectTypeEnum
-	ksObjectStyles                =10515      # from enum KompasAPIObjectTypeEnum
 	ksObjectSurfacePatch          =11067      # from enum KompasAPIObjectTypeEnum
 	ksObjectSurfacePatches        =11066      # from enum KompasAPIObjectTypeEnum
 	ksObjectSurfaceSewer          =11071      # from enum KompasAPIObjectTypeEnum
@@ -1010,12 +991,10 @@ class constants:
 	ksObjectTechnicalDemand3D     =11167      # from enum KompasAPIObjectTypeEnum
 	ksObjectText                  =10700      # from enum KompasAPIObjectTypeEnum
 	ksObjectTextDocument          =10026      # from enum KompasAPIObjectTypeEnum
-	ksObjectTextDocumentSection   =10126      # from enum KompasAPIObjectTypeEnum
 	ksObjectTextItem              =10702      # from enum KompasAPIObjectTypeEnum
 	ksObjectTextLine              =10701      # from enum KompasAPIObjectTypeEnum
 	ksObjectTextStyle             =10078      # from enum KompasAPIObjectTypeEnum
 	ksObjectTextTable             =10711      # from enum KompasAPIObjectTypeEnum
-	ksObjectTextsStyles           =10518      # from enum KompasAPIObjectTypeEnum
 	ksObjectThread                =11242      # from enum KompasAPIObjectTypeEnum
 	ksObjectThreadDialogParam     =10119      # from enum KompasAPIObjectTypeEnum
 	ksObjectThreadPattern         =10118      # from enum KompasAPIObjectTypeEnum
@@ -1214,7 +1193,6 @@ class constants:
 	prConicCurve4Or5Point         =10216      # from enum ProcessTypeEnum
 	prConicSpiral                 =20051      # from enum ProcessTypeEnum
 	prConnectCurve                =20124      # from enum ProcessTypeEnum
-	prContinuityCheck             =20220      # from enum ProcessTypeEnum
 	prContour                     =10102      # from enum ProcessTypeEnum
 	prContour3D                   =20170      # from enum ProcessTypeEnum
 	prContourArc                  =10036      # from enum ProcessTypeEnum
@@ -1243,7 +1221,6 @@ class constants:
 	prCreateSpecificationFromAssembly=20183      # from enum ProcessTypeEnum
 	prCreateSpecificationObjects  =20181      # from enum ProcessTypeEnum
 	prCreateStandartSheetView     =10093      # from enum ProcessTypeEnum
-	prCurvatureGraph              =20219      # from enum ProcessTypeEnum
 	prCurveByLaw                  =20172      # from enum ProcessTypeEnum
 	prCurveCopy                   =20022      # from enum ProcessTypeEnum
 	prCurveOper2Projection        =20171      # from enum ProcessTypeEnum
@@ -1464,7 +1441,6 @@ class constants:
 	prRemoteElement               =10083      # from enum ProcessTypeEnum
 	prRemoveChamfer               =10138      # from enum ProcessTypeEnum
 	prRepositionPart              =20186      # from enum ProcessTypeEnum
-	prRestoredSurface             =20218      # from enum ProcessTypeEnum
 	prRib                         =20031      # from enum ProcessTypeEnum
 	prRotateDeformation           =10133      # from enum ProcessTypeEnum
 	prRotatePartAxis              =20074      # from enum ProcessTypeEnum
@@ -1719,17 +1695,6 @@ class constants:
 	ksAPI5Auto                    =1          # from enum ksAPITypeEnum
 	ksAPI7Dual                    =2          # from enum ksAPITypeEnum
 	ksAPIUndef                    =0          # from enum ksAPITypeEnum
-	ksAccuracy0                   =0          # from enum ksAccuracyEnum
-	ksAccuracy1                   =1          # from enum ksAccuracyEnum
-	ksAccuracy2                   =2          # from enum ksAccuracyEnum
-	ksAccuracy3                   =3          # from enum ksAccuracyEnum
-	ksAccuracy4                   =4          # from enum ksAccuracyEnum
-	ksAccuracy5                   =5          # from enum ksAccuracyEnum
-	ksAccuracy6                   =6          # from enum ksAccuracyEnum
-	ksAccuracy7                   =7          # from enum ksAccuracyEnum
-	ksAccuracy8                   =8          # from enum ksAccuracyEnum
-	ksAccuracy9                   =9          # from enum ksAccuracyEnum
-	ksAccuracyDefault             =-1         # from enum ksAccuracyEnum
 	ksAlignAllWidth               =3          # from enum ksAlignEnum
 	ksAlignCenter                 =1          # from enum ksAlignEnum
 	ksAlignDecimal                =3          # from enum ksAlignEnum
@@ -1927,10 +1892,6 @@ class constants:
 	ksCTChamfer                   =1          # from enum ksCornerTypeEnum
 	ksCTFillet                    =2          # from enum ksCornerTypeEnum
 	ksCTNoProcess                 =0          # from enum ksCornerTypeEnum
-	ksCPTBasicLine                =1          # from enum ksCurvePenTypeEnum
-	ksCPTHeavyLine                =3          # from enum ksCurvePenTypeEnum
-	ksCPTIndependent              =0          # from enum ksCurvePenTypeEnum
-	ksCPTThinLine                 =2          # from enum ksCurvePenTypeEnum
 	ksCSAxial                     =3          # from enum ksCurveStyleEnum
 	ksCSBrokenLine                =5          # from enum ksCurveStyleEnum
 	ksCSConstruction              =6          # from enum ksCurveStyleEnum
@@ -1958,8 +1919,6 @@ class constants:
 	ksCSThin                      =2          # from enum ksCurveStyleEnum
 	ksCSThinForHatch              =11         # from enum ksCurveStyleEnum
 	ksCSUnvisible                 =0          # from enum ksCurveStyleEnum
-	ksCSTBrokenLine               =1          # from enum ksCurveStyleTypeEnum
-	ksCSTSoldLine                 =0          # from enum ksCurveStyleTypeEnum
 	ksDimTextFormatGDD            =1          # from enum ksDimTextFormatEnum
 	ksDimTextFormatGMS            =0          # from enum ksDimTextFormatEnum
 	ksDimArrowAuto                =2          # from enum ksDimensionArrowPosEnum
@@ -1994,7 +1953,6 @@ class constants:
 	d2ChoiceProperty              =8          # from enum ksDocument2DNotifyEnum
 	d2LocalFragmentEdit           =6          # from enum ksDocument2DNotifyEnum
 	d2Rebuild                     =2          # from enum ksDocument2DNotifyEnum
-	d3BedinLoadCombinationChange  =16         # from enum ksDocument3DNotifyEnum
 	d3BeginChoiceMarking          =5          # from enum ksDocument3DNotifyEnum
 	d3BeginChoiceMaterial         =3          # from enum ksDocument3DNotifyEnum
 	d3BeginChoiceProperty         =12         # from enum ksDocument3DNotifyEnum
@@ -2008,7 +1966,6 @@ class constants:
 	d3ChoiceProperty              =13         # from enum ksDocument3DNotifyEnum
 	d3CreateEmbodiment            =9          # from enum ksDocument3DNotifyEnum
 	d3DeleteEmbodiment            =10         # from enum ksDocument3DNotifyEnum
-	d3LoadCombinationChange       =17         # from enum ksDocument3DNotifyEnum
 	d3Rebuild                     =2          # from enum ksDocument3DNotifyEnum
 	d3RollbackFeatures            =15         # from enum ksDocument3DNotifyEnum
 	kdActiveDocument              =5          # from enum ksDocumentFileNotifyEnum
@@ -2091,7 +2048,6 @@ class constants:
 	ksEFTDraftFile                =21         # from enum ksExternalFilesTypesEnum
 	ksEFTEexternalHyperText       =26         # from enum ksExternalFilesTypesEnum
 	ksEFTExternalLayoutGeometry   =29         # from enum ksExternalFilesTypesEnum
-	ksEFTExternalRefContextFile   =32         # from enum ksExternalFilesTypesEnum
 	ksEFTFragmentFile             =6          # from enum ksExternalFilesTypesEnum
 	ksEFTFragmentsLibrary         =7          # from enum ksExternalFilesTypesEnum
 	ksEFTHatchStyleLibrary        =3          # from enum ksExternalFilesTypesEnum
@@ -2111,14 +2067,6 @@ class constants:
 	ksEFTTemporaryFile            =18         # from enum ksExternalFilesTypesEnum
 	ksEFTTextStyleLibrary         =2          # from enum ksExternalFilesTypesEnum
 	ksEFTUnknown                  =-1         # from enum ksExternalFilesTypesEnum
-	ksFOPFilterObject             =1          # from enum ksFindObjectParametersNotifyEnum
-	ksFindAll                     =0          # from enum ksFindObjectsTypeEnum
-	ksFindAnyCurve                =1          # from enum ksFindObjectsTypeEnum
-	ksFindCircleAnalog            =4          # from enum ksFindObjectsTypeEnum
-	ksFindEllipseAnalog           =13         # from enum ksFindObjectsTypeEnum
-	ksFindHatchBoundary           =15         # from enum ksFindObjectsTypeEnum
-	ksFindObjByType               =-1         # from enum ksFindObjectsTypeEnum
-	ksFindtTimmedCurve            =8          # from enum ksFindObjectsTypeEnum
 	ksGTEnum                      =4          # from enum ksGroupeTypeEnum
 	ksGTMatch                     =1          # from enum ksGroupeTypeEnum
 	ksGTNone                      =0          # from enum ksGroupeTypeEnum
@@ -2409,10 +2357,6 @@ class constants:
 	ksPrintSpecialExecute         =37289      # from enum ksKompasCommandEnum
 	ksSheetViewParams             =37005      # from enum ksKompasCommandEnum
 	ksViewShowBreakups            =39344      # from enum ksKompasCommandEnum
-	ksKompasExport                =101        # from enum ksKompasModuleEnum
-	ksKompasModule2D              =1          # from enum ksKompasModuleEnum
-	ksKompasModule3D              =2          # from enum ksKompasModuleEnum
-	ksKompasPrint                 =100        # from enum ksKompasModuleEnum
 	koApplicatinDestroy           =5          # from enum ksKompasObjectNotifyEnum
 	koBeginChoiceMaterial         =13         # from enum ksKompasObjectNotifyEnum
 	koBeginCloseAllDocument       =8          # from enum ksKompasObjectNotifyEnum
@@ -2525,32 +2469,18 @@ class constants:
 	ksMTrEquaFillet               =2          # from enum ksMlVertexTrackingEnum
 	ksMTrFillet                   =1          # from enum ksMlVertexTrackingEnum
 	ksMTrShear                    =0          # from enum ksMlVertexTrackingEnum
-	ksMPLDisabledAntialiasing     =0          # from enum ksModelPerformanceLevelEnum
-	ksMPLHightAntialiasing        =3          # from enum ksModelPerformanceLevelEnum
-	ksMPLLowAntialiasing          =1          # from enum ksModelPerformanceLevelEnum
-	ksMPLNormalAntialiasing       =2          # from enum ksModelPerformanceLevelEnum
-	ksModelRenderAuto             =0          # from enum ksModelRenderTypeEnum
-	ksModelRenderLow              =3          # from enum ksModelRenderTypeEnum
-	ksModelRenderMedium           =2          # from enum ksModelRenderTypeEnum
-	ksModelRenderNone             =-1         # from enum ksModelRenderTypeEnum
-	ksModelRenderPerfected        =1          # from enum ksModelRenderTypeEnum
-	ksModelTransparencyMesh       =0          # from enum ksModelTransparencyTypeEnum
-	ksModelTransparencyRealistic  =1          # from enum ksModelTransparencyTypeEnum
 	ksNewPartDocumentSettings     =1          # from enum ksNewDocumentSettingsTypeEnum
 	ntContentDialogNotify         =20         # from enum ksNotifyType
 	ntDocument2DNotify            =11         # from enum ksNotifyType
 	ntDocument3DNotify            =9          # from enum ksNotifyType
 	ntDocumentFileNotify          =2          # from enum ksNotifyType
 	ntDocumentFrameNotify         =14         # from enum ksNotifyType
-	ntFindObjectParametersNotify  =21         # from enum ksNotifyType
 	ntKompasObjectNotify          =1          # from enum ksNotifyType
 	ntLayoutSheetsNotify          =17         # from enum ksNotifyType
 	ntLibraryManagerNotify        =16         # from enum ksNotifyType
 	ntObject2DNotify              =4          # from enum ksNotifyType
 	ntObject3DNotify              =10         # from enum ksNotifyType
-	ntPLMObjectNotify             =23         # from enum ksNotifyType
 	ntProcess2DNotify             =18         # from enum ksNotifyType
-	ntProcess3DManipulatorsNotify =22         # from enum ksNotifyType
 	ntProcess3DNotify             =19         # from enum ksNotifyType
 	ntPropertyManagerNotify       =12         # from enum ksNotifyType
 	ntPropertyUserControlNotifyEnum=13         # from enum ksNotifyType
@@ -2600,16 +2530,15 @@ class constants:
 	koTransform                   =11         # from enum ksObject2DNotifyEnum
 	koUpdateObject                =19         # from enum ksObject2DNotifyEnum
 	o3BeginDelete                 =1          # from enum ksObject3DNotifyEnum
-	o3BeginLoadStateChange        =13         # from enum ksObject3DNotifyEnum
 	o3BeginPlacementChanged       =7          # from enum ksObject3DNotifyEnum
 	o3BeginProcess                =9          # from enum ksObject3DNotifyEnum
 	o3BeginPropertyChanged        =5          # from enum ksObject3DNotifyEnum
+	o3ChangeCurrent               =13         # from enum ksObject3DNotifyEnum
 	o3CreateObject                =11         # from enum ksObject3DNotifyEnum
 	o3Delete                      =2          # from enum ksObject3DNotifyEnum
 	o3EndProcess                  =10         # from enum ksObject3DNotifyEnum
 	o3Excluded                    =3          # from enum ksObject3DNotifyEnum
 	o3Hidden                      =4          # from enum ksObject3DNotifyEnum
-	o3LoadStateChange             =14         # from enum ksObject3DNotifyEnum
 	o3PlacementChanged            =8          # from enum ksObject3DNotifyEnum
 	o3PropertyChanged             =6          # from enum ksObject3DNotifyEnum
 	o3UpdateObject                =12         # from enum ksObject3DNotifyEnum
@@ -2639,19 +2568,6 @@ class constants:
 	ksPJ_OCByLayer                =2          # from enum ksOutputColorTypeEnum
 	ksPJ_OCByObject               =3          # from enum ksOutputColorTypeEnum
 	ksPJ_OCByView                 =1          # from enum ksOutputColorTypeEnum
-	ksPLMChangeUndefined          =0          # from enum ksPLMChangesEnum
-	ksPLMChangesNotCommited       =2          # from enum ksPLMChangesEnum
-	ksPLMConflict                 =4          # from enum ksPLMChangesEnum
-	ksPLMNoChanges                =1          # from enum ksPLMChangesEnum
-	ksPLMUpdateNeeded             =3          # from enum ksPLMChangesEnum
-	ksPLMChangeChanged            =1002       # from enum ksPLMObjectNotifyEnum
-	ksPLMStatusChanged            =1001       # from enum ksPLMObjectNotifyEnum
-	ksPLMStateAvailable           =2          # from enum ksPLMStatusEnum
-	ksPLMStateBlocked             =4          # from enum ksPLMStatusEnum
-	ksPLMStateError               =5          # from enum ksPLMStatusEnum
-	ksPLMStateInProgress          =3          # from enum ksPLMStatusEnum
-	ksPLMStateNotRegistered       =1          # from enum ksPLMStatusEnum
-	ksPLMStateUndefined           =0          # from enum ksPLMStatusEnum
 	ksRPLayout1                   =1          # from enum ksPageLayoutTypeEnum
 	ksRPLayoutDefault             =0          # from enum ksPageLayoutTypeEnum
 	ksAngleLineSegPhantom         =4          # from enum ksPhantomTypeEnum
@@ -2662,10 +2578,6 @@ class constants:
 	ksRectanglePhantom            =3          # from enum ksPhantomTypeEnum
 	ksUnknownPhantom              =0          # from enum ksPhantomTypeEnum
 	ksUserPhantom                 =6          # from enum ksPhantomTypeEnum
-	ksLPInside                    =3          # from enum ksPointLocationTypeEnum
-	ksPLOnCurve                   =2          # from enum ksPointLocationTypeEnum
-	ksPLOutside                   =1          # from enum ksPointLocationTypeEnum
-	ksPLUndefined                 =0          # from enum ksPointLocationTypeEnum
 	ksPLCircle                    =2          # from enum ksPositionLederFormEnum
 	ksPLCircleWithSeparator       =4          # from enum ksPositionLederFormEnum
 	ksPLHexagon                   =3          # from enum ksPositionLederFormEnum
@@ -2677,20 +2589,11 @@ class constants:
 	ksProcess2DDeactivate         =6          # from enum ksProcess2DNotifyEnum
 	ksProcess2DEndProcess         =7          # from enum ksProcess2DNotifyEnum
 	ksProcess2DExecuteCommand     =2          # from enum ksProcess2DNotifyEnum
-	ksProcess2DMouseEnterLeaveParam=8          # from enum ksProcess2DNotifyEnum
 	ksProcess2DPlacementChanged   =1          # from enum ksProcess2DNotifyEnum
 	ksProcess2DRun                =3          # from enum ksProcess2DNotifyEnum
 	ksProcess2DStop               =4          # from enum ksProcess2DNotifyEnum
 	ksProcess2DCursor             =1          # from enum ksProcess2DTypeEnum
 	ksProcess2DPlacement          =2          # from enum ksProcess2DTypeEnum
-	ksBeginDragManipulator        =4          # from enum ksProcess3DManipulatorsNotifyEnum
-	ksChangeManipulatorValue      =8          # from enum ksProcess3DManipulatorsNotifyEnum
-	ksClickManipulatorPrimitive   =3          # from enum ksProcess3DManipulatorsNotifyEnum
-	ksCreateManipulatorEdit       =6          # from enum ksProcess3DManipulatorsNotifyEnum
-	ksDestroyManipulatorEdit      =7          # from enum ksProcess3DManipulatorsNotifyEnum
-	ksEndDragManipulator          =5          # from enum ksProcess3DManipulatorsNotifyEnum
-	ksMoveManipulator             =2          # from enum ksProcess3DManipulatorsNotifyEnum
-	ksRotateManipulator           =1          # from enum ksProcess3DManipulatorsNotifyEnum
 	ksProcess3DActivate           =5          # from enum ksProcess3DNotifyEnum
 	ksProcess3DCreateTakeObject   =8          # from enum ksProcess3DNotifyEnum
 	ksProcess3DDeactivate         =6          # from enum ksProcess3DNotifyEnum
@@ -2698,7 +2601,6 @@ class constants:
 	ksProcess3DExecuteCommand     =2          # from enum ksProcess3DNotifyEnum
 	ksProcess3DFilterObjects      =7          # from enum ksProcess3DNotifyEnum
 	ksProcess3DPlacementChanged   =1          # from enum ksProcess3DNotifyEnum
-	ksProcess3DProcessingGroupObjects=10         # from enum ksProcess3DNotifyEnum
 	ksProcess3DRun                =3          # from enum ksProcess3DNotifyEnum
 	ksProcess3DStop               =4          # from enum ksProcess3DNotifyEnum
 	ksProcess3DPlacementAndEntity =1          # from enum ksProcess3DTypeEnum
@@ -2743,12 +2645,6 @@ class constants:
 	ksPropertyDataTypeUnknown     =0          # from enum ksPropertyTypeEnum
 	puCreateOCX                   =1          # from enum ksPropertyUserControlNotifyEnum
 	puDestroyOCX                  =2          # from enum ksPropertyUserControlNotifyEnum
-	ksProtectDemo                 =1          # from enum ksProtectProductStatusEnum
-	ksProtectDisabled             =2          # from enum ksProtectProductStatusEnum
-	ksProtectExpired              =3          # from enum ksProtectProductStatusEnum
-	ksProtectFailed               =5          # from enum ksProtectProductStatusEnum
-	ksProtectNormal               =4          # from enum ksProtectProductStatusEnum
-	ksProtectUnknown              =0          # from enum ksProtectProductStatusEnum
 	ksRAlreadyOpen                =3          # from enum ksRecoverErrorEnum
 	ksRNoError                    =0          # from enum ksRecoverErrorEnum
 	ksRNoOpen                     =2          # from enum ksRecoverErrorEnum
@@ -2827,8 +2723,6 @@ class constants:
 	ksSDV_Kompas_17               =21         # from enum ksSaveDocumentVersionEnum
 	ksSDV_Kompas_17_Sp1           =22         # from enum ksSaveDocumentVersionEnum
 	ksSDV_Kompas_18               =23         # from enum ksSaveDocumentVersionEnum
-	ksSDV_Kompas_18_Sp1           =24         # from enum ksSaveDocumentVersionEnum
-	ksSDV_Kompas_19               =25         # from enum ksSaveDocumentVersionEnum
 	ksSDV_Kompas_5_11_R03         =1          # from enum ksSaveDocumentVersionEnum
 	ksSDV_Kompas_6_0              =2          # from enum ksSaveDocumentVersionEnum
 	ksSDV_Kompas_6_Plus           =3          # from enum ksSaveDocumentVersionEnum
@@ -2990,13 +2884,6 @@ class constants:
 	kdStampBeginClearCells        =5          # from enum ksStampNotifyEnum
 	kdStampCellBeginEdit          =4          # from enum ksStampNotifyEnum
 	kdStampCellDblClick           =3          # from enum ksStampNotifyEnum
-	ksCurveStyleLibrary           =1          # from enum ksStylesLibraryTypeEnum
-	ksGraphicLayoutStyleLibrary   =5          # from enum ksStylesLibraryTypeEnum
-	ksHatchStyleLibrary           =2          # from enum ksStylesLibraryTypeEnum
-	ksSpcLayoutStyleLibrary       =7          # from enum ksStylesLibraryTypeEnum
-	ksStampStyleLibrary           =4          # from enum ksStylesLibraryTypeEnum
-	ksTextLayoutStyleLibrary      =6          # from enum ksStylesLibraryTypeEnum
-	ksTextStyleLibrary            =3          # from enum ksStylesLibraryTypeEnum
 	ksSCAlreadyStarted            =-2         # from enum ksSystemControlStartEnum
 	ksSCCloseApplication          =0          # from enum ksSystemControlStartEnum
 	ksSCError                     =-4         # from enum ksSystemControlStartEnum
@@ -3089,15 +2976,12 @@ class constants:
 	ksTSMultiTextLeader           =17         # from enum ksTextStyleEnum
 	ksTSRprtTableCell             =26         # from enum ksTextStyleEnum
 	ksTSRprtTableHeader           =25         # from enum ksTextStyleEnum
-	ksTSRprtTableName             =27         # from enum ksTextStyleEnum
 	ksTSSectionLine               =11         # from enum ksTextStyleEnum
 	ksTSShapeDeviations           =8          # from enum ksTextStyleEnum
 	ksTSSpecifications            =2          # from enum ksTextStyleEnum
 	ksTSSurfaceFinish             =4          # from enum ksTextStyleEnum
 	ksTSTableCell                 =10         # from enum ksTextStyleEnum
 	ksTSTableHeader               =9          # from enum ksTextStyleEnum
-	ksTSTableName                 =28         # from enum ksTextStyleEnum
-	ksTSTextMark                  =29         # from enum ksTextStyleEnum
 	ksTSUnitMarking               =18         # from enum ksTextStyleEnum
 	ksTSUnitNumber                =16         # from enum ksTextStyleEnum
 	ksTSUnspecifiedSurfaceFinish  =13         # from enum ksTextStyleEnum

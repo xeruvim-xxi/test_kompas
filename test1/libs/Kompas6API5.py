@@ -1,11 +1,11 @@
 # -*- coding: mbcs -*-
 # Created by makepy.py version 0.5.01
-# By python version 3.9.5 (tags/v3.9.5:0a7dcbd, May  3 2021, 17:27:52) [MSC v.1928 64 bit (AMD64)]
+# By python version 3.2.5 (default, May 15 2013, 23:06:03) [MSC v.1500 32 bit (Intel)]
 # From type library 'kApi5.tlb'
-# On Thu Jul 22 12:28:34 2021
+# On Mon Jan 14 11:59:38 2019
 ''
 makepy_version = '0.5.01'
-python_version = 0x30905f0
+python_version = 0x30205f0
 
 import win32com.client.CLSIDToClass, pythoncom, pywintypes
 import win32com.client.util
@@ -440,12 +440,6 @@ class KompasObject(DispatchBaseClass):
 		return self._oleobj_.InvokeTypes(94, LCID, 1, (3, 0), ((8, 0),),fileName
 			)
 
-	def ksGetDocumentTypeByNameEx(self, fileName=defaultNamedNotOptArg, docType=defaultNamedNotOptArg, errorId=defaultNamedNotOptArg):
-		'Получить тип документа по имени файла.'
-		# Result is a Unicode object
-		return self._oleobj_.InvokeTypes(138, LCID, 1, (8, 0), ((8, 0), (16387, 0), (16387, 0)),fileName
-			, docType, errorId)
-
 	def ksGetExternaldispinterface(self):
 		'Получить указатель внешнего интерфейса.'
 		ret = self._oleobj_.InvokeTypes(102, LCID, 1, (9, 0), (),)
@@ -776,12 +770,10 @@ class KompasObject(DispatchBaseClass):
 
 	_prop_map_get_ = {
 		"Visible": (1, 2, (11, 0), (), "Visible", None),
-		"currentDirectory": (137, 2, (8, 0), (), "currentDirectory", None),
 		"lookStyle": (99, 2, (3, 0), (), "lookStyle", None),
 	}
 	_prop_map_put_ = {
 		"Visible" : ((1, LCID, 4, 0),()),
-		"currentDirectory" : ((137, LCID, 4, 0),()),
 		"lookStyle" : ((99, LCID, 4, 0),()),
 	}
 	def __iter__(self):
@@ -980,10 +972,8 @@ class ksAdditionFormatParam(DispatchBaseClass):
 		"length": (10, 2, (5, 0), (), "length", None),
 		"lengthUnits": (12, 2, (3, 0), (), "lengthUnits", None),
 		"maxTeselationCellCount": (11, 2, (3, 0), (), "maxTeselationCellCount", None),
-		"needCreateComponentsFiles": (23, 2, (11, 0), (), "needCreateComponentsFiles", None),
 		"organization": (16, 2, (8, 0), (), "organization", None),
 		"password": (22, 2, (8, 0), (), "password", None),
-		"saveResultDocument": (24, 2, (11, 0), (), "saveResultDocument", None),
 		"step": (8, 2, (5, 0), (), "step", None),
 		"stepType": (7, 2, (3, 0), (), "stepType", None),
 		"stitchPrecision": (14, 2, (5, 0), (), "stitchPrecision", None),
@@ -1001,10 +991,8 @@ class ksAdditionFormatParam(DispatchBaseClass):
 		"length" : ((10, LCID, 4, 0),()),
 		"lengthUnits" : ((12, LCID, 4, 0),()),
 		"maxTeselationCellCount" : ((11, LCID, 4, 0),()),
-		"needCreateComponentsFiles" : ((23, LCID, 4, 0),()),
 		"organization" : ((16, LCID, 4, 0),()),
 		"password" : ((22, LCID, 4, 0),()),
-		"saveResultDocument" : ((24, LCID, 4, 0),()),
 		"step" : ((8, LCID, 4, 0),()),
 		"stepType" : ((7, LCID, 4, 0),()),
 		"stitchPrecision" : ((14, LCID, 4, 0),()),
@@ -6892,14 +6880,14 @@ class ksDocument2DNotify:
 	coclass_clsid = IID('{1B9B9B4E-DCD7-496E-A583-547EC1E91E47}')
 	_public_methods_ = [] # For COM Server support
 	_dispid_to_func_ = {
+		        4 : "OnChoiceMaterial",
 		        1 : "OnBeginRebuild",
 		        2 : "OnRebuild",
-		        3 : "OnBeginChoiceMaterial",
-		        4 : "OnChoiceMaterial",
 		        5 : "OnBeginInsertFragment",
 		        6 : "OnLocalFragmentEdit",
-		        7 : "OnBeginChoiceProperty",
 		        8 : "OnChoiceProperty",
+		        7 : "OnBeginChoiceProperty",
+		        3 : "OnBeginChoiceMaterial",
 		}
 
 	def __init__(self, oobj = None):
@@ -6927,22 +6915,22 @@ class ksDocument2DNotify:
 
 	# Event Handlers
 	# If you create handlers, they should have the following prototypes:
+#	def OnChoiceMaterial(self, material=defaultNamedNotOptArg, density=defaultNamedNotOptArg):
+#		'Закончен выбор материала.'
 #	def OnBeginRebuild(self):
 #		'Начало перестроения ассоциативного чертежа.'
 #	def OnRebuild(self):
 #		'Ассоциативный чертеж перестроен.'
-#	def OnBeginChoiceMaterial(self):
-#		'Начало выбора материала.'
-#	def OnChoiceMaterial(self, material=defaultNamedNotOptArg, density=defaultNamedNotOptArg):
-#		'Закончен выбор материала.'
 #	def OnBeginInsertFragment(self):
 #		'Начало вставки фрагмента  (до диалога выбора имени).'
 #	def OnLocalFragmentEdit(self, newDoc=defaultNamedNotOptArg, newFrw=defaultNamedNotOptArg):
 #		'Редактирование локального фрагмента.'
-#	def OnBeginChoiceProperty(self, objRef=defaultNamedNotOptArg, propID=defaultNamedNotOptArg):
-#		'Начало выбора свойства.'
 #	def OnChoiceProperty(self, objRef=defaultNamedNotOptArg, propID=defaultNamedNotOptArg):
 #		'Закончен выбор свойства.'
+#	def OnBeginChoiceProperty(self, objRef=defaultNamedNotOptArg, propID=defaultNamedNotOptArg):
+#		'Начало выбора свойства.'
+#	def OnBeginChoiceMaterial(self):
+#		'Начало выбора материала.'
 
 
 class ksDocument3D(DispatchBaseClass):
@@ -7416,23 +7404,19 @@ class ksDocument3DNotify:
 	coclass_clsid = IID('{22B81342-42D6-4907-A91E-F75A959F2270}')
 	_public_methods_ = [] # For COM Server support
 	_dispid_to_func_ = {
-		        1 : "OnBeginRebuild",
-		        2 : "OnRebuild",
-		        3 : "OnBeginChoiceMaterial",
+		        9 : "OnCreateEmbodiment",
 		        4 : "OnChoiceMaterial",
 		        5 : "OnBeginChoiceMarking",
-		        6 : "OnChoiceMarking",
+		        2 : "OnRebuild",
+		        1 : "OnBeginRebuild",
 		        7 : "OnBeginSetPartFromFile",
 		        8 : "OnBeginCreatePartFromFile",
-		        9 : "OnCreateEmbodiment",
-		       10 : "OnDeleteEmbodiment",
-		       11 : "OnChangeCurrentEmbodiment",
 		       12 : "OnBeginChoiceProperty",
 		       13 : "OnChoiceProperty",
-		       14 : "OnBeginRollbackFeatures",
-		       15 : "OnRollbackFeatures",
-		       16 : "OnBedinLoadCombinationChange",
-		       17 : "OnLoadCombinationChange",
+		        6 : "OnChoiceMarking",
+		        3 : "OnBeginChoiceMaterial",
+		       11 : "OnChangeCurrentEmbodiment",
+		       10 : "OnDeleteEmbodiment",
 		}
 
 	def __init__(self, oobj = None):
@@ -7460,40 +7444,32 @@ class ksDocument3DNotify:
 
 	# Event Handlers
 	# If you create handlers, they should have the following prototypes:
-#	def OnBeginRebuild(self):
-#		'Начало перестроения модели.'
-#	def OnRebuild(self):
-#		'Модель перестроена.'
-#	def OnBeginChoiceMaterial(self):
-#		'Начало выбора материала.'
+#	def OnCreateEmbodiment(self, marking=defaultNamedNotOptArg):
+#		'Добавлено новое исполнение.'
 #	def OnChoiceMaterial(self, material=defaultNamedNotOptArg, density=defaultNamedNotOptArg):
 #		'Закончен выбор материала.'
 #	def OnBeginChoiceMarking(self):
 #		'Начало выбора обозначения.'
-#	def OnChoiceMarking(self, marking=defaultNamedNotOptArg):
-#		'Закончен выбор обозначения.'
+#	def OnRebuild(self):
+#		'Модель перестроена.'
+#	def OnBeginRebuild(self):
+#		'Начало перестроения модели.'
 #	def OnBeginSetPartFromFile(self):
 #		'Начало установки компонента в сборку (до диалога выбора имени).'
 #	def OnBeginCreatePartFromFile(self, typeDoc=defaultNamedNotOptArg, plane=defaultNamedNotOptArg):
 #		'Начало создания компонента в сборке  (до диалога выбора имени).'
-#	def OnCreateEmbodiment(self, marking=defaultNamedNotOptArg):
-#		'Добавлено новое исполнение.'
-#	def OnDeleteEmbodiment(self, marking=defaultNamedNotOptArg):
-#		'Удалено исполнение.'
-#	def OnChangeCurrentEmbodiment(self, marking=defaultNamedNotOptArg):
-#		'Исполение установлено текущим.'
 #	def OnBeginChoiceProperty(self, obj=defaultNamedNotOptArg, propID=defaultNamedNotOptArg):
 #		'Начало выбора свойства.'
 #	def OnChoiceProperty(self, obj=defaultNamedNotOptArg, propID=defaultNamedNotOptArg):
 #		'Закончен выбор свойства.'
-#	def OnBeginRollbackFeatures(self):
-#		'Начало отката дерева модели.'
-#	def OnRollbackFeatures(self):
-#		'Завершение отката дерева модели.'
-#	def OnBedinLoadCombinationChange(self, index=defaultNamedNotOptArg):
-#		'Начало переключения типа загрузки.'
-#	def OnLoadCombinationChange(self, index=defaultNamedNotOptArg):
-#		'Завершение переключения типа загрузки.'
+#	def OnChoiceMarking(self, marking=defaultNamedNotOptArg):
+#		'Закончен выбор обозначения.'
+#	def OnBeginChoiceMaterial(self):
+#		'Начало выбора материала.'
+#	def OnChangeCurrentEmbodiment(self, marking=defaultNamedNotOptArg):
+#		'Исполение установлено текущим.'
+#	def OnDeleteEmbodiment(self, marking=defaultNamedNotOptArg):
+#		'Удалено исполнение.'
 
 
 class ksDocument3DNotifyResult(DispatchBaseClass):
@@ -7539,19 +7515,19 @@ class ksDocumentFileNotify:
 	_public_methods_ = [] # For COM Server support
 	_dispid_to_func_ = {
 		        1 : "OnBeginCloseDocument",
-		        2 : "OnCloseDocument",
-		        3 : "OnBeginSaveDocument",
-		        4 : "OnSaveDocument",
+		       11 : "OnBeginProcess",
 		        5 : "OnActivate",
+		       12 : "OnEndProcess",
+		       14 : "OnAutoSaveDocument",
+		        8 : "OnDocumentFrameOpen",
+		        4 : "OnSaveDocument",
+		       13 : "OnBeginAutoSaveDocument",
 		        6 : "OnDeactivate",
 		        7 : "OnBeginSaveAsDocument",
-		        8 : "OnDocumentFrameOpen",
 		        9 : "OnProcessActivate",
 		       10 : "OnProcessDeactivate",
-		       11 : "OnBeginProcess",
-		       12 : "OnEndProcess",
-		       13 : "OnBeginAutoSaveDocument",
-		       14 : "OnAutoSaveDocument",
+		        2 : "OnCloseDocument",
+		        3 : "OnBeginSaveDocument",
 		}
 
 	def __init__(self, oobj = None):
@@ -7581,32 +7557,32 @@ class ksDocumentFileNotify:
 	# If you create handlers, they should have the following prototypes:
 #	def OnBeginCloseDocument(self):
 #		'Начало закрытия документа.'
-#	def OnCloseDocument(self):
-#		'Документ закрыт.'
-#	def OnBeginSaveDocument(self, fileName=defaultNamedNotOptArg):
-#		'Начало сохранения документа.'
-#	def OnSaveDocument(self):
-#		'Документ сохранен.'
+#	def OnBeginProcess(self, iD=defaultNamedNotOptArg):
+#		'Начало процесса.'
 #	def OnActivate(self):
 #		'Документ активизирован.'
+#	def OnEndProcess(self, iD=defaultNamedNotOptArg, Success=defaultNamedNotOptArg):
+#		'Завершение процесса.'
+#	def OnAutoSaveDocument(self):
+#		'Документ автосохранен.'
+#	def OnDocumentFrameOpen(self, v=defaultNamedNotOptArg):
+#		'Окно документа открылось.'
+#	def OnSaveDocument(self):
+#		'Документ сохранен.'
+#	def OnBeginAutoSaveDocument(self, fileName=defaultNamedNotOptArg):
+#		'Начало автосохранения документа.'
 #	def OnDeactivate(self):
 #		'Документ деактивизирован.'
 #	def OnBeginSaveAsDocument(self):
 #		'Начало сохранения документа c другим именем (до диалога выбора имени).'
-#	def OnDocumentFrameOpen(self, v=defaultNamedNotOptArg):
-#		'Окно документа открылось.'
 #	def OnProcessActivate(self, iD=defaultNamedNotOptArg):
 #		'Активизация процесса.'
 #	def OnProcessDeactivate(self, iD=defaultNamedNotOptArg):
 #		'Деактивизация процесса.'
-#	def OnBeginProcess(self, iD=defaultNamedNotOptArg):
-#		'Начало процесса.'
-#	def OnEndProcess(self, iD=defaultNamedNotOptArg, Success=defaultNamedNotOptArg):
-#		'Завершение процесса.'
-#	def OnBeginAutoSaveDocument(self, fileName=defaultNamedNotOptArg):
-#		'Начало автосохранения документа.'
-#	def OnAutoSaveDocument(self):
-#		'Документ автосохранен.'
+#	def OnCloseDocument(self):
+#		'Документ закрыт.'
+#	def OnBeginSaveDocument(self, fileName=defaultNamedNotOptArg):
+#		'Начало сохранения документа.'
 
 
 class ksDocumentParam(DispatchBaseClass):
@@ -9574,24 +9550,24 @@ class ksKompasObjectNotify:
 	coclass_clsid = IID('{FBE002A6-1E06-4703-AEC5-9AD8A10FA1FA}')
 	_public_methods_ = [] # For COM Server support
 	_dispid_to_func_ = {
-		        1 : "OnCreateDocument",
-		        2 : "OnBeginOpenDocument",
-		        3 : "OnOpenDocument",
 		        4 : "OnChangeActiveDocument",
 		        5 : "OnApplicationDestroy",
 		        6 : "OnBeginCreate",
-		        7 : "OnBeginOpenFile",
+		        2 : "OnBeginOpenDocument",
+		       14 : "OnChoiceMaterial",
+		        1 : "OnCreateDocument",
+		       11 : "OnKeyPress",
+		       10 : "OnKeyUp",
 		        8 : "OnBeginCloseAllDocument",
 		        9 : "OnKeyDown",
-		       10 : "OnKeyUp",
-		       11 : "OnKeyPress",
-		       12 : "OnBeginReguestFiles",
-		       13 : "OnBeginChoiceMaterial",
-		       14 : "OnChoiceMaterial",
 		       15 : "OnIsNeedConvertToSavePrevious",
-		       16 : "OnBeginConvertToSavePrevious",
-		       17 : "OnEndConvertToSavePrevious",
 		       18 : "OnChangeTheme",
+		        3 : "OnOpenDocument",
+		        7 : "OnBeginOpenFile",
+		       12 : "OnBeginReguestFiles",
+		       17 : "OnEndConvertToSavePrevious",
+		       13 : "OnBeginChoiceMaterial",
+		       16 : "OnBeginConvertToSavePrevious",
 		}
 
 	def __init__(self, oobj = None):
@@ -9619,43 +9595,43 @@ class ksKompasObjectNotify:
 
 	# Event Handlers
 	# If you create handlers, they should have the following prototypes:
-#	def OnCreateDocument(self, newDoc=defaultNamedNotOptArg, docType=defaultNamedNotOptArg):
-#		'Документ создан.'
-#	def OnBeginOpenDocument(self, fileName=defaultNamedNotOptArg):
-#		'Начало открытия документа.'
-#	def OnOpenDocument(self, newDoc=defaultNamedNotOptArg, docType=defaultNamedNotOptArg):
-#		'Документ открыт.'
 #	def OnChangeActiveDocument(self, newDoc=defaultNamedNotOptArg, docType=defaultNamedNotOptArg):
 #		'Переключение на другой активный документ.'
 #	def OnApplicationDestroy(self):
 #		'Закрытие приложения.'
 #	def OnBeginCreate(self, docType=defaultNamedNotOptArg):
 #		'Начало создания документа(до диалога выбора типа).'
-#	def OnBeginOpenFile(self):
-#		'Начало открытия документа(до диалога выбора имени).'
+#	def OnBeginOpenDocument(self, fileName=defaultNamedNotOptArg):
+#		'Начало открытия документа.'
+#	def OnChoiceMaterial(self, MaterialPropertyId=defaultNamedNotOptArg, material=defaultNamedNotOptArg, density=defaultNamedNotOptArg):
+#		'Закончен выбор материала.'
+#	def OnCreateDocument(self, newDoc=defaultNamedNotOptArg, docType=defaultNamedNotOptArg):
+#		'Документ создан.'
+#	def OnKeyPress(self, key=defaultNamedNotOptArg, systemKey=defaultNamedNotOptArg):
+#		'Событие нажатия клавиатуры - нажали клавишу.'
+#	def OnKeyUp(self, key=defaultNamedNotOptArg, flags=defaultNamedNotOptArg, systemKey=defaultNamedNotOptArg):
+#		'Событие нажатия клавиатуры - отпустили клавишу.'
 #	def OnBeginCloseAllDocument(self):
 #		'Начало закрытия всех открытых документов.'
 #	def OnKeyDown(self, key=defaultNamedNotOptArg, flags=defaultNamedNotOptArg, systemKey=defaultNamedNotOptArg):
 #		'Событие нажатия клавиатуры - нажали клавишу.'
-#	def OnKeyUp(self, key=defaultNamedNotOptArg, flags=defaultNamedNotOptArg, systemKey=defaultNamedNotOptArg):
-#		'Событие нажатия клавиатуры - отпустили клавишу.'
-#	def OnKeyPress(self, key=defaultNamedNotOptArg, systemKey=defaultNamedNotOptArg):
-#		'Событие нажатия клавиатуры - нажали клавишу.'
-#	def OnBeginReguestFiles(self, requestID=defaultNamedNotOptArg, files=defaultNamedNotOptArg):
-#		'Запрос имен файлов.'
-#	def OnBeginChoiceMaterial(self, MaterialPropertyId=defaultNamedNotOptArg):
-#		'Начало выбора материала.'
-#	def OnChoiceMaterial(self, MaterialPropertyId=defaultNamedNotOptArg, material=defaultNamedNotOptArg, density=defaultNamedNotOptArg):
-#		'Закончен выбор материала.'
 #	def OnIsNeedConvertToSavePrevious(self, pDoc=defaultNamedNotOptArg, docType=defaultNamedNotOptArg, saveVersion=defaultNamedNotOptArg, saveToPreviusParam=defaultNamedNotOptArg
 #			, needConvert=defaultNamedNotOptArg):
 #		'Начало сохранения документа в предыдущую верию.'
-#	def OnBeginConvertToSavePrevious(self, pDoc=defaultNamedNotOptArg, docType=defaultNamedNotOptArg, saveVersion=defaultNamedNotOptArg, saveToPreviusParam=defaultNamedNotOptArg):
-#		'Начало конвертации документа перед записью в предыдущую верию.'
-#	def OnEndConvertToSavePrevious(self, pDoc=defaultNamedNotOptArg, docType=defaultNamedNotOptArg, saveVersion=defaultNamedNotOptArg, saveToPreviusParam=defaultNamedNotOptArg):
-#		'Завершение конвертации документа перед записью в предыдущую верию.'
 #	def OnChangeTheme(self, newTheme=defaultNamedNotOptArg):
 #		'Событие изменения темы.'
+#	def OnOpenDocument(self, newDoc=defaultNamedNotOptArg, docType=defaultNamedNotOptArg):
+#		'Документ открыт.'
+#	def OnBeginOpenFile(self):
+#		'Начало открытия документа(до диалога выбора имени).'
+#	def OnBeginReguestFiles(self, requestID=defaultNamedNotOptArg, files=defaultNamedNotOptArg):
+#		'Запрос имен файлов.'
+#	def OnEndConvertToSavePrevious(self, pDoc=defaultNamedNotOptArg, docType=defaultNamedNotOptArg, saveVersion=defaultNamedNotOptArg, saveToPreviusParam=defaultNamedNotOptArg):
+#		'Завершение конвертации документа перед записью в предыдущую верию.'
+#	def OnBeginChoiceMaterial(self, MaterialPropertyId=defaultNamedNotOptArg):
+#		'Начало выбора материала.'
+#	def OnBeginConvertToSavePrevious(self, pDoc=defaultNamedNotOptArg, docType=defaultNamedNotOptArg, saveVersion=defaultNamedNotOptArg, saveToPreviusParam=defaultNamedNotOptArg):
+#		'Начало конвертации документа перед записью в предыдущую верию.'
 
 
 class ksLBreakDimParam(DispatchBaseClass):
@@ -11948,29 +11924,29 @@ class ksObject2DNotify:
 	coclass_clsid = IID('{C7EBA9A1-9E76-436E-B362-A80C5763944C}')
 	_public_methods_ = [] # For COM Server support
 	_dispid_to_func_ = {
-		        1 : "OnChangeActive",
-		        2 : "OnBeginDelete",
-		        3 : "OnDelete",
-		        4 : "OnBeginMove",
-		        5 : "OnMove",
-		        6 : "OnBeginRotate",
-		        7 : "OnRotate",
-		        8 : "OnBeginScale",
-		        9 : "Onscale",
-		       10 : "OnBeginTransform",
+		       21 : "OnDestroyObject",
 		       11 : "OnTransform",
-		       12 : "OnBeginCopy",
-		       13 : "Oncopy",
-		       14 : "OnBeginSymmetry",
-		       15 : "OnSymmetry",
-		       16 : "OnBeginProcess",
-		       17 : "OnEndProcess",
-		       18 : "OnCreateObject",
 		       19 : "OnUpdateObject",
 		       20 : "OnBeginDestroyObject",
-		       21 : "OnDestroyObject",
-		       22 : "OnBeginPropertyChanged",
+		        8 : "OnBeginScale",
+		        9 : "Onscale",
+		        6 : "OnBeginRotate",
 		       23 : "OnPropertyChanged",
+		       14 : "OnBeginSymmetry",
+		       16 : "OnBeginProcess",
+		        7 : "OnRotate",
+		        4 : "OnBeginMove",
+		       10 : "OnBeginTransform",
+		        1 : "OnChangeActive",
+		       18 : "OnCreateObject",
+		       13 : "Oncopy",
+		        3 : "OnDelete",
+		       22 : "OnBeginPropertyChanged",
+		       17 : "OnEndProcess",
+		       15 : "OnSymmetry",
+		        5 : "OnMove",
+		        2 : "OnBeginDelete",
+		       12 : "OnBeginCopy",
 		}
 
 	def __init__(self, oobj = None):
@@ -11998,52 +11974,52 @@ class ksObject2DNotify:
 
 	# Event Handlers
 	# If you create handlers, they should have the following prototypes:
-#	def OnChangeActive(self, objRef=defaultNamedNotOptArg):
-#		'Переключение активности объекта( вид, слой).'
-#	def OnBeginDelete(self, objRef=defaultNamedNotOptArg):
-#		'Начало удаления объекта, false - запрещает удаление.'
-#	def OnDelete(self, objRef=defaultNamedNotOptArg):
-#		'Удаление объекта.'
-#	def OnBeginMove(self, objRef=defaultNamedNotOptArg):
-#		'Начало сдвига объекта, false - запрещает сдвиг.'
-#	def OnMove(self, objRef=defaultNamedNotOptArg):
-#		'Сдвиг объекта.'
-#	def OnBeginRotate(self, objRef=defaultNamedNotOptArg):
-#		'Начало поворота объекта, false - запрещает поворот.'
-#	def OnRotate(self, objRef=defaultNamedNotOptArg):
-#		'Поворот объекта.'
-#	def OnBeginScale(self, objRef=defaultNamedNotOptArg):
-#		'Начало масштабирования объекта, false - запрещает поворот.'
-#	def Onscale(self, objRef=defaultNamedNotOptArg):
-#		'Масштабирование объекта.'
-#	def OnBeginTransform(self, objRef=defaultNamedNotOptArg):
-#		'Начало трансформации объекта, false - запрещает трансформацию.'
+#	def OnDestroyObject(self, objRef=defaultNamedNotOptArg):
+#		'Разрушение объекта.'
 #	def OnTransform(self, objRef=defaultNamedNotOptArg):
 #		'Трансформация объекта.'
-#	def OnBeginCopy(self, objRef=defaultNamedNotOptArg):
-#		'Начало копирования объекта, false - запрещает копирование.'
-#	def Oncopy(self, objRef=defaultNamedNotOptArg):
-#		'Копирование объекта.'
-#	def OnBeginSymmetry(self, objRef=defaultNamedNotOptArg):
-#		'Начало симметрии  объекта, false - запрещает симметрию.'
-#	def OnSymmetry(self, objRef=defaultNamedNotOptArg):
-#		'Симметрия  объекта.'
-#	def OnBeginProcess(self, pType=defaultNamedNotOptArg, objRef=defaultNamedNotOptArg):
-#		'Начало редактированиясоздания объекта.false - запрещает процесс'
-#	def OnEndProcess(self, pType=defaultNamedNotOptArg):
-#		'Конец редактированиясоздания объекта.'
-#	def OnCreateObject(self, objRef=defaultNamedNotOptArg):
-#		'Создание объекта.'
 #	def OnUpdateObject(self, objRef=defaultNamedNotOptArg):
 #		'Редактирование объекта.'
 #	def OnBeginDestroyObject(self, objRef=defaultNamedNotOptArg):
 #		'Начало разрушения объекта, false - запрещает разрушение.'
-#	def OnDestroyObject(self, objRef=defaultNamedNotOptArg):
-#		'Разрушение объекта.'
-#	def OnBeginPropertyChanged(self, objRef=defaultNamedNotOptArg):
-#		'Начало изменения свойств объекта.'
+#	def OnBeginScale(self, objRef=defaultNamedNotOptArg):
+#		'Начало масштабирования объекта, false - запрещает поворот.'
+#	def Onscale(self, objRef=defaultNamedNotOptArg):
+#		'Масштабирование объекта.'
+#	def OnBeginRotate(self, objRef=defaultNamedNotOptArg):
+#		'Начало поворота объекта, false - запрещает поворот.'
 #	def OnPropertyChanged(self, objRef=defaultNamedNotOptArg):
 #		'Изменения свойств объекта.'
+#	def OnBeginSymmetry(self, objRef=defaultNamedNotOptArg):
+#		'Начало симметрии  объекта, false - запрещает симметрию.'
+#	def OnBeginProcess(self, pType=defaultNamedNotOptArg, objRef=defaultNamedNotOptArg):
+#		'Начало редактированиясоздания объекта.false - запрещает процесс'
+#	def OnRotate(self, objRef=defaultNamedNotOptArg):
+#		'Поворот объекта.'
+#	def OnBeginMove(self, objRef=defaultNamedNotOptArg):
+#		'Начало сдвига объекта, false - запрещает сдвиг.'
+#	def OnBeginTransform(self, objRef=defaultNamedNotOptArg):
+#		'Начало трансформации объекта, false - запрещает трансформацию.'
+#	def OnChangeActive(self, objRef=defaultNamedNotOptArg):
+#		'Переключение активности объекта( вид, слой).'
+#	def OnCreateObject(self, objRef=defaultNamedNotOptArg):
+#		'Создание объекта.'
+#	def Oncopy(self, objRef=defaultNamedNotOptArg):
+#		'Копирование объекта.'
+#	def OnDelete(self, objRef=defaultNamedNotOptArg):
+#		'Удаление объекта.'
+#	def OnBeginPropertyChanged(self, objRef=defaultNamedNotOptArg):
+#		'Начало изменения свойств объекта.'
+#	def OnEndProcess(self, pType=defaultNamedNotOptArg):
+#		'Конец редактированиясоздания объекта.'
+#	def OnSymmetry(self, objRef=defaultNamedNotOptArg):
+#		'Симметрия  объекта.'
+#	def OnMove(self, objRef=defaultNamedNotOptArg):
+#		'Сдвиг объекта.'
+#	def OnBeginDelete(self, objRef=defaultNamedNotOptArg):
+#		'Начало удаления объекта, false - запрещает удаление.'
+#	def OnBeginCopy(self, objRef=defaultNamedNotOptArg):
+#		'Начало копирования объекта, false - запрещает копирование.'
 
 
 class ksObject2DNotifyResult(DispatchBaseClass):
@@ -12107,20 +12083,18 @@ class ksObject3DNotify:
 	coclass_clsid = IID('{CA35F3C6-7E2D-4700-BE12-BAA26DC1945B}')
 	_public_methods_ = [] # For COM Server support
 	_dispid_to_func_ = {
-		        1 : "OnBeginDelete",
-		        2 : "OnDelete",
-		        3 : "Onexcluded",
-		        4 : "Onhidden",
 		        5 : "OnBeginPropertyChanged",
 		        6 : "OnPropertyChanged",
-		        7 : "OnBeginPlacementChanged",
-		        8 : "OnPlacementChanged",
-		        9 : "OnBeginProcess",
 		       10 : "OnEndProcess",
-		       11 : "OnCreateObject",
+		        1 : "OnBeginDelete",
+		        8 : "OnPlacementChanged",
+		        7 : "OnBeginPlacementChanged",
+		        9 : "OnBeginProcess",
 		       12 : "OnUpdateObject",
-		       13 : "OnBeginLoadStateChange",
-		       14 : "OnLoadStateChange",
+		       11 : "OnCreateObject",
+		        3 : "Onexcluded",
+		        4 : "Onhidden",
+		        2 : "OnDelete",
 		}
 
 	def __init__(self, oobj = None):
@@ -12148,34 +12122,30 @@ class ksObject3DNotify:
 
 	# Event Handlers
 	# If you create handlers, they should have the following prototypes:
-#	def OnBeginDelete(self, obj=defaultNamedNotOptArg):
-#		'Начало удаления объектов.'
-#	def OnDelete(self, obj=defaultNamedNotOptArg):
-#		'Oбъекты удалены.'
-#	def Onexcluded(self, obj=defaultNamedNotOptArg, excluded=defaultNamedNotOptArg):
-#		'Oбъект исключен/включен в расчет.'
-#	def Onhidden(self, obj=defaultNamedNotOptArg, _hidden=defaultNamedNotOptArg):
-#		'Oбъект скрыт/показан.'
 #	def OnBeginPropertyChanged(self, obj=defaultNamedNotOptArg):
 #		'Начало изменения свойств объета.'
 #	def OnPropertyChanged(self, obj=defaultNamedNotOptArg):
 #		'Изменены свойства объета.'
-#	def OnBeginPlacementChanged(self, obj=defaultNamedNotOptArg):
-#		'Начало изменения положения объета .'
-#	def OnPlacementChanged(self, obj=defaultNamedNotOptArg):
-#		'Изменено положения объета.'
-#	def OnBeginProcess(self, pType=defaultNamedNotOptArg, obj=defaultNamedNotOptArg):
-#		'Начало редактированиясоздания объекта.false - запрещает процесс'
 #	def OnEndProcess(self, pType=defaultNamedNotOptArg):
 #		'Конец редактированиясоздания объекта.'
-#	def OnCreateObject(self, obj=defaultNamedNotOptArg):
-#		'Создание объекта.'
+#	def OnBeginDelete(self, obj=defaultNamedNotOptArg):
+#		'Начало удаления объектов.'
+#	def OnPlacementChanged(self, obj=defaultNamedNotOptArg):
+#		'Изменено положения объета.'
+#	def OnBeginPlacementChanged(self, obj=defaultNamedNotOptArg):
+#		'Начало изменения положения объета .'
+#	def OnBeginProcess(self, pType=defaultNamedNotOptArg, obj=defaultNamedNotOptArg):
+#		'Начало редактированиясоздания объекта.false - запрещает процесс'
 #	def OnUpdateObject(self, obj=defaultNamedNotOptArg):
 #		'Редактирование объекта.'
-#	def OnBeginLoadStateChange(self, obj=defaultNamedNotOptArg, loadState=defaultNamedNotOptArg):
-#		'Начало изменения типа загрузки.'
-#	def OnLoadStateChange(self, obj=defaultNamedNotOptArg, loadState=defaultNamedNotOptArg):
-#		'Завершение изменения типа загрузки.'
+#	def OnCreateObject(self, obj=defaultNamedNotOptArg):
+#		'Создание объекта.'
+#	def Onexcluded(self, obj=defaultNamedNotOptArg, excluded=defaultNamedNotOptArg):
+#		'Oбъект исключен/включен в расчет.'
+#	def Onhidden(self, obj=defaultNamedNotOptArg, _hidden=defaultNamedNotOptArg):
+#		'Oбъект скрыт/показан.'
+#	def OnDelete(self, obj=defaultNamedNotOptArg):
+#		'Oбъекты удалены.'
 
 
 class ksObject3DNotifyResult(DispatchBaseClass):
@@ -14270,7 +14240,6 @@ class ksRasterFormatParam(DispatchBaseClass):
 		"onlyThinLine": (7, 2, (11, 0), (), "onlyThinLine", None),
 		"pages": (8, 2, (8, 0), (), "pages", None),
 		"rangeIndex": (9, 2, (2, 0), (), "rangeIndex", None),
-		"saveWorkArea": (12, 2, (11, 0), (), "saveWorkArea", None),
 	}
 	_prop_map_put_ = {
 		"colorBPP" : ((2, LCID, 4, 0),()),
@@ -14283,7 +14252,6 @@ class ksRasterFormatParam(DispatchBaseClass):
 		"onlyThinLine" : ((7, LCID, 4, 0),()),
 		"pages" : ((8, LCID, 4, 0),()),
 		"rangeIndex" : ((9, LCID, 4, 0),()),
-		"saveWorkArea" : ((12, LCID, 4, 0),()),
 	}
 	def __iter__(self):
 		"Return a Python iterator for this object"
@@ -14695,11 +14663,6 @@ class ksRequestInfo3D(DispatchBaseClass):
 			ret = Dispatch(ret, 'GetMateConstraintCollection', None)
 		return ret
 
-	def GetObjectsFilter3D(self, filterType=defaultNamedNotOptArg):
-		'Способ фильтрации 3D объектов в процессе.'
-		return self._oleobj_.InvokeTypes(33, LCID, 1, (11, 0), ((3, 0),),filterType
-			)
-
 	def GetPlacement(self):
 		'Местоположение.'
 		ret = self._oleobj_.InvokeTypes(11, LCID, 1, (9, 0), (),)
@@ -14718,11 +14681,6 @@ class ksRequestInfo3D(DispatchBaseClass):
 				return ret
 			ret = Dispatch(ret, 'GetProcessParam', None)
 		return ret
-
-	def GetProcessingGroupObjectsCallBack(self):
-		'Получить имя (в Automation) или адрес (в COM) функции обратной связи для обработки объектов, пришедшие при селектировании рамкой.'
-		# Result is a Unicode object
-		return self._oleobj_.InvokeTypes(30, LCID, 1, (8, 0), (),)
 
 	def GetTakeObjectCallBack(self):
 		'Получить имя функции обратной связи для подчиненного процесса.'
@@ -14761,20 +14719,10 @@ class ksRequestInfo3D(DispatchBaseClass):
 		return self._oleobj_.InvokeTypes(23, LCID, 1, (11, 0), ((8, 0), (12, 0), (9, 0)),methodName
 			, hInst, dispatchOCX)
 
-	def SetObjectsFilter3D(self, filterType=defaultNamedNotOptArg, newVal=defaultNamedNotOptArg):
-		'Способ фильтрации 3D объектов в процессе.'
-		return self._oleobj_.InvokeTypes(32, LCID, 1, (11, 0), ((3, 0), (11, 0)),filterType
-			, newVal)
-
 	def SetProcessParam(self, param=defaultNamedNotOptArg):
 		'Установить указатель на интерфейс параметров процесса.'
 		return self._oleobj_.InvokeTypes(18, LCID, 1, (11, 0), ((13, 0),),param
 			)
-
-	def SetProcessingGroupObjectsCallBack(self, methodName=defaultNamedNotOptArg, hInst=defaultNamedNotOptArg, dispatchOCX=defaultNamedNotOptArg):
-		'Получить имя (в Automation) или адрес (в COM) функции обратной связи для обработки объектов, пришедшие при селектировании рамкой.'
-		return self._oleobj_.InvokeTypes(31, LCID, 1, (11, 0), ((8, 0), (12, 0), (9, 0)),methodName
-			, hInst, dispatchOCX)
 
 	def SetTakeObjectCallBack(self, methodName=defaultNamedNotOptArg, hInst=defaultNamedNotOptArg, dispatchOCX=defaultNamedNotOptArg):
 		'Установить функцию обратной связи для подчиненного процесса.'
@@ -14788,7 +14736,6 @@ class ksRequestInfo3D(DispatchBaseClass):
 
 	_prop_map_get_ = {
 		"DynamicFiltering": (20, 2, (11, 0), (), "DynamicFiltering", None),
-		"SelectionBandMode": (29, 2, (3, 0), (), "SelectionBandMode", None),
 		"ShowCommandWindow": (22, 2, (11, 0), (), "ShowCommandWindow", None),
 		"commandsString": (4, 2, (8, 0), (), "commandsString", None),
 		"cursorId": (5, 2, (3, 0), (), "cursorId", None),
@@ -14799,7 +14746,6 @@ class ksRequestInfo3D(DispatchBaseClass):
 	}
 	_prop_map_put_ = {
 		"DynamicFiltering" : ((20, LCID, 4, 0),()),
-		"SelectionBandMode" : ((29, LCID, 4, 0),()),
 		"ShowCommandWindow" : ((22, LCID, 4, 0),()),
 		"commandsString" : ((4, LCID, 4, 0),()),
 		"cursorId" : ((5, LCID, 4, 0),()),
@@ -15164,8 +15110,8 @@ class ksSelectionMngNotify:
 	coclass_clsid = IID('{39EE8E9D-C228-4F61-9F66-DD58F20CD224}')
 	_public_methods_ = [] # For COM Server support
 	_dispid_to_func_ = {
-		        1 : "OnSelect",
 		        2 : "OnUnselect",
+		        1 : "OnSelect",
 		        3 : "OnUnselectAll",
 		}
 
@@ -15194,10 +15140,10 @@ class ksSelectionMngNotify:
 
 	# Event Handlers
 	# If you create handlers, they should have the following prototypes:
-#	def OnSelect(self, obj=defaultNamedNotOptArg):
-#		'Объект селектирован.'
 #	def OnUnselect(self, obj=defaultNamedNotOptArg):
 #		'Объект расселектирован.'
+#	def OnSelect(self, obj=defaultNamedNotOptArg):
+#		'Объект селектирован.'
 #	def OnUnselectAll(self):
 #		'Все объекты расселектированы.'
 
@@ -15730,11 +15676,11 @@ class ksSpcDocumentNotify:
 	_public_methods_ = [] # For COM Server support
 	_dispid_to_func_ = {
 		        1 : "OnDocumentBeginAdd",
+		        6 : "OnSpcStyleChange",
 		        2 : "OnDocumentAdd",
 		        3 : "OnDocumentBeginRemove",
-		        4 : "OnDocumentRemove",
 		        5 : "OnSpcStyleBeginChange",
-		        6 : "OnSpcStyleChange",
+		        4 : "OnDocumentRemove",
 		}
 
 	def __init__(self, oobj = None):
@@ -15764,16 +15710,16 @@ class ksSpcDocumentNotify:
 	# If you create handlers, they should have the following prototypes:
 #	def OnDocumentBeginAdd(self):
 #		'Начало добавления документа сборочного чертежа.'
+#	def OnSpcStyleChange(self, libName=defaultNamedNotOptArg, numb=defaultNamedNotOptArg):
+#		'Стиль спецификации изменился.'
 #	def OnDocumentAdd(self, docName=defaultNamedNotOptArg):
 #		'Добавление документа сборочного чертежа.'
 #	def OnDocumentBeginRemove(self, docName=defaultNamedNotOptArg):
 #		'Начало удаления документа сборочного чертежа.'
-#	def OnDocumentRemove(self, docName=defaultNamedNotOptArg):
-#		'Удаление документа сборочного чертежа.'
 #	def OnSpcStyleBeginChange(self, libName=defaultNamedNotOptArg, numb=defaultNamedNotOptArg):
 #		'Начало изменения стиля спецификации.'
-#	def OnSpcStyleChange(self, libName=defaultNamedNotOptArg, numb=defaultNamedNotOptArg):
-#		'Стиль спецификации изменился.'
+#	def OnDocumentRemove(self, docName=defaultNamedNotOptArg):
+#		'Удаление документа сборочного чертежа.'
 
 
 class ksSpcObjParam(DispatchBaseClass):
@@ -15834,22 +15780,22 @@ class ksSpcObjectNotify:
 	coclass_clsid = IID('{02CBC423-BC8C-40DE-BE65-03A67DF1C834}')
 	_public_methods_ = [] # For COM Server support
 	_dispid_to_func_ = {
-		        1 : "OnBeginDelete",
-		        2 : "OnDelete",
-		        3 : "OnCellDblClick",
-		        4 : "OnCellBeginEdit",
+		       11 : "OnBeginProcess",
 		        5 : "OnChangeCurrent",
 		        6 : "OnDocumentBeginAdd",
-		        7 : "OnDocumentAdd",
-		        8 : "OnDocumentRemove",
-		        9 : "OnBeginGeomChange",
-		       10 : "OnGeomChange",
-		       11 : "OnBeginProcess",
 		       12 : "OnEndProcess",
+		        1 : "OnBeginDelete",
+		        9 : "OnBeginGeomChange",
+		        7 : "OnDocumentAdd",
+		       10 : "OnGeomChange",
 		       13 : "OnCreateObject",
-		       14 : "OnUpdateObject",
 		       15 : "OnBeginCopy",
+		       14 : "OnUpdateObject",
+		        4 : "OnCellBeginEdit",
 		       16 : "Oncopy",
+		        8 : "OnDocumentRemove",
+		        3 : "OnCellDblClick",
+		        2 : "OnDelete",
 		}
 
 	def __init__(self, oobj = None):
@@ -15877,38 +15823,38 @@ class ksSpcObjectNotify:
 
 	# Event Handlers
 	# If you create handlers, they should have the following prototypes:
-#	def OnBeginDelete(self, objRef=defaultNamedNotOptArg):
-#		'Начало удаления объекта.'
-#	def OnDelete(self, objRef=defaultNamedNotOptArg):
-#		'Удаление объекта.'
-#	def OnCellDblClick(self, objRef=defaultNamedNotOptArg, number=defaultNamedNotOptArg):
-#		'Двойной клик в ячейке .'
-#	def OnCellBeginEdit(self, objRef=defaultNamedNotOptArg, number=defaultNamedNotOptArg):
-#		'Начало редактирования в ячейке .'
+#	def OnBeginProcess(self, pType=defaultNamedNotOptArg, objRef=defaultNamedNotOptArg):
+#		'Начало редактированиясоздания объекта.false - запрещает процесс'
 #	def OnChangeCurrent(self, objRef=defaultNamedNotOptArg):
 #		'Изменился текущий объект.'
 #	def OnDocumentBeginAdd(self, objRef=defaultNamedNotOptArg):
 #		'Начало добавления документа.'
-#	def OnDocumentAdd(self, objRef=defaultNamedNotOptArg, docName=defaultNamedNotOptArg):
-#		'Добавление документа в объекте СП.'
-#	def OnDocumentRemove(self, objRef=defaultNamedNotOptArg, docName=defaultNamedNotOptArg):
-#		'Удаление документа из объекта СП.'
-#	def OnBeginGeomChange(self, objRef=defaultNamedNotOptArg):
-#		'Начало измения геометрии объекта СП.'
-#	def OnGeomChange(self, objRef=defaultNamedNotOptArg):
-#		'Геометрия объекта СП изменилась.'
-#	def OnBeginProcess(self, pType=defaultNamedNotOptArg, objRef=defaultNamedNotOptArg):
-#		'Начало редактированиясоздания объекта.false - запрещает процесс'
 #	def OnEndProcess(self, pType=defaultNamedNotOptArg):
 #		'Конец редактированиясоздания объекта.'
+#	def OnBeginDelete(self, objRef=defaultNamedNotOptArg):
+#		'Начало удаления объекта.'
+#	def OnBeginGeomChange(self, objRef=defaultNamedNotOptArg):
+#		'Начало измения геометрии объекта СП.'
+#	def OnDocumentAdd(self, objRef=defaultNamedNotOptArg, docName=defaultNamedNotOptArg):
+#		'Добавление документа в объекте СП.'
+#	def OnGeomChange(self, objRef=defaultNamedNotOptArg):
+#		'Геометрия объекта СП изменилась.'
 #	def OnCreateObject(self, objRef=defaultNamedNotOptArg):
 #		'Создание объекта.'
-#	def OnUpdateObject(self, objRef=defaultNamedNotOptArg):
-#		'Редактирование объекта.'
 #	def OnBeginCopy(self, objRef=defaultNamedNotOptArg):
 #		'Начало копирования объекта, false - запрещает копирование.'
+#	def OnUpdateObject(self, objRef=defaultNamedNotOptArg):
+#		'Редактирование объекта.'
+#	def OnCellBeginEdit(self, objRef=defaultNamedNotOptArg, number=defaultNamedNotOptArg):
+#		'Начало редактирования в ячейке .'
 #	def Oncopy(self, objRef=defaultNamedNotOptArg):
 #		'Копирование объекта.'
+#	def OnDocumentRemove(self, objRef=defaultNamedNotOptArg, docName=defaultNamedNotOptArg):
+#		'Удаление документа из объекта СП.'
+#	def OnCellDblClick(self, objRef=defaultNamedNotOptArg, number=defaultNamedNotOptArg):
+#		'Двойной клик в ячейке .'
+#	def OnDelete(self, objRef=defaultNamedNotOptArg):
+#		'Удаление объекта.'
 
 
 class ksSpcStyleColumnParam(DispatchBaseClass):
@@ -16548,17 +16494,17 @@ class ksSpecificationNotify:
 	_public_methods_ = [] # For COM Server support
 	_dispid_to_func_ = {
 		        1 : "OnTuningSpcStyleBeginChange",
-		        2 : "OnTuningSpcStyleChange",
-		        3 : "OnChangeCurrentSpcDescription",
-		        4 : "OnSpcDescriptionAdd",
-		        5 : "OnSpcDescriptionRemove",
-		        6 : "OnSpcDescriptionBeginEdit",
-		        7 : "OnSpcDescriptionEdit",
-		        8 : "OnSynchronizationBegin",
-		        9 : "OnSynchronization",
 		       10 : "OnBeginCalcPositions",
-		       11 : "OnCalcPositions",
+		        5 : "OnSpcDescriptionRemove",
+		        8 : "OnSynchronizationBegin",
+		        7 : "OnSpcDescriptionEdit",
+		        3 : "OnChangeCurrentSpcDescription",
+		        2 : "OnTuningSpcStyleChange",
+		        4 : "OnSpcDescriptionAdd",
+		        9 : "OnSynchronization",
 		       12 : "OnBeginCreateObject",
+		       11 : "OnCalcPositions",
+		        6 : "OnSpcDescriptionBeginEdit",
 		}
 
 	def __init__(self, oobj = None):
@@ -16588,28 +16534,28 @@ class ksSpecificationNotify:
 	# If you create handlers, they should have the following prototypes:
 #	def OnTuningSpcStyleBeginChange(self, libName=defaultNamedNotOptArg, numb=defaultNamedNotOptArg):
 #		'Начало изменения настроек спецификации.'
-#	def OnTuningSpcStyleChange(self, libName=defaultNamedNotOptArg, numb=defaultNamedNotOptArg, isOk=defaultNamedNotOptArg):
-#		'Настройки спецификации изменились.'
-#	def OnChangeCurrentSpcDescription(self, libName=defaultNamedNotOptArg, numb=defaultNamedNotOptArg):
-#		'Изменилось текущее описание спецификации.'
-#	def OnSpcDescriptionAdd(self, libName=defaultNamedNotOptArg, numb=defaultNamedNotOptArg):
-#		'Добавилось описание спецификации.'
-#	def OnSpcDescriptionRemove(self, libName=defaultNamedNotOptArg, numb=defaultNamedNotOptArg):
-#		'Удалилось описание спецификации.'
-#	def OnSpcDescriptionBeginEdit(self, libName=defaultNamedNotOptArg, numb=defaultNamedNotOptArg):
-#		'Начало редактирования описания спецификации.'
-#	def OnSpcDescriptionEdit(self, libName=defaultNamedNotOptArg, numb=defaultNamedNotOptArg, isOk=defaultNamedNotOptArg):
-#		'Отредактировали описание спецификации.'
-#	def OnSynchronizationBegin(self):
-#		'Начало синхронизации.'
-#	def OnSynchronization(self):
-#		'Синхронизация проведена.'
 #	def OnBeginCalcPositions(self):
 #		'Начало расчета позиций.'
-#	def OnCalcPositions(self):
-#		'Проведен расчет позиций.'
+#	def OnSpcDescriptionRemove(self, libName=defaultNamedNotOptArg, numb=defaultNamedNotOptArg):
+#		'Удалилось описание спецификации.'
+#	def OnSynchronizationBegin(self):
+#		'Начало синхронизации.'
+#	def OnSpcDescriptionEdit(self, libName=defaultNamedNotOptArg, numb=defaultNamedNotOptArg, isOk=defaultNamedNotOptArg):
+#		'Отредактировали описание спецификации.'
+#	def OnChangeCurrentSpcDescription(self, libName=defaultNamedNotOptArg, numb=defaultNamedNotOptArg):
+#		'Изменилось текущее описание спецификации.'
+#	def OnTuningSpcStyleChange(self, libName=defaultNamedNotOptArg, numb=defaultNamedNotOptArg, isOk=defaultNamedNotOptArg):
+#		'Настройки спецификации изменились.'
+#	def OnSpcDescriptionAdd(self, libName=defaultNamedNotOptArg, numb=defaultNamedNotOptArg):
+#		'Добавилось описание спецификации.'
+#	def OnSynchronization(self):
+#		'Синхронизация проведена.'
 #	def OnBeginCreateObject(self, typeObj=defaultNamedNotOptArg):
 #		'Начало создания объекта СП (до диалога выбора раздела ).'
+#	def OnCalcPositions(self):
+#		'Проведен расчет позиций.'
+#	def OnSpcDescriptionBeginEdit(self, libName=defaultNamedNotOptArg, numb=defaultNamedNotOptArg):
+#		'Начало редактирования описания спецификации.'
 
 
 class ksSphereParam(DispatchBaseClass):
@@ -16782,11 +16728,11 @@ class ksStampNotify:
 	coclass_clsid = IID('{FBCC5BA7-996C-11D6-8732-00C0262CDD2C}')
 	_public_methods_ = [] # For COM Server support
 	_dispid_to_func_ = {
-		        1 : "OnBeginEditStamp",
+		        5 : "OnStampBeginClearCells",
+		        4 : "OnStampCellBeginEdit",
 		        2 : "OnEndEditStamp",
 		        3 : "OnStampCellDblClick",
-		        4 : "OnStampCellBeginEdit",
-		        5 : "OnStampBeginClearCells",
+		        1 : "OnBeginEditStamp",
 		}
 
 	def __init__(self, oobj = None):
@@ -16814,16 +16760,16 @@ class ksStampNotify:
 
 	# Event Handlers
 	# If you create handlers, they should have the following prototypes:
-#	def OnBeginEditStamp(self):
-#		'Начало редактирования штампа.'
+#	def OnStampBeginClearCells(self, cells=defaultNamedNotOptArg):
+#		'Начало редактирования в ячейке штампа.'
+#	def OnStampCellBeginEdit(self, number=defaultNamedNotOptArg):
+#		'Начало редактирования в ячейке штампа.'
 #	def OnEndEditStamp(self, editResult=defaultNamedNotOptArg):
 #		'Завершение редактирования штампа.'
 #	def OnStampCellDblClick(self, number=defaultNamedNotOptArg):
 #		'Двойной клик в ячейке штампа.'
-#	def OnStampCellBeginEdit(self, number=defaultNamedNotOptArg):
-#		'Начало редактирования в ячейке штампа.'
-#	def OnStampBeginClearCells(self, cells=defaultNamedNotOptArg):
-#		'Начало редактирования в ячейке штампа.'
+#	def OnBeginEditStamp(self):
+#		'Начало редактирования штампа.'
 
 
 class ksStandartSheet(DispatchBaseClass):
@@ -21205,570 +21151,570 @@ RecordMap = {
 }
 
 CLSIDToClassMap = {
-	'{E36BC97C-39D6-4402-9C25-C7008A217E02}' : KompasObject,
-	'{AF4E160D-5C89-4F21-B0F2-D53397BDAF78}' : ksDocument2D,
-	'{2E29C343-C521-4B0F-B37D-587D0347B7BA}' : ksObject2DNotify,
-	'{C7EBA9A1-9E76-436E-B362-A80C5763944C}' : Object2DNotify,
-	'{A421368A-34B6-4DDF-9A52-73B3488EE83F}' : ksSelectionMngNotify,
-	'{DC2E4057-7F8E-4652-860D-6B9E1F6F43AA}' : SelectionMngNotify,
-	'{1FE1EB28-CD28-4700-8E46-25CCFE9C0EC8}' : ksObject2DNotifyResult,
-	'{13F0BE95-3361-4AD9-90AF-D935EA64A127}' : ksDocument2DNotify,
-	'{1B9B9B4E-DCD7-496E-A583-547EC1E91E47}' : Document2DNotify,
-	'{111CEFE1-A0A7-11D6-95CE-00C0262D30E3}' : ksDocument3D,
-	'{B6C1BCFD-68DA-4A0A-A95C-296084C6A01A}' : ksDocument3DNotify,
-	'{22B81342-42D6-4907-A91E-F75A959F2270}' : Document3DNotify,
-	'{508A0CCA-9D74-11D6-95CE-00C0262D30E3}' : ksEntity,
-	'{EB61A981-F63E-47E1-BEE8-2D1612C78E78}' : ksAttribute3DCollection,
-	'{3EEB2B43-56FF-49C0-AFCF-69E990A7D84C}' : ksAttribute3D,
-	'{CE6A46FF-02B4-4C7E-AF50-3F3707C8B122}' : ksFeatureCollection,
-	'{088BF9A8-37D3-4B15-A7CA-8C52FF1DBC41}' : ksFeature,
-	'{B0170141-C02C-11D6-8734-00C0262CDD2C}' : ksEntityCollection,
-	'{508A0CCD-9D74-11D6-95CE-00C0262D30E3}' : ksPart,
-	'{BFA024B6-679E-4A95-B6C2-1EA47A7CD0E9}' : ksObject3DNotify,
-	'{CA35F3C6-7E2D-4700-BE12-BAA26DC1945B}' : Object3DNotify,
-	'{9C3ECC92-E72F-4892-8921-7886F34CA9AD}' : ksObject3DNotifyResult,
-	'{2DFACC64-C4A4-11D6-8734-00C0262CDD2C}' : ksPlacement,
-	'{508B5962-DF59-4CEE-8611-AD10FDF0C811}' : ksComponentPositioner,
-	'{C7CB743A-C59D-4C27-8CB6-971C2A393F2F}' : ksKompasObjectNotify,
-	'{324C1A45-67AD-41FB-BE57-624F930646F1}' : ksDocumentFileNotify,
-	'{9F88CAAA-A50F-46F4-904A-846C792FA649}' : ksDocument3DNotifyResult,
-	'{364521A3-94B5-11D6-8732-00C0262CDD2C}' : ksSpecRoughParam,
-	'{364521A6-94B5-11D6-8732-00C0262CDD2C}' : ksEllipseParam,
-	'{364521A9-94B5-11D6-8732-00C0262CDD2C}' : ksEllipseArcParam,
-	'{364521AC-94B5-11D6-8732-00C0262CDD2C}' : ksEllipseArcParam1,
-	'{364521AF-94B5-11D6-8732-00C0262CDD2C}' : ksEquidistantParam,
-	'{364521B2-94B5-11D6-8732-00C0262CDD2C}' : ksParagraphParam,
-	'{364521B7-94B5-11D6-8732-00C0262CDD2C}' : ksTextItemParam,
-	'{364521BA-94B5-11D6-8732-00C0262CDD2C}' : ksTextLineParam,
-	'{364521BD-94B5-11D6-8732-00C0262CDD2C}' : ksTextItemFont,
-	'{E79C2501-9584-11D6-8732-00C0262CDD2C}' : ksCornerParam,
-	'{E79C2504-9584-11D6-8732-00C0262CDD2C}' : ksContourParam,
-	'{E79C2507-9584-11D6-8732-00C0262CDD2C}' : ksLayerParam,
-	'{E79C250A-9584-11D6-8732-00C0262CDD2C}' : ksLineParam,
-	'{E79C250D-9584-11D6-8732-00C0262CDD2C}' : ksRegularPolygonParam,
-	'{E79C2510-9584-11D6-8732-00C0262CDD2C}' : ksRectangleParam,
-	'{E79C2513-9584-11D6-8732-00C0262CDD2C}' : ksBaseParam,
-	'{E79C2516-9584-11D6-8732-00C0262CDD2C}' : ksLtVariant,
-	'{E79C2519-9584-11D6-8732-00C0262CDD2C}' : ksUserParam,
-	'{3198E121-9585-11D6-95CE-00C0262D30E3}' : ksMathPointParam,
-	'{910EC541-958D-11D6-95CE-00C0262D30E3}' : ksCurvePicture,
-	'{910EC544-958D-11D6-95CE-00C0262D30E3}' : ksCurvePattern,
-	'{8075EDE4-6C85-4711-8685-68FBE359D4C4}' : ksTAN,
-	'{C175BFB8-D7D6-4325-BFDA-2A282B9D1119}' : ksCON,
-	'{EA92E649-239E-4105-BBD3-AEF4817BD783}' : ksInertiaParam,
-	'{283F77EB-7E2C-4F71-8B16-4D286FA4857E}' : ksMassInertiaParam,
-	'{F2D5AE01-45DE-4496-B01B-9958CAEF5943}' : ksMathematic2D,
-	'{4D91CD9A-6E02-409D-9360-CF7FEF60D31C}' : ksDynamicArray,
-	'{2A4D4542-95B3-11D6-8732-00C0262CDD2C}' : ksRDimDrawingParam,
-	'{2A4D4545-95B3-11D6-8732-00C0262CDD2C}' : ksRDimSourceParam,
-	'{7F7D6F81-97DA-11D6-8732-00C0262CDD2C}' : ksRDimParam,
-	'{7F7D6F84-97DA-11D6-8732-00C0262CDD2C}' : ksLineSegParam,
-	'{7F7D6F87-97DA-11D6-8732-00C0262CDD2C}' : ksCircleParam,
-	'{7F7D6F8A-97DA-11D6-8732-00C0262CDD2C}' : ksArcByAngleParam,
-	'{7F7D6F8D-97DA-11D6-8732-00C0262CDD2C}' : ksArcByPointParam,
-	'{7F7D6F90-97DA-11D6-8732-00C0262CDD2C}' : ksPointParam,
-	'{7F7D6F93-97DA-11D6-8732-00C0262CDD2C}' : ksHatchParam,
-	'{7F7D6F96-97DA-11D6-8732-00C0262CDD2C}' : ksTextParam,
-	'{7F7D6F99-97DA-11D6-8732-00C0262CDD2C}' : ksNurbsPointParam,
-	'{7F7D6F9C-97DA-11D6-8732-00C0262CDD2C}' : ksDoubleValue,
-	'{7F7D6F9F-97DA-11D6-8732-00C0262CDD2C}' : ksNurbsParam,
-	'{7F7D6FA2-97DA-11D6-8732-00C0262CDD2C}' : ksConicArcParam,
-	'{7F7D6FA5-97DA-11D6-8732-00C0262CDD2C}' : ksCentreParam,
-	'{7F7D6FA8-97DA-11D6-8732-00C0262CDD2C}' : ksPlacementParam,
-	'{7F7D6FAB-97DA-11D6-8732-00C0262CDD2C}' : ksRasterParam,
-	'{7F7D6FAE-97DA-11D6-8732-00C0262CDD2C}' : ksPolylineParam,
-	'{7F7D6FB1-97DA-11D6-8732-00C0262CDD2C}' : ksInsertFragmentParam,
-	'{7F7D6FB4-97DA-11D6-8732-00C0262CDD2C}' : ksViewParam,
-	'{7F7D6FB7-97DA-11D6-8732-00C0262CDD2C}' : ksLBreakDimSource,
-	'{7F7D6FBA-97DA-11D6-8732-00C0262CDD2C}' : ksBreakDimDrawing,
-	'{7F7D6FBD-97DA-11D6-8732-00C0262CDD2C}' : ksLBreakDimParam,
-	'{7F7D6FC0-97DA-11D6-8732-00C0262CDD2C}' : ksABreakDimParam,
-	'{7F7D6FC3-97DA-11D6-8732-00C0262CDD2C}' : ksInsertFragmentParamEx,
-	'{7F7D6FC6-97DA-11D6-8732-00C0262CDD2C}' : ksBezierParam,
-	'{7F7D6FC9-97DA-11D6-8732-00C0262CDD2C}' : ksBezierPointParam,
-	'{7F7D6FCC-97DA-11D6-8732-00C0262CDD2C}' : ksDimTextParam,
-	'{7F7D6FCF-97DA-11D6-8732-00C0262CDD2C}' : ksLDimSourceParam,
-	'{7F7D6FD2-97DA-11D6-8732-00C0262CDD2C}' : ksDimDrawingParam,
-	'{7F7D6FD5-97DA-11D6-8732-00C0262CDD2C}' : ksLDimParam,
-	'{7F7D6FD8-97DA-11D6-8732-00C0262CDD2C}' : ksADimSourceParam,
-	'{7F7D6FDB-97DA-11D6-8732-00C0262CDD2C}' : ksDimensionPartsParam,
-	'{7F7D6FDE-97DA-11D6-8732-00C0262CDD2C}' : ksADimParam,
-	'{7F7D6FE1-97DA-11D6-8732-00C0262CDD2C}' : ksRBreakDrawingParam,
-	'{7F7D6FE4-97DA-11D6-8732-00C0262CDD2C}' : ksRBreakDimParam,
-	'{7F7D6FE7-97DA-11D6-8732-00C0262CDD2C}' : ksQualityItemParam,
-	'{7F7D6FEA-97DA-11D6-8732-00C0262CDD2C}' : ksQualityContensParam,
-	'{D06C9101-98CA-11D6-8732-00C0262CDD2C}' : ksIterator,
-	'{D06C9104-98CA-11D6-8732-00C0262CDD2C}' : ksFragment,
-	'{D06C910A-98CA-11D6-8732-00C0262CDD2C}' : ksFragmentLibrary,
-	'{FBCC5B81-996C-11D6-8732-00C0262CDD2C}' : ksTechnicalDemandParam,
-	'{FBCC5B84-996C-11D6-8732-00C0262CDD2C}' : ksOrdinatedSourceParam,
-	'{FBCC5B87-996C-11D6-8732-00C0262CDD2C}' : ksOrdinatedDimParam,
-	'{FBCC5B8A-996C-11D6-8732-00C0262CDD2C}' : ksOrdinatedDrawingParam,
-	'{FBCC5B8D-996C-11D6-8732-00C0262CDD2C}' : ksSheetSize,
-	'{FBCC5B90-996C-11D6-8732-00C0262CDD2C}' : ksStandartSheet,
-	'{FBCC5B93-996C-11D6-8732-00C0262CDD2C}' : ksSheetPar,
-	'{FBCC5B96-996C-11D6-8732-00C0262CDD2C}' : ksDocumentParam,
-	'{FBCC5B99-996C-11D6-8732-00C0262CDD2C}' : ksDimensionsOptions,
-	'{FBCC5B9C-996C-11D6-8732-00C0262CDD2C}' : ksSnapOptions,
-	'{FBCC5B9F-996C-11D6-8732-00C0262CDD2C}' : ksLibraryStyleParam,
-	'{404E7D5A-A13F-4CFF-8214-FEA7012110CB}' : ksStampNotify,
-	'{FBCC5BA5-996C-11D6-8732-00C0262CDD2C}' : ksStamp,
-	'{FBCC5BA8-996C-11D6-8732-00C0262CDD2C}' : ksSheetOptions,
-	'{910EC549-958D-11D6-95CE-00C0262D30E3}' : ksCurvePatternEx,
-	'{910EC54C-958D-11D6-95CE-00C0262D30E3}' : ksCurveStyleParam,
-	'{3F715E24-97D9-11D6-95CE-00C0262D30E3}' : ksTextStyleParam,
-	'{3F715E27-97D9-11D6-95CE-00C0262D30E3}' : ksHatchLineParam,
-	'{3F715E2A-97D9-11D6-95CE-00C0262D30E3}' : ksHatchStyleParam,
-	'{3F715E2D-97D9-11D6-95CE-00C0262D30E3}' : ksRectParam,
-	'{3F715E30-97D9-11D6-95CE-00C0262D30E3}' : ksShelfPar,
-	'{3F715E33-97D9-11D6-95CE-00C0262D30E3}' : ksRoughPar,
-	'{3F715E36-97D9-11D6-95CE-00C0262D30E3}' : ksRoughParam,
-	'{3F715E39-97D9-11D6-95CE-00C0262D30E3}' : ksChar255,
-	'{3F715E40-97D9-11D6-95CE-00C0262D30E3}' : ksLeaderParam,
-	'{3F715E43-97D9-11D6-95CE-00C0262D30E3}' : ksPosLeaderParam,
-	'{3F715E46-97D9-11D6-95CE-00C0262D30E3}' : ksBrandLeaderParam,
-	'{9AF8E341-98A0-11D6-95CE-00C0262D30E3}' : ksMarkerLeaderParam,
-	'{9AF8E344-98A0-11D6-95CE-00C0262D30E3}' : ksType1,
-	'{9AF8E347-98A0-11D6-95CE-00C0262D30E3}' : ksType2,
-	'{9AF8E34A-98A0-11D6-95CE-00C0262D30E3}' : ksType3,
-	'{9AF8E34D-98A0-11D6-95CE-00C0262D30E3}' : ksType5,
-	'{9AF8E350-98A0-11D6-95CE-00C0262D30E3}' : ksType6,
-	'{9AF8E353-98A0-11D6-95CE-00C0262D30E3}' : ksPhantom,
-	'{9AF8E356-98A0-11D6-95CE-00C0262D30E3}' : ksRequestInfo,
-	'{CD1C0144-98DC-11D6-95CE-00C0262D30E3}' : ksViewPointerParam,
-	'{4FD7CE81-9968-11D6-95CE-00C0262D30E3}' : ksCutLineParam,
-	'{4FD7CE84-9968-11D6-95CE-00C0262D30E3}' : ksToleranceBranch,
-	'{4FD7CE87-9968-11D6-95CE-00C0262D30E3}' : ksToleranceParam,
-	'{4FD7CE8A-9968-11D6-95CE-00C0262D30E3}' : ksSpcColumnParam,
-	'{4FD7CE8D-9968-11D6-95CE-00C0262D30E3}' : ksRecordTypeAttrParam,
-	'{4FD7CE90-9968-11D6-95CE-00C0262D30E3}' : ksNumberTypeAttrParam,
-	'{4FD7CE93-9968-11D6-95CE-00C0262D30E3}' : ksSpcStyleColumnParam,
-	'{4FD7CE96-9968-11D6-95CE-00C0262D30E3}' : ksSpcStyleSectionParam,
-	'{4FD7CE99-9968-11D6-95CE-00C0262D30E3}' : ksSpcSubSectionParam,
-	'{4FD7CE9C-9968-11D6-95CE-00C0262D30E3}' : ksSpcTuningSectionParam,
-	'{4FD7CE9F-9968-11D6-95CE-00C0262D30E3}' : ksSpcTuningStyleParam,
-	'{4FD7CEA2-9968-11D6-95CE-00C0262D30E3}' : ksSpcStyleParam,
-	'{4FD7CEA5-9968-11D6-95CE-00C0262D30E3}' : ksSpcDescrParam,
-	'{4FD7CEA8-9968-11D6-95CE-00C0262D30E3}' : ksDocAttachedSpcParam,
-	'{4FD7CEAB-9968-11D6-95CE-00C0262D30E3}' : ksSpcObjParam,
-	'{4FD7CEAE-9968-11D6-95CE-00C0262D30E3}' : ksLibStyle,
-	'{0981CD01-9A49-11D6-8732-00C0262CDD2C}' : ksDataBaseObject,
-	'{1BD030F4-4058-4A86-9F4F-1AEEF8BE8D23}' : ksSpcDocumentNotify,
-	'{51E74521-9A3A-11D6-95CE-00C0262D30E3}' : ksSpcDocument,
-	'{DC32EB43-4615-4717-8C67-48875A357B06}' : SpcDocumentNotify,
-	'{AC5004D1-C240-41FC-AB84-7EB5C793AE7F}' : ksSpcObjectNotify,
-	'{0331AB4B-F25B-4EB9-9C8A-BFEA414E3822}' : ksSpecificationNotify,
-	'{51E74524-9A3A-11D6-95CE-00C0262D30E3}' : ksSpecification,
-	'{02CBC423-BC8C-40DE-BE65-03A67DF1C834}' : SpcObjectNotify,
-	'{74D745F1-9A3A-11D6-95CE-00C0262D30E3}' : ksDocumentTxt,
-	'{CC26DA61-9B22-11D6-95CE-00C0262D30E3}' : ksAttributeTypeParam,
-	'{CE0D05E1-9B2A-11D6-95CE-00C0262D30E3}' : ksColumnInfoParam,
-	'{CE0D05E4-9B2A-11D6-95CE-00C0262D30E3}' : ksAttributeParam,
-	'{508A0CC1-9D74-11D6-95CE-00C0262D30E3}' : ksVariable,
-	'{FA93AA21-9B3D-11D6-95CE-00C0262D30E3}' : ksLibraryAttrTypeParam,
-	'{FA93AA24-9B3D-11D6-95CE-00C0262D30E3}' : ksAttributeObject,
-	'{E9807824-9D55-11D6-95CE-00C0262D30E3}' : ksRequestInfo3D,
-	'{508A0CC4-9D74-11D6-95CE-00C0262D30E3}' : ksMateConstraint,
-	'{508A0CC7-9D74-11D6-95CE-00C0262D30E3}' : ksDefaultObject,
-	'{111CEFE4-A0A7-11D6-95CE-00C0262D30E3}' : ksModelLibrary,
-	'{03CEAC81-C0B8-11D6-8734-00C0262CDD2C}' : ksVariableCollection,
-	'{03CEAC84-C0B8-11D6-8734-00C0262CDD2C}' : ksMateConstraintCollection,
-	'{03CEAC87-C0B8-11D6-8734-00C0262CDD2C}' : ksPartCollection,
-	'{E6E78D61-C0FA-11D6-8734-00C0262CDD2C}' : ksMeshPartArrayDefinition,
-	'{DDD05143-C180-11D6-8734-00C0262CDD2C}' : ksCircularPartArrayDefinition,
-	'{DDD05146-C180-11D6-8734-00C0262CDD2C}' : ksCurvePartArrayDefinition,
-	'{DDD05149-C180-11D6-8734-00C0262CDD2C}' : ksDerivativePartArrayDefinition,
-	'{0307BB81-C193-11D6-8734-00C0262CDD2C}' : ksAxis2PlanesDefinition,
-	'{0307BB84-C193-11D6-8734-00C0262CDD2C}' : ksAxisOperationsDefinition,
-	'{0307BB87-C193-11D6-8734-00C0262CDD2C}' : ksAxis2PointsDefinition,
-	'{0307BB8A-C193-11D6-8734-00C0262CDD2C}' : ksAxisEdgeDefinition,
-	'{0307BB8D-C193-11D6-8734-00C0262CDD2C}' : ksMeshCopyDefinition,
-	'{0307BB90-C193-11D6-8734-00C0262CDD2C}' : ksCircularCopyDefinition,
-	'{0307BB93-C193-11D6-8734-00C0262CDD2C}' : ksCurveCopyDefinition,
-	'{0307BB96-C193-11D6-8734-00C0262CDD2C}' : ksMirrorCopyDefinition,
-	'{0307BB99-C193-11D6-8734-00C0262CDD2C}' : ksMirrorCopyAllDefinition,
-	'{0307BB9C-C193-11D6-8734-00C0262CDD2C}' : ksConicSpiralDefinition,
-	'{0307BB9F-C193-11D6-8734-00C0262CDD2C}' : ksCylindricSpiralDefinition,
-	'{0307BBA2-C193-11D6-8734-00C0262CDD2C}' : ksPolyLineDefinition,
-	'{1BCC4F0F-1091-41A3-895B-0608D20715B7}' : ksPolyLineVertexParam,
-	'{0307BBA5-C193-11D6-8734-00C0262CDD2C}' : ksSplineDefinition,
-	'{DEEFEFE1-C3E2-11D6-8734-00C0262CDD2C}' : ksBaseExtrusionDefinition,
-	'{DEEFEFE4-C3E2-11D6-8734-00C0262CDD2C}' : ksBossExtrusionDefinition,
-	'{DEEFEFE7-C3E2-11D6-8734-00C0262CDD2C}' : ksCutExtrusionDefinition,
-	'{B20E24C3-5E4A-4CDA-A1ED-6BB8EBC81A29}' : ksExtrusionSurfaceDefinition,
-	'{0307BBA8-C193-11D6-8734-00C0262CDD2C}' : ksFaceDefinition,
-	'{0307BBAB-C193-11D6-8734-00C0262CDD2C}' : ksEdgeDefinition,
-	'{0307BBAE-C193-11D6-8734-00C0262CDD2C}' : ksChamferDefinition,
-	'{0307BBB1-C193-11D6-8734-00C0262CDD2C}' : ksFilletDefinition,
-	'{DEEFEFEA-C3E2-11D6-8734-00C0262CDD2C}' : ksBaseLoftDefinition,
-	'{DEEFEFED-C3E2-11D6-8734-00C0262CDD2C}' : ksBossLoftDefinition,
-	'{DEEFEFF0-C3E2-11D6-8734-00C0262CDD2C}' : ksCutLoftDefinition,
-	'{E04339B5-AA08-4717-8E50-90ED0E375624}' : ksLoftSurfaceDefinition,
-	'{DEEFEFF3-C3E2-11D6-8734-00C0262CDD2C}' : ksInclineDefinition,
-	'{DEEFEFF6-C3E2-11D6-8734-00C0262CDD2C}' : ksShellDefinition,
-	'{DEEFEFF9-C3E2-11D6-8734-00C0262CDD2C}' : ksBaseEvolutionDefinition,
-	'{DEEFEFFC-C3E2-11D6-8734-00C0262CDD2C}' : ksBossEvolutionDefinition,
-	'{DEEFEFFF-C3E2-11D6-8734-00C0262CDD2C}' : ksCutEvolutionDefinition,
-	'{2BD4C79E-E2C3-42E8-8FCC-B51FFBDE9F69}' : ksEvolutionSurfaceDefinition,
-	'{DEEFF002-C3E2-11D6-8734-00C0262CDD2C}' : ksRibDefinition,
-	'{DEEFF005-C3E2-11D6-8734-00C0262CDD2C}' : ksCutByPlaneDefinition,
-	'{DEEFF008-C3E2-11D6-8734-00C0262CDD2C}' : ksCutBySketchDefinition,
-	'{DEEFF00B-C3E2-11D6-8734-00C0262CDD2C}' : ksPlaneOffsetDefinition,
-	'{DEEFF00E-C3E2-11D6-8734-00C0262CDD2C}' : ksPlaneAngleDefinition,
-	'{DEEFF011-C3E2-11D6-8734-00C0262CDD2C}' : ksPlane3PointsDefinition,
-	'{DEEFF014-C3E2-11D6-8734-00C0262CDD2C}' : ksPlaneNormalToSurfaceDefinition,
-	'{DEEFF017-C3E2-11D6-8734-00C0262CDD2C}' : ksPlaneTangentToSurfaceDefinition,
-	'{DEEFF01A-C3E2-11D6-8734-00C0262CDD2C}' : ksPlaneEdgePointDefinition,
-	'{DEEFF01D-C3E2-11D6-8734-00C0262CDD2C}' : ksPlaneParallelDefinition,
-	'{DEEFF020-C3E2-11D6-8734-00C0262CDD2C}' : ksPlanePerpendicularDefinition,
-	'{DEEFF023-C3E2-11D6-8734-00C0262CDD2C}' : ksPlaneLineToEdgeDefinition,
-	'{DEEFF026-C3E2-11D6-8734-00C0262CDD2C}' : ksPlaneLineToPlaneDefinition,
-	'{DEEFF029-C3E2-11D6-8734-00C0262CDD2C}' : ksThinParam,
-	'{DEEFF02C-C3E2-11D6-8734-00C0262CDD2C}' : ksExtrusionParam,
-	'{DEEFF02F-C3E2-11D6-8734-00C0262CDD2C}' : ksRotatedParam,
-	'{2DFACC61-C4A4-11D6-8734-00C0262CDD2C}' : ksColorParam,
-	'{2DFACC67-C4A4-11D6-8734-00C0262CDD2C}' : ksBaseRotatedDefinition,
-	'{2DFACC6A-C4A4-11D6-8734-00C0262CDD2C}' : ksBossRotatedDefinition,
-	'{2DFACC6D-C4A4-11D6-8734-00C0262CDD2C}' : ksCutRotatedDefinition,
-	'{FD27841D-1374-4F7F-AE8A-C2A44F89120D}' : ksRotatedSurfaceDefinition,
-	'{2DFACC70-C4A4-11D6-8734-00C0262CDD2C}' : ksSketchDefinition,
-	'{1A91A8AB-AF8C-4EE3-86D4-0A9C00123195}' : ksRasterFormatParam,
-	'{0FD25FF9-AB0A-48F3-BAD4-F193116C0887}' : ksAdditionFormatParam,
-	'{862E250D-9DB1-47E8-8EE2-9BE2D2453D5A}' : ksConstraintParam,
-	'{78A2C35E-A7DA-414E-B90A-F19998EC7BD1}' : ksImportedSurfaceDefinition,
-	'{0E95ACE0-0E73-406F-AE94-E8A0592E298D}' : ksFaceCollection,
-	'{A7257E73-EB61-4602-BC8B-2D00EA4AA062}' : ksVertexDefinition,
-	'{B810650E-7819-485C-90D2-ADEB647AE5E2}' : ksTessellation,
-	'{EB6AFBC0-C387-4E07-B24E-DDF2B7926A26}' : ksFacet,
-	'{ABC84FE5-3945-4A0B-820A-719BF4B79224}' : ksMeasurer,
-	'{CFC49C01-7653-4845-93FD-13428F5D58EC}' : ksBodyCollection,
-	'{03EFC9DD-E05A-4277-BC7C-4FD499A252DE}' : ksBody,
-	'{963CB6E1-B9BF-4234-964A-13BFE6C0282A}' : ksSurface,
-	'{6096A4FD-970B-468C-815E-37CA1970A203}' : ksEdgeCollection,
-	'{88C32A80-3735-4E18-A02E-9B2A8F0A90E3}' : ksOrientedEdge,
-	'{5CE8909D-CF3D-418F-A9B9-0A12B23916C0}' : ksOrientedEdgeCollection,
-	'{22BC5C86-CF58-45E4-AA46-5E8D5A825798}' : ksLoop,
-	'{1BD7207E-36AA-47DF-913E-AD26DE6C16E8}' : ksLoopCollection,
-	'{7572648A-D4EE-41FE-8D74-EC7D1F91BDE2}' : ksCurve3D,
-	'{DC8F6A7B-FF16-46FF-986D-2F7E1F6B25C4}' : ksLineSeg3dParam,
-	'{82758442-C9EB-48F7-B304-083C5E64D4E0}' : ksCircle3dParam,
-	'{5B8082B8-6AD3-4509-826D-D23B7F613213}' : ksEllipse3dParam,
-	'{6A6F6B95-D100-4D54-A430-70A42D342917}' : ksPlaneParam,
-	'{CCFA0D95-0834-4F92-988B-6E477AD67589}' : ksConeParam,
-	'{5D462836-CF69-4995-AB78-8C7A83D09BD7}' : ksCylinderParam,
-	'{C32977F3-3CA7-4D56-8AE7-4963E6851B75}' : ksSphereParam,
-	'{FDA3B147-BAF1-4F75-99AA-39D11323EA97}' : ksTorusParam,
+	'{3DA1922B-1FAB-4990-8D9A-8F03AFDB18D9}' : ControlPointDefinition,
 	'{F1CD604D-1D26-4F6B-8F94-F112133E6162}' : ksNurbsPoint3dParam,
-	'{A12B63E8-9E0A-4854-B724-E18275B9FF20}' : ksNurbsSurfaceParam,
-	'{4DDDAEDB-2819-42D9-BDBB-4CCBC98D76DF}' : ksNurbs3dParam,
-	'{483E9889-E1CA-4CA5-BE4E-ECB3D5CF0126}' : ksNurbsKnotCollection,
-	'{84AF9C81-1795-4631-B58A-101732262E75}' : ksNurbsPoint3dCollCollection,
-	'{3AD5E519-74E2-4D3B-B6A3-B1E81F1006F1}' : ksNurbsPoint3dCollection,
-	'{BF65B990-C2DC-4A12-9EB7-3E868608AF47}' : ksViewProjection,
-	'{A174F872-C800-409E-9FB2-FF5B89D8B4B8}' : ksViewProjectionCollection,
-	'{BE41850C-CFC5-40D4-AE49-37AA391BCF4B}' : ksSelectionMng,
-	'{8F2AA755-D9D1-42A0-97BF-C92548CE7232}' : ksChooseMng,
-	'{7DCBCC76-5041-4C1E-9B33-12B1352D6D57}' : ksArc3dParam,
-	'{9F8DE1DC-1268-4785-9217-1B0DD59B85FA}' : ksTreeNodeParam,
-	'{C81EB1DA-BCB0-491A-8D22-923BF817D572}' : ksAssociationViewParam,
-	'{5A42B962-8F78-4557-B17A-1B871F8DBDB5}' : ksViewColorParam,
-	'{AFE694D7-C1E5-468F-99B0-FE4C60C49899}' : ksAxisLineParam,
-	'{33706D56-D085-4840-833B-435AEB00BE2A}' : ksTextDocumentParam,
 	'{25076616-4949-455E-A45C-1B801884D825}' : ksRemoteElementParam,
-	'{82F60797-D69C-4EB4-9F1A-24D625D5EAFA}' : ksDeletedCopyCollection,
-	'{AACAD820-7790-46EB-B17F-06AE42215ED7}' : ksCopyObjectParam,
-	'{5DDB6B14-6F3D-431F-B62F-C5FCCAFC3632}' : ksThreadDefinition,
-	'{F78E6B71-BEF3-4A4D-AE50-FE96426F6FD1}' : ksOverlapObjectOptions,
-	'{ABBA6CE0-CB4C-4A32-98B4-B639352C75BA}' : ksObjectsFilter3D,
-	'{ABBA6CE0-CB4C-4A32-98B4-B639352C75BB}' : ksParametrizationParam,
-	'{02556461-D088-4F00-AE61-D366082DB9BC}' : ksMacro3DDefinition,
-	'{97337DAF-B7CD-4FB8-8E18-23F0230E5CBE}' : ksAxisConefaceDefinition,
-	'{99797F89-FBA4-4582-812F-226AFB50ED7D}' : ksUnionComponentsDefinition,
-	'{BE5F10F5-B198-49D9-9140-B2B91E060533}' : ksMoldCavityDefinition,
-	'{E4091969-1C4E-4959-8D93-C2421564418B}' : ksCoordinate3dCollection,
-	'{ABC7F8EE-CF07-4AA8-98A1-0DE35DB35B9E}' : ksIntersectionResult,
-	'{CC5E3539-5B35-46FC-AFE1-19BB0168D52F}' : ksPlaneMiddleDefinition,
-	'{BC4C15A4-16E9-4CFA-A33E-CC86BA2FB546}' : ksControlPointDefinition,
-	'{177CBAF3-87E6-4376-B6A9-669C0E661BFF}' : ksConjunctivePointDefinition,
-	'{E06B18BF-D2AF-4201-99BE-B7FA9EECF7A8}' : ksChooseBodies,
-	'{44277B89-EEB4-456C-8EF9-2DC48D61EC91}' : ksAggregateDefinition,
-	'{391938AE-79B6-4E3B-9815-AC1A31D9EA9D}' : ksChangeLeaderParam,
-	'{6B0B5194-4ACD-4095-9BC1-11179FBBB05A}' : Application,
-	'{FBE002A6-1E06-4703-AEC5-9AD8A10FA1FA}' : KompasInvisible5,
-	'{DE8219EC-0A9F-44E1-AC2B-F17269484FFF}' : Object2DNotifyResult,
-	'{87CD4F95-083C-4514-B8B4-025C8907D8F1}' : FeatureCollection,
-	'{2DFACC66-C4A4-11D6-8734-00C0262CDD2C}' : placement,
+	'{A12B63E8-9E0A-4854-B724-E18275B9FF20}' : ksNurbsSurfaceParam,
 	'{600F12DF-D8B8-4CA8-A476-D2A7E425C740}' : Object3DNotifyResult,
-	'{129E9083-E4D2-4991-B69F-70B696AD1A55}' : Document3DNotifyResult,
-	'{14FD27F5-B7FD-4276-AC2C-2804EDC3944F}' : Document2D,
-	'{364521A5-94B5-11D6-8732-00C0262CDD2C}' : SpecRoughParam,
-	'{364521A8-94B5-11D6-8732-00C0262CDD2C}' : EllipseParam,
-	'{364521AB-94B5-11D6-8732-00C0262CDD2C}' : EllipseArcParam,
-	'{364521AE-94B5-11D6-8732-00C0262CDD2C}' : EllipseArcParam1,
-	'{364521B1-94B5-11D6-8732-00C0262CDD2C}' : EquidistantParam,
-	'{364521B4-94B5-11D6-8732-00C0262CDD2C}' : ParagraphParam,
-	'{364521B9-94B5-11D6-8732-00C0262CDD2C}' : TextItemParam,
-	'{364521BC-94B5-11D6-8732-00C0262CDD2C}' : TextLineParam,
-	'{364521BF-94B5-11D6-8732-00C0262CDD2C}' : TextItemFont,
-	'{E79C2503-9584-11D6-8732-00C0262CDD2C}' : CornerParam,
-	'{E79C2506-9584-11D6-8732-00C0262CDD2C}' : ContourParam,
-	'{E79C2509-9584-11D6-8732-00C0262CDD2C}' : LayerParam,
-	'{E79C250C-9584-11D6-8732-00C0262CDD2C}' : LineParam,
-	'{E79C250F-9584-11D6-8732-00C0262CDD2C}' : RegularPolygonParam,
-	'{E79C2512-9584-11D6-8732-00C0262CDD2C}' : RectangleParam,
-	'{E79C2515-9584-11D6-8732-00C0262CDD2C}' : BaseParam,
-	'{E79C2518-9584-11D6-8732-00C0262CDD2C}' : LtVariant,
-	'{E79C251B-9584-11D6-8732-00C0262CDD2C}' : UserParam,
-	'{3198E123-9585-11D6-95CE-00C0262D30E3}' : MathPointParam,
-	'{910EC543-958D-11D6-95CE-00C0262D30E3}' : CurvePicture,
-	'{910EC546-958D-11D6-95CE-00C0262D30E3}' : CurvePattern,
-	'{9F8CA523-173C-4206-8F2A-AB221138692E}' : TAN,
-	'{9CC1A2E2-29A8-49BB-ABF6-792FA2D38014}' : CON,
-	'{7B8B632E-5BDD-4EE5-B623-DF2880BE0EE4}' : InertiaParam,
-	'{4693323B-42A7-42CC-902E-7123DD916FB4}' : MassInertiaParam,
-	'{C77421D3-13EC-4595-A198-677EFB45AEF3}' : Mathematic2D,
-	'{FD30B325-9E27-42CA-ADCF-C30EEBE0BBB8}' : DynamicArray,
-	'{2A4D4544-95B3-11D6-8732-00C0262CDD2C}' : RDimDrawingParam,
-	'{2A4D4547-95B3-11D6-8732-00C0262CDD2C}' : RDimSourceParam,
-	'{7F7D6F83-97DA-11D6-8732-00C0262CDD2C}' : RDimParam,
-	'{7F7D6F86-97DA-11D6-8732-00C0262CDD2C}' : LineSegParam,
-	'{7F7D6F89-97DA-11D6-8732-00C0262CDD2C}' : CircleParam,
-	'{7F7D6F8C-97DA-11D6-8732-00C0262CDD2C}' : ArcByAngleParam,
-	'{7F7D6F8F-97DA-11D6-8732-00C0262CDD2C}' : ArcByPointParam,
-	'{7F7D6F92-97DA-11D6-8732-00C0262CDD2C}' : PointParam,
-	'{7F7D6F95-97DA-11D6-8732-00C0262CDD2C}' : HatchParam,
-	'{7F7D6F98-97DA-11D6-8732-00C0262CDD2C}' : TextParam,
-	'{7F7D6F9B-97DA-11D6-8732-00C0262CDD2C}' : NurbsPointParam,
-	'{7F7D6F9E-97DA-11D6-8732-00C0262CDD2C}' : DoubleValue,
-	'{7F7D6FA1-97DA-11D6-8732-00C0262CDD2C}' : NurbsParam,
-	'{7F7D6FA4-97DA-11D6-8732-00C0262CDD2C}' : ConicArcParam,
-	'{7F7D6FA7-97DA-11D6-8732-00C0262CDD2C}' : CentreParam,
-	'{7F7D6FAA-97DA-11D6-8732-00C0262CDD2C}' : PlacementParam,
-	'{7F7D6FAD-97DA-11D6-8732-00C0262CDD2C}' : RasterParam,
-	'{7F7D6FB0-97DA-11D6-8732-00C0262CDD2C}' : PolylineParam,
-	'{7F7D6FB3-97DA-11D6-8732-00C0262CDD2C}' : InsertFragmentParam,
-	'{7F7D6FB6-97DA-11D6-8732-00C0262CDD2C}' : ViewParam,
-	'{7F7D6FB9-97DA-11D6-8732-00C0262CDD2C}' : LBreakDimSource,
-	'{7F7D6FBC-97DA-11D6-8732-00C0262CDD2C}' : BreakDimDrawing,
-	'{7F7D6FBF-97DA-11D6-8732-00C0262CDD2C}' : LBreakDimParam,
-	'{7F7D6FC2-97DA-11D6-8732-00C0262CDD2C}' : ABreakDimParam,
-	'{7F7D6FC5-97DA-11D6-8732-00C0262CDD2C}' : InsertFragmentParamEx,
-	'{7F7D6FC8-97DA-11D6-8732-00C0262CDD2C}' : BezierParam,
-	'{7F7D6FCB-97DA-11D6-8732-00C0262CDD2C}' : BezierPointParam,
-	'{7F7D6FCE-97DA-11D6-8732-00C0262CDD2C}' : DimTextParam,
-	'{7F7D6FD1-97DA-11D6-8732-00C0262CDD2C}' : LDimSourceParam,
-	'{7F7D6FD4-97DA-11D6-8732-00C0262CDD2C}' : DimDrawingParam,
-	'{7F7D6FD7-97DA-11D6-8732-00C0262CDD2C}' : LDimParam,
-	'{7F7D6FDA-97DA-11D6-8732-00C0262CDD2C}' : ADimSourceParam,
-	'{7F7D6FDD-97DA-11D6-8732-00C0262CDD2C}' : DimensionPartsParam,
-	'{7F7D6FE0-97DA-11D6-8732-00C0262CDD2C}' : ADimParam,
-	'{7F7D6FE3-97DA-11D6-8732-00C0262CDD2C}' : RBreakDrawingParam,
-	'{7F7D6FE6-97DA-11D6-8732-00C0262CDD2C}' : RBreakDimParam,
-	'{7F7D6FE9-97DA-11D6-8732-00C0262CDD2C}' : QualityItemParam,
-	'{7F7D6FEC-97DA-11D6-8732-00C0262CDD2C}' : QualityContensParam,
-	'{D06C9103-98CA-11D6-8732-00C0262CDD2C}' : Iterator,
+	'{F7F45063-0B37-40B1-B3AD-BB0A545EC2C8}' : facet,
+	'{39EE8E9D-C228-4F61-9F66-DD58F20CD224}' : SelectionMng,
+	'{9B59D68B-3502-4FE9-9E09-AC691443BF3E}' : ChooseBodies,
+	'{324C1A45-67AD-41FB-BE57-624F930646F1}' : ksDocumentFileNotify,
+	'{620BFE17-2F66-4102-A8EA-4DD33C081061}' : Attribute3D,
+	'{E41D019C-2D40-452D-8F7B-3FB5FE2D3E8E}' : OverlapObjectOptions,
+	'{FBCC5B90-996C-11D6-8732-00C0262CDD2C}' : ksStandartSheet,
+	'{D06C9101-98CA-11D6-8732-00C0262CDD2C}' : ksIterator,
+	'{A7257E73-EB61-4602-BC8B-2D00EA4AA062}' : ksVertexDefinition,
+	'{D06C9104-98CA-11D6-8732-00C0262CDD2C}' : ksFragment,
 	'{D06C9106-98CA-11D6-8732-00C0262CDD2C}' : Fragment,
+	'{17CAB61A-770A-4FCE-8FC5-F291CDADF80A}' : Attribute3DCollection,
+	'{D06C910A-98CA-11D6-8732-00C0262CDD2C}' : ksFragmentLibrary,
 	'{D06C910C-98CA-11D6-8732-00C0262CDD2C}' : FragmentLib,
-	'{FBCC5B83-996C-11D6-8732-00C0262CDD2C}' : TechnicalDemandParam,
-	'{FBCC5B86-996C-11D6-8732-00C0262CDD2C}' : OrdinatedSourceParam,
-	'{FBCC5B89-996C-11D6-8732-00C0262CDD2C}' : OrdinatedDimParam,
-	'{FBCC5B8C-996C-11D6-8732-00C0262CDD2C}' : OrdinatedDrawingParam,
-	'{FBCC5B8F-996C-11D6-8732-00C0262CDD2C}' : SheetSize,
-	'{FBCC5B92-996C-11D6-8732-00C0262CDD2C}' : StandartSheet,
-	'{FBCC5B95-996C-11D6-8732-00C0262CDD2C}' : SheetPar,
-	'{FBCC5B98-996C-11D6-8732-00C0262CDD2C}' : DocumentParam,
-	'{FBCC5B9B-996C-11D6-8732-00C0262CDD2C}' : DimensionsOptions,
-	'{FBCC5B9E-996C-11D6-8732-00C0262CDD2C}' : SnapOptions,
-	'{FBCC5BA1-996C-11D6-8732-00C0262CDD2C}' : LibraryStyleParam,
-	'{FBCC5BA7-996C-11D6-8732-00C0262CDD2C}' : Stamp,
-	'{FBCC5BAA-996C-11D6-8732-00C0262CDD2C}' : SheetOptions,
-	'{910EC54B-958D-11D6-95CE-00C0262D30E3}' : CurvePatternEx,
-	'{910EC54E-958D-11D6-95CE-00C0262D30E3}' : CurveStyleParam,
-	'{3F715E26-97D9-11D6-95CE-00C0262D30E3}' : TextStyleParam,
-	'{3F715E29-97D9-11D6-95CE-00C0262D30E3}' : HatchLineParam,
-	'{3F715E2C-97D9-11D6-95CE-00C0262D30E3}' : HatchStyleParam,
-	'{3F715E2F-97D9-11D6-95CE-00C0262D30E3}' : RectParam,
-	'{3F715E32-97D9-11D6-95CE-00C0262D30E3}' : ShelfPar,
-	'{3F715E35-97D9-11D6-95CE-00C0262D30E3}' : roughPar,
-	'{3F715E38-97D9-11D6-95CE-00C0262D30E3}' : RoughParam,
-	'{3F715E3B-97D9-11D6-95CE-00C0262D30E3}' : Char255,
-	'{3F715E42-97D9-11D6-95CE-00C0262D30E3}' : leaderParam,
-	'{3F715E45-97D9-11D6-95CE-00C0262D30E3}' : posLeaderParam,
-	'{3F715E48-97D9-11D6-95CE-00C0262D30E3}' : brandLeaderParam,
-	'{9AF8E343-98A0-11D6-95CE-00C0262D30E3}' : markerLeaderParam,
-	'{9AF8E346-98A0-11D6-95CE-00C0262D30E3}' : Type1,
-	'{9AF8E349-98A0-11D6-95CE-00C0262D30E3}' : Type2,
-	'{9AF8E34C-98A0-11D6-95CE-00C0262D30E3}' : Type3,
-	'{9AF8E34F-98A0-11D6-95CE-00C0262D30E3}' : Type5,
-	'{9AF8E352-98A0-11D6-95CE-00C0262D30E3}' : Type6,
-	'{9AF8E355-98A0-11D6-95CE-00C0262D30E3}' : phantom,
-	'{9AF8E358-98A0-11D6-95CE-00C0262D30E3}' : RequestInfo,
-	'{CD1C0146-98DC-11D6-95CE-00C0262D30E3}' : ViewPointerParam,
+	'{14FD27F5-B7FD-4276-AC2C-2804EDC3944F}' : Document2D,
+	'{08B7A093-D829-44A9-A238-2BFF31770112}' : ksChooseParts,
 	'{4FD7CE83-9968-11D6-95CE-00C0262D30E3}' : CutLineParam,
+	'{DE8219EC-0A9F-44E1-AC2B-F17269484FFF}' : Object2DNotifyResult,
+	'{AACAD820-7790-46EB-B17F-06AE42215ED7}' : ksCopyObjectParam,
+	'{94A91D78-30AE-4B04-AEE2-B098D3270602}' : PlaneParam,
+	'{963CB6E1-B9BF-4234-964A-13BFE6C0282A}' : ksSurface,
+	'{5A42B962-8F78-4557-B17A-1B871F8DBDB5}' : ksViewColorParam,
+	'{7A86E2BA-6DE3-4DB3-AEB6-9738DAA69CFC}' : AssociationViewParam,
+	'{EB6AFBC0-C387-4E07-B24E-DDF2B7926A26}' : ksFacet,
+	'{05A4578F-A41F-48F2-92F9-A0F0856BCBC0}' : TreeNodeParam,
+	'{5D462836-CF69-4995-AB78-8C7A83D09BD7}' : ksCylinderParam,
+	'{4E96B6C2-BF75-4B32-A4E7-7267F60A2593}' : Circle3dParam,
+	'{CB7B9677-9F62-473E-9663-AD516B5F37B5}' : FaceCollection,
+	'{483E9889-E1CA-4CA5-BE4E-ECB3D5CF0126}' : ksNurbsKnotCollection,
 	'{4FD7CE86-9968-11D6-95CE-00C0262D30E3}' : ToleranceBranch,
-	'{4FD7CE89-9968-11D6-95CE-00C0262D30E3}' : ToleranceParam,
-	'{4FD7CE8C-9968-11D6-95CE-00C0262D30E3}' : SpcColumnParam,
-	'{4FD7CE8F-9968-11D6-95CE-00C0262D30E3}' : RecordTypeAttrParam,
+	'{ABBA6CE0-CB4C-4A32-98B4-B639352C75BA}' : ksObjectsFilter3D,
+	'{ABBA6CE1-CB4C-4A32-98B4-B639352C75BA}' : ObjectsFilter3D,
+	'{B6C1BCFD-68DA-4A0A-A95C-296084C6A01A}' : ksDocument3DNotify,
+	'{31E66F64-B93D-4196-B3FE-B6CCB679610F}' : ExtrusionSurfaceDefinition,
+	'{C81EB1DA-BCB0-491A-8D22-923BF817D572}' : ksAssociationViewParam,
+	'{283F77EB-7E2C-4F71-8B16-4D286FA4857E}' : ksMassInertiaParam,
+	'{FA93AA21-9B3D-11D6-95CE-00C0262D30E3}' : ksLibraryAttrTypeParam,
+	'{FA93AA23-9B3D-11D6-95CE-00C0262D30E3}' : LibraryAttrTypeParam,
+	'{FA93AA24-9B3D-11D6-95CE-00C0262D30E3}' : ksAttributeObject,
+	'{EEEAB203-43D8-4F04-A7CE-010D9BA419C2}' : BodyCollection,
+	'{FA93AA26-9B3D-11D6-95CE-00C0262D30E3}' : AttributeObject,
+	'{2280DF87-5688-4082-8FAE-6E4C84249352}' : ChooseMng,
+	'{EA92E649-239E-4105-BBD3-AEF4817BD783}' : ksInertiaParam,
+	'{0981CD01-9A49-11D6-8732-00C0262CDD2C}' : ksDataBaseObject,
+	'{391938AE-79B6-4E3B-9815-AC1A31D9EA9D}' : ksChangeLeaderParam,
+	'{E79C2501-9584-11D6-8732-00C0262CDD2C}' : ksCornerParam,
+	'{E9807824-9D55-11D6-95CE-00C0262D30E3}' : ksRequestInfo3D,
+	'{E79C2504-9584-11D6-8732-00C0262CDD2C}' : ksContourParam,
+	'{E9807826-9D55-11D6-95CE-00C0262D30E3}' : RequestInfo3D,
+	'{E79C2506-9584-11D6-8732-00C0262CDD2C}' : ContourParam,
+	'{E79C2507-9584-11D6-8732-00C0262CDD2C}' : ksLayerParam,
+	'{E79C2509-9584-11D6-8732-00C0262CDD2C}' : LayerParam,
+	'{E79C250A-9584-11D6-8732-00C0262CDD2C}' : ksLineParam,
+	'{BE5F10F5-B198-49D9-9140-B2B91E060533}' : ksMoldCavityDefinition,
+	'{E79C250C-9584-11D6-8732-00C0262CDD2C}' : LineParam,
+	'{CC26DA61-9B22-11D6-95CE-00C0262D30E3}' : ksAttributeTypeParam,
+	'{E79C250F-9584-11D6-8732-00C0262CDD2C}' : RegularPolygonParam,
+	'{7B8B632E-5BDD-4EE5-B623-DF2880BE0EE4}' : InertiaParam,
+	'{E79C2512-9584-11D6-8732-00C0262CDD2C}' : RectangleParam,
+	'{E79C2513-9584-11D6-8732-00C0262CDD2C}' : ksBaseParam,
+	'{E79C2515-9584-11D6-8732-00C0262CDD2C}' : BaseParam,
+	'{E79C2516-9584-11D6-8732-00C0262CDD2C}' : ksLtVariant,
+	'{E79C2518-9584-11D6-8732-00C0262CDD2C}' : LtVariant,
+	'{E79C2519-9584-11D6-8732-00C0262CDD2C}' : ksUserParam,
+	'{E79C251B-9584-11D6-8732-00C0262CDD2C}' : UserParam,
+	'{6A6F6B95-D100-4D54-A430-70A42D342917}' : ksPlaneParam,
+	'{0307BBB3-C193-11D6-8734-00C0262CDD2C}' : FilletDefinition,
+	'{0CA54EDF-BC8C-4A6A-94CF-EDBA74A6FA00}' : ViewProjection,
+	'{3EEB2B43-56FF-49C0-AFCF-69E990A7D84C}' : ksAttribute3D,
+	'{03EFC9DD-E05A-4277-BC7C-4FD499A252DE}' : ksBody,
+	'{C7CB743A-C59D-4C27-8CB6-971C2A393F2F}' : ksKompasObjectNotify,
+	'{B20E24C3-5E4A-4CDA-A1ED-6BB8EBC81A29}' : ksExtrusionSurfaceDefinition,
+	'{6B0B5194-4ACD-4095-9BC1-11179FBBB05A}' : Application,
+	'{2A4D4542-95B3-11D6-8732-00C0262CDD2C}' : ksRDimDrawingParam,
+	'{2A4D4544-95B3-11D6-8732-00C0262CDD2C}' : RDimDrawingParam,
+	'{2A4D4545-95B3-11D6-8732-00C0262CDD2C}' : ksRDimSourceParam,
+	'{2A4D4547-95B3-11D6-8732-00C0262CDD2C}' : RDimSourceParam,
+	'{BA13BE42-059B-4EEB-9C39-673732763EE3}' : NurbsSurfaceParam,
+	'{2DFACC61-C4A4-11D6-8734-00C0262CDD2C}' : ksColorParam,
+	'{2DFACC63-C4A4-11D6-8734-00C0262CDD2C}' : ColorParam,
+	'{2DFACC64-C4A4-11D6-8734-00C0262CDD2C}' : ksPlacement,
+	'{2DFACC66-C4A4-11D6-8734-00C0262CDD2C}' : placement,
+	'{3F715E24-97D9-11D6-95CE-00C0262D30E3}' : ksTextStyleParam,
+	'{3F715E26-97D9-11D6-95CE-00C0262D30E3}' : TextStyleParam,
+	'{2DFACC6A-C4A4-11D6-8734-00C0262CDD2C}' : ksBossRotatedDefinition,
+	'{3F715E29-97D9-11D6-95CE-00C0262D30E3}' : HatchLineParam,
+	'{3F715E2A-97D9-11D6-95CE-00C0262D30E3}' : ksHatchStyleParam,
+	'{3F715E2C-97D9-11D6-95CE-00C0262D30E3}' : HatchStyleParam,
+	'{3F715E2D-97D9-11D6-95CE-00C0262D30E3}' : ksRectParam,
+	'{9F88CAAA-A50F-46F4-904A-846C792FA649}' : ksDocument3DNotifyResult,
+	'{3F715E2F-97D9-11D6-95CE-00C0262D30E3}' : RectParam,
+	'{3F715E30-97D9-11D6-95CE-00C0262D30E3}' : ksShelfPar,
+	'{3F715E32-97D9-11D6-95CE-00C0262D30E3}' : ShelfPar,
+	'{3F715E33-97D9-11D6-95CE-00C0262D30E3}' : ksRoughPar,
+	'{3F715E35-97D9-11D6-95CE-00C0262D30E3}' : roughPar,
+	'{3F715E36-97D9-11D6-95CE-00C0262D30E3}' : ksRoughParam,
+	'{3F715E38-97D9-11D6-95CE-00C0262D30E3}' : RoughParam,
+	'{3F715E39-97D9-11D6-95CE-00C0262D30E3}' : ksChar255,
+	'{3F715E3B-97D9-11D6-95CE-00C0262D30E3}' : Char255,
+	'{8075EDE4-6C85-4711-8685-68FBE359D4C4}' : ksTAN,
+	'{33583282-14FB-4975-B040-9267A639E340}' : Ellipse3dParam,
+	'{3F715E40-97D9-11D6-95CE-00C0262D30E3}' : ksLeaderParam,
+	'{3F715E42-97D9-11D6-95CE-00C0262D30E3}' : leaderParam,
+	'{3F715E43-97D9-11D6-95CE-00C0262D30E3}' : ksPosLeaderParam,
+	'{CD6054FC-D754-4139-8CD9-381F7488A6C7}' : RasterFormatParam,
+	'{3F715E45-97D9-11D6-95CE-00C0262D30E3}' : posLeaderParam,
+	'{3F715E46-97D9-11D6-95CE-00C0262D30E3}' : ksBrandLeaderParam,
+	'{3F715E48-97D9-11D6-95CE-00C0262D30E3}' : brandLeaderParam,
+	'{FD30B325-9E27-42CA-ADCF-C30EEBE0BBB8}' : DynamicArray,
+	'{7DAB018D-9EF9-4D0F-84BB-54B3DC0558D3}' : ComponentPositioner,
+	'{8B9ECAF3-172D-4F4B-BF51-33C177B87FF2}' : RotatedSurfaceDefinition,
+	'{C32977F3-3CA7-4D56-8AE7-4963E6851B75}' : ksSphereParam,
+	'{38386E28-C404-431E-9F30-5BE44B0F283F}' : Loop,
+	'{B0170141-C02C-11D6-8734-00C0262CDD2C}' : ksEntityCollection,
+	'{B810650E-7819-485C-90D2-ADEB647AE5E2}' : ksTessellation,
+	'{B0170143-C02C-11D6-8734-00C0262CDD2C}' : EntityCollection,
+	'{CC5E3539-5B35-46FC-AFE1-19BB0168D52F}' : ksPlaneMiddleDefinition,
+	'{088BF9A8-37D3-4B15-A7CA-8C52FF1DBC41}' : ksFeature,
+	'{102FA83C-E0D6-4DB5-937A-FC149526899A}' : ImportedSurfaceDefinition,
+	'{9C3ECC92-E72F-4892-8921-7886F34CA9AD}' : ksObject3DNotifyResult,
+	'{DC8F6A7B-FF16-46FF-986D-2F7E1F6B25C4}' : ksLineSeg3dParam,
+	'{33706D56-D085-4840-833B-435AEB00BE2A}' : ksTextDocumentParam,
+	'{BE41850C-CFC5-40D4-AE49-37AA391BCF4B}' : ksSelectionMng,
+	'{F78E6B71-BEF3-4A4D-AE50-FE96426F6FD1}' : ksOverlapObjectOptions,
 	'{4FD7CE92-9968-11D6-95CE-00C0262D30E3}' : NumberTypeAttrParam,
-	'{4FD7CE95-9968-11D6-95CE-00C0262D30E3}' : SpcStyleColumnParam,
+	'{2DFACC69-C4A4-11D6-8734-00C0262CDD2C}' : BaseRotatedDefinition,
+	'{3198E121-9585-11D6-95CE-00C0262D30E3}' : ksMathPointParam,
+	'{3198E123-9585-11D6-95CE-00C0262D30E3}' : MathPointParam,
+	'{CE6A46FF-02B4-4C7E-AF50-3F3707C8B122}' : ksFeatureCollection,
+	'{2DFACC6C-C4A4-11D6-8734-00C0262CDD2C}' : BossRotatedDefinition,
+	'{2DFACC6D-C4A4-11D6-8734-00C0262CDD2C}' : ksCutRotatedDefinition,
+	'{E36BC97C-39D6-4402-9C25-C7008A217E02}' : KompasObject,
+	'{4F6A3404-8F06-4363-AF66-4CDCC4E09462}' : ksEmbodiment3D,
+	'{2DFACC6F-C4A4-11D6-8734-00C0262CDD2C}' : CutRotatedDefinition,
+	'{2DFACC70-C4A4-11D6-8734-00C0262CDD2C}' : ksSketchDefinition,
+	'{78A2C35E-A7DA-414E-B90A-F19998EC7BD1}' : ksImportedSurfaceDefinition,
+	'{FDA3B147-BAF1-4F75-99AA-39D11323EA97}' : ksTorusParam,
+	'{2DFACC72-C4A4-11D6-8734-00C0262CDD2C}' : SketchDefinition,
+	'{D06C9103-98CA-11D6-8732-00C0262CDD2C}' : Iterator,
+	'{1BD7207E-36AA-47DF-913E-AD26DE6C16E8}' : ksLoopCollection,
+	'{177CBAF3-87E6-4376-B6A9-669C0E661BFF}' : ksConjunctivePointDefinition,
+	'{129E9083-E4D2-4991-B69F-70B696AD1A55}' : Document3DNotifyResult,
+	'{6096A4FD-970B-468C-815E-37CA1970A203}' : ksEdgeCollection,
+	'{D7844AFC-91B0-4C08-8622-0E4595BA6551}' : PlaneMiddleDefinition,
+	'{2A8AE692-45A3-4C22-88B5-76B4830F2235}' : ThreadDefinition,
+	'{AF4E160D-5C89-4F21-B0F2-D53397BDAF78}' : ksDocument2D,
+	'{4D295A34-4F20-4231-8806-78E40213FA72}' : LineSeg3dParam,
+	'{0307BB90-C193-11D6-8734-00C0262CDD2C}' : ksCircularCopyDefinition,
+	'{88C32A80-3735-4E18-A02E-9B2A8F0A90E3}' : ksOrientedEdge,
+	'{BC4C15A4-16E9-4CFA-A33E-CC86BA2FB546}' : ksControlPointDefinition,
+	'{1BCC4F0F-1091-41A3-895B-0608D20715B7}' : ksPolyLineVertexParam,
+	'{9A3E39C6-B6AB-42CF-9FBD-AC05F0B4B161}' : ViewProjectionCollection,
+	'{9FD4E52C-5B9B-4D07-B788-8D188EF940FD}' : ChooseParts,
+	'{51E74521-9A3A-11D6-95CE-00C0262D30E3}' : ksSpcDocument,
+	'{51E74523-9A3A-11D6-95CE-00C0262D30E3}' : SpcDocument,
+	'{51E74524-9A3A-11D6-95CE-00C0262D30E3}' : ksSpecification,
+	'{51E74526-9A3A-11D6-95CE-00C0262D30E3}' : Specification,
+	'{862E250D-9DB1-47E8-8EE2-9BE2D2453D5A}' : ksConstraintParam,
+	'{2DFACC67-C4A4-11D6-8734-00C0262CDD2C}' : ksBaseRotatedDefinition,
+	'{5CE8909D-CF3D-418F-A9B9-0A12B23916C0}' : ksOrientedEdgeCollection,
+	'{1978BA1C-EE2F-48ED-86D7-B15065B36E4A}' : Feature,
+	'{DEEFEFFB-C3E2-11D6-8734-00C0262CDD2C}' : BaseEvolutionDefinition,
+	'{508B5962-DF59-4CEE-8611-AD10FDF0C811}' : ksComponentPositioner,
+	'{E04339B5-AA08-4717-8E50-90ED0E375624}' : ksLoftSurfaceDefinition,
+	'{DEEFF001-C3E2-11D6-8734-00C0262CDD2C}' : CutEvolutionDefinition,
+	'{DDD05143-C180-11D6-8734-00C0262CDD2C}' : ksCircularPartArrayDefinition,
+	'{03CEAC83-C0B8-11D6-8734-00C0262CDD2C}' : VariableCollection,
+	'{DDD05145-C180-11D6-8734-00C0262CDD2C}' : CircularPartArrayDefinition,
+	'{DDD05146-C180-11D6-8734-00C0262CDD2C}' : ksCurvePartArrayDefinition,
+	'{DDD05148-C180-11D6-8734-00C0262CDD2C}' : CurvePartArrayDefinition,
+	'{DDD05149-C180-11D6-8734-00C0262CDD2C}' : ksDerivativePartArrayDefinition,
+	'{DDD0514B-C180-11D6-8734-00C0262CDD2C}' : DerivativePartArrayDefinition,
+	'{34AFC10F-4FBB-40F0-8A23-74B1250F42EF}' : ViewColorParam,
+	'{3F715E27-97D9-11D6-95CE-00C0262D30E3}' : ksHatchLineParam,
+	'{0307BBAB-C193-11D6-8734-00C0262CDD2C}' : ksEdgeDefinition,
+	'{BFA024B6-679E-4A95-B6C2-1EA47A7CD0E9}' : ksObject3DNotify,
+	'{FD27841D-1374-4F7F-AE8A-C2A44F89120D}' : ksRotatedSurfaceDefinition,
+	'{03CEAC89-C0B8-11D6-8734-00C0262CDD2C}' : PartCollection,
+	'{A174F872-C800-409E-9FB2-FF5B89D8B4B8}' : ksViewProjectionCollection,
+	'{FBCC5B83-996C-11D6-8732-00C0262CDD2C}' : TechnicalDemandParam,
+	'{FBCC5B84-996C-11D6-8732-00C0262CDD2C}' : ksOrdinatedSourceParam,
+	'{02556461-D088-4F00-AE61-D366082DB9BC}' : ksMacro3DDefinition,
+	'{ABC84FE5-3945-4A0B-820A-719BF4B79224}' : ksMeasurer,
+	'{0307BBB0-C193-11D6-8734-00C0262CDD2C}' : ChamferDefinition,
+	'{FBCC5B89-996C-11D6-8732-00C0262CDD2C}' : OrdinatedDimParam,
+	'{FBCC5B8A-996C-11D6-8732-00C0262CDD2C}' : ksOrdinatedDrawingParam,
+	'{4FD7CE81-9968-11D6-95CE-00C0262D30E3}' : ksCutLineParam,
+	'{FBCC5B8C-996C-11D6-8732-00C0262CDD2C}' : OrdinatedDrawingParam,
+	'{FBCC5B8D-996C-11D6-8732-00C0262CDD2C}' : ksSheetSize,
+	'{4FD7CE84-9968-11D6-95CE-00C0262D30E3}' : ksToleranceBranch,
+	'{FBCC5B8F-996C-11D6-8732-00C0262CDD2C}' : SheetSize,
+	'{99797F89-FBA4-4582-812F-226AFB50ED7D}' : ksUnionComponentsDefinition,
+	'{4FD7CE87-9968-11D6-95CE-00C0262D30E3}' : ksToleranceParam,
+	'{FBCC5B92-996C-11D6-8732-00C0262CDD2C}' : StandartSheet,
+	'{FBCC5B93-996C-11D6-8732-00C0262CDD2C}' : ksSheetPar,
+	'{4FD7CE8A-9968-11D6-95CE-00C0262D30E3}' : ksSpcColumnParam,
+	'{FBCC5B95-996C-11D6-8732-00C0262CDD2C}' : SheetPar,
+	'{FBCC5B96-996C-11D6-8732-00C0262CDD2C}' : ksDocumentParam,
+	'{4FD7CE8D-9968-11D6-95CE-00C0262D30E3}' : ksRecordTypeAttrParam,
+	'{FBCC5B98-996C-11D6-8732-00C0262CDD2C}' : DocumentParam,
+	'{FBCC5B99-996C-11D6-8732-00C0262CDD2C}' : ksDimensionsOptions,
+	'{4FD7CE90-9968-11D6-95CE-00C0262D30E3}' : ksNumberTypeAttrParam,
+	'{FBCC5B9B-996C-11D6-8732-00C0262CDD2C}' : DimensionsOptions,
+	'{FBCC5B9C-996C-11D6-8732-00C0262CDD2C}' : ksSnapOptions,
+	'{4FD7CE93-9968-11D6-95CE-00C0262D30E3}' : ksSpcStyleColumnParam,
+	'{FBCC5B9E-996C-11D6-8732-00C0262CDD2C}' : SnapOptions,
+	'{FBCC5B9F-996C-11D6-8732-00C0262CDD2C}' : ksLibraryStyleParam,
+	'{4FD7CE96-9968-11D6-95CE-00C0262D30E3}' : ksSpcStyleSectionParam,
+	'{FBCC5BA1-996C-11D6-8732-00C0262CDD2C}' : LibraryStyleParam,
 	'{4FD7CE98-9968-11D6-95CE-00C0262D30E3}' : SpcStyleSectionParam,
-	'{4FD7CE9B-9968-11D6-95CE-00C0262D30E3}' : SpcSubSectionParam,
-	'{4FD7CE9E-9968-11D6-95CE-00C0262D30E3}' : SpcTuningSectionParam,
+	'{4FD7CE99-9968-11D6-95CE-00C0262D30E3}' : ksSpcSubSectionParam,
+	'{FBCC5BA5-996C-11D6-8732-00C0262CDD2C}' : ksStamp,
+	'{4FD7CE9C-9968-11D6-95CE-00C0262D30E3}' : ksSpcTuningSectionParam,
+	'{FBCC5BA7-996C-11D6-8732-00C0262CDD2C}' : Stamp,
+	'{FBCC5BA8-996C-11D6-8732-00C0262CDD2C}' : ksSheetOptions,
+	'{4FD7CE9F-9968-11D6-95CE-00C0262D30E3}' : ksSpcTuningStyleParam,
+	'{FBCC5BAA-996C-11D6-8732-00C0262CDD2C}' : SheetOptions,
 	'{4FD7CEA1-9968-11D6-95CE-00C0262D30E3}' : SpcTuningStyleParam,
+	'{4FD7CEA2-9968-11D6-95CE-00C0262D30E3}' : ksSpcStyleParam,
 	'{4FD7CEA4-9968-11D6-95CE-00C0262D30E3}' : SpcStyleParam,
+	'{4FD7CEA5-9968-11D6-95CE-00C0262D30E3}' : ksSpcDescrParam,
 	'{4FD7CEA7-9968-11D6-95CE-00C0262D30E3}' : SpcDescrParam,
+	'{4FD7CEA8-9968-11D6-95CE-00C0262D30E3}' : ksDocAttachedSpcParam,
 	'{4FD7CEAA-9968-11D6-95CE-00C0262D30E3}' : DocAttachedSpcParam,
+	'{0FD25FF9-AB0A-48F3-BAD4-F193116C0887}' : ksAdditionFormatParam,
 	'{4FD7CEAD-9968-11D6-95CE-00C0262D30E3}' : SpcObjParam,
+	'{4FD7CEAE-9968-11D6-95CE-00C0262D30E3}' : ksLibStyle,
 	'{4FD7CEB0-9968-11D6-95CE-00C0262D30E3}' : LibStyle,
 	'{0981CD03-9A49-11D6-8732-00C0262CDD2C}' : DataBaseObject,
-	'{51E74523-9A3A-11D6-95CE-00C0262D30E3}' : SpcDocument,
-	'{51E74526-9A3A-11D6-95CE-00C0262D30E3}' : Specification,
-	'{74D745F3-9A3A-11D6-95CE-00C0262D30E3}' : DocumentTxt,
-	'{CC26DA63-9B22-11D6-95CE-00C0262D30E3}' : AttributeTypeParam,
-	'{CE0D05E3-9B2A-11D6-95CE-00C0262D30E3}' : ColumnInfoParam,
-	'{CE0D05E6-9B2A-11D6-95CE-00C0262D30E3}' : AttributeParam,
-	'{508A0CC3-9D74-11D6-95CE-00C0262D30E3}' : Variable,
-	'{FA93AA23-9B3D-11D6-95CE-00C0262D30E3}' : LibraryAttrTypeParam,
-	'{FA93AA26-9B3D-11D6-95CE-00C0262D30E3}' : AttributeObject,
-	'{E9807826-9D55-11D6-95CE-00C0262D30E3}' : RequestInfo3D,
-	'{508A0CC6-9D74-11D6-95CE-00C0262D30E3}' : MateConstraint,
-	'{508A0CC9-9D74-11D6-95CE-00C0262D30E3}' : DefaultObject,
-	'{508A0CCC-9D74-11D6-95CE-00C0262D30E3}' : entity,
-	'{508A0CCF-9D74-11D6-95CE-00C0262D30E3}' : part,
-	'{111CEFE3-A0A7-11D6-95CE-00C0262D30E3}' : Document3D,
-	'{111CEFE6-A0A7-11D6-95CE-00C0262D30E3}' : ModelLibrary,
-	'{B0170143-C02C-11D6-8734-00C0262CDD2C}' : EntityCollection,
-	'{03CEAC83-C0B8-11D6-8734-00C0262CDD2C}' : VariableCollection,
-	'{03CEAC86-C0B8-11D6-8734-00C0262CDD2C}' : MateConstraintCollection,
-	'{03CEAC89-C0B8-11D6-8734-00C0262CDD2C}' : PartCollection,
-	'{E6E78D63-C0FA-11D6-8734-00C0262CDD2C}' : MeshPartArrayDefinition,
-	'{DDD05145-C180-11D6-8734-00C0262CDD2C}' : CircularPartArrayDefinition,
-	'{DDD05148-C180-11D6-8734-00C0262CDD2C}' : CurvePartArrayDefinition,
-	'{DDD0514B-C180-11D6-8734-00C0262CDD2C}' : DerivativePartArrayDefinition,
-	'{0307BB83-C193-11D6-8734-00C0262CDD2C}' : Axis2PlanesDefinition,
-	'{0307BB86-C193-11D6-8734-00C0262CDD2C}' : AxisOperationsDefinition,
-	'{0307BB89-C193-11D6-8734-00C0262CDD2C}' : Axis2PointsDefinition,
-	'{0307BB8C-C193-11D6-8734-00C0262CDD2C}' : AxisEdgeDefinition,
-	'{0307BB8F-C193-11D6-8734-00C0262CDD2C}' : MeshCopyDefinition,
-	'{0307BB92-C193-11D6-8734-00C0262CDD2C}' : CircularCopyDefinition,
-	'{0307BB95-C193-11D6-8734-00C0262CDD2C}' : CurveCopyDefinition,
-	'{0307BB98-C193-11D6-8734-00C0262CDD2C}' : MirrorCopyDefinition,
-	'{0307BB9B-C193-11D6-8734-00C0262CDD2C}' : MirrorCopyAllDefinition,
-	'{0307BB9E-C193-11D6-8734-00C0262CDD2C}' : ConicSpiralDefinition,
-	'{0307BBA1-C193-11D6-8734-00C0262CDD2C}' : CylindricSpiralDefinition,
-	'{0307BBA4-C193-11D6-8734-00C0262CDD2C}' : PolyLineDefinition,
-	'{0307BBA7-C193-11D6-8734-00C0262CDD2C}' : SplineDefinition,
-	'{0307BBAA-C193-11D6-8734-00C0262CDD2C}' : faceDefinition,
-	'{0307BBAD-C193-11D6-8734-00C0262CDD2C}' : EdgeDefinition,
-	'{0307BBB0-C193-11D6-8734-00C0262CDD2C}' : ChamferDefinition,
-	'{0307BBB3-C193-11D6-8734-00C0262CDD2C}' : FilletDefinition,
-	'{DEEFEFE3-C3E2-11D6-8734-00C0262CDD2C}' : BaseExtrusionDefinition,
-	'{DEEFEFE6-C3E2-11D6-8734-00C0262CDD2C}' : BossExtrusionDefinition,
-	'{DEEFEFE9-C3E2-11D6-8734-00C0262CDD2C}' : CutExtrusionDefinition,
-	'{31E66F64-B93D-4196-B3FE-B6CCB679610F}' : ExtrusionSurfaceDefinition,
-	'{DEEFEFEC-C3E2-11D6-8734-00C0262CDD2C}' : BaseLoftDefinition,
-	'{DEEFEFEF-C3E2-11D6-8734-00C0262CDD2C}' : BossLoftDefinition,
-	'{DEEFEFF2-C3E2-11D6-8734-00C0262CDD2C}' : CutLoftDefinition,
+	'{1FE1EB28-CD28-4700-8E46-25CCFE9C0EC8}' : ksObject2DNotifyResult,
 	'{5E1EB940-4CAE-43DE-B56D-8733FF6707DF}' : LoftSurfaceDefinition,
-	'{DEEFEFF5-C3E2-11D6-8734-00C0262CDD2C}' : InclineDefinition,
-	'{DEEFEFF8-C3E2-11D6-8734-00C0262CDD2C}' : ShellDefinition,
-	'{DEEFEFFB-C3E2-11D6-8734-00C0262CDD2C}' : BaseEvolutionDefinition,
-	'{DEEFEFFE-C3E2-11D6-8734-00C0262CDD2C}' : BossEvolutionDefinition,
-	'{DEEFF001-C3E2-11D6-8734-00C0262CDD2C}' : CutEvolutionDefinition,
-	'{DB947005-AA19-4ED2-9775-E7BD80BE872E}' : EvolutionSurfaceDefinition,
-	'{DEEFF004-C3E2-11D6-8734-00C0262CDD2C}' : RibDefinition,
-	'{DEEFF007-C3E2-11D6-8734-00C0262CDD2C}' : CutByPlaneDefinition,
-	'{DEEFF00A-C3E2-11D6-8734-00C0262CDD2C}' : CutBySketchDefinition,
-	'{DEEFF00D-C3E2-11D6-8734-00C0262CDD2C}' : PlaneOffsetDefinition,
-	'{DEEFF010-C3E2-11D6-8734-00C0262CDD2C}' : PlaneAngleDefinition,
-	'{DEEFF013-C3E2-11D6-8734-00C0262CDD2C}' : Plane3PointsDefinition,
-	'{DEEFF016-C3E2-11D6-8734-00C0262CDD2C}' : PlaneNormalToSurfaceDefinition,
-	'{DEEFF019-C3E2-11D6-8734-00C0262CDD2C}' : PlaneTangentToSurfaceDefinition,
-	'{DEEFF01C-C3E2-11D6-8734-00C0262CDD2C}' : PlaneEdgePointDefinition,
-	'{DEEFF01F-C3E2-11D6-8734-00C0262CDD2C}' : PlaneParallelDefinition,
-	'{DEEFF022-C3E2-11D6-8734-00C0262CDD2C}' : PlanePerpendicularDefinition,
-	'{DEEFF025-C3E2-11D6-8734-00C0262CDD2C}' : PlaneLineToEdgeDefinition,
-	'{DEEFF028-C3E2-11D6-8734-00C0262CDD2C}' : PlaneLineToPlaneDefinition,
-	'{DEEFF02B-C3E2-11D6-8734-00C0262CDD2C}' : ThinParam,
-	'{DEEFF02E-C3E2-11D6-8734-00C0262CDD2C}' : ExtrusionParam,
-	'{DEEFF031-C3E2-11D6-8734-00C0262CDD2C}' : RotatedParam,
-	'{2DFACC63-C4A4-11D6-8734-00C0262CDD2C}' : ColorParam,
-	'{2DFACC69-C4A4-11D6-8734-00C0262CDD2C}' : BaseRotatedDefinition,
-	'{2DFACC6C-C4A4-11D6-8734-00C0262CDD2C}' : BossRotatedDefinition,
-	'{2DFACC6F-C4A4-11D6-8734-00C0262CDD2C}' : CutRotatedDefinition,
-	'{8B9ECAF3-172D-4F4B-BF51-33C177B87FF2}' : RotatedSurfaceDefinition,
-	'{2DFACC72-C4A4-11D6-8734-00C0262CDD2C}' : SketchDefinition,
-	'{CD6054FC-D754-4139-8CD9-381F7488A6C7}' : RasterFormatParam,
-	'{13DF9CCA-122C-4CEC-87FA-CF16818E013A}' : AdditionFormatParam,
-	'{77C095F7-3ABC-4292-B9E1-C112620AFC56}' : ConstraintParam,
-	'{102FA83C-E0D6-4DB5-937A-FC149526899A}' : ImportedSurfaceDefinition,
-	'{CB7B9677-9F62-473E-9663-AD516B5F37B5}' : FaceCollection,
-	'{5CE6E053-3EC8-427B-BCB5-82B01D4BCBF3}' : VertexDefinition,
-	'{1978BA1C-EE2F-48ED-86D7-B15065B36E4A}' : Feature,
-	'{923A48A1-C159-4959-B13E-E8C558534C89}' : Tessellation,
-	'{F7F45063-0B37-40B1-B3AD-BB0A545EC2C8}' : facet,
-	'{E07C6920-E361-4A4D-9140-95969C26A9ED}' : Measurer,
-	'{EEEAB203-43D8-4F04-A7CE-010D9BA419C2}' : BodyCollection,
-	'{A99FFD41-AA46-4BFC-B6F2-32E1A956E0B1}' : body,
-	'{B1C40242-CD49-4207-B728-B67057BEC339}' : Surface,
-	'{7519BF63-27B3-415F-AC25-904910CB27B5}' : EdgeCollection,
-	'{C66FB80F-97BE-4437-A8A0-AEDCFCBCF982}' : OrientedEdge,
-	'{6EF08DCB-A1D4-43A2-ACAF-AF32FDE5F338}' : OrientedEdgeCollection,
-	'{38386E28-C404-431E-9F30-5BE44B0F283F}' : Loop,
-	'{3EA3B143-96A5-408A-897E-27D852E6EE9B}' : LoopCollection,
-	'{54152184-0B08-4DFB-8249-4579A7368BF4}' : Curve3D,
-	'{4D295A34-4F20-4231-8806-78E40213FA72}' : LineSeg3dParam,
-	'{4E96B6C2-BF75-4B32-A4E7-7267F60A2593}' : Circle3dParam,
-	'{33583282-14FB-4975-B040-9267A639E340}' : Ellipse3dParam,
-	'{94A91D78-30AE-4B04-AEE2-B098D3270602}' : PlaneParam,
-	'{3940C963-446D-4701-883C-A93BBDAC5469}' : ConeParam,
-	'{379D658E-47BB-414F-A952-FB41037F17AC}' : CylinderParam,
-	'{C82A3D03-4BEE-467F-9240-C1C58FDB144E}' : SphereParam,
-	'{B7833CCA-936D-4689-BD90-90B5209D94E8}' : TorusParam,
-	'{4F3C6D95-FBDC-4C53-AE82-9AF9C05093FF}' : NurbsPoint3dParam,
-	'{BA13BE42-059B-4EEB-9C39-673732763EE3}' : NurbsSurfaceParam,
-	'{F829344F-B49F-43A3-AC93-E817EF8D3319}' : Nurbs3dParam,
-	'{81317653-9BBA-46FE-9877-AEEE62BD8AA4}' : NurbsKnotCollection,
-	'{A2BD36E2-C99B-40FE-A6A7-E5A9CCDCF63D}' : NurbsPoint3dCollCollection,
-	'{25AE92BA-055F-431E-AC3E-EA2E793D446C}' : NurbsPoint3dCollection,
-	'{0CA54EDF-BC8C-4A6A-94CF-EDBA74A6FA00}' : ViewProjection,
-	'{9A3E39C6-B6AB-42CF-9FBD-AC05F0B4B161}' : ViewProjectionCollection,
-	'{39EE8E9D-C228-4F61-9F66-DD58F20CD224}' : SelectionMng,
-	'{2280DF87-5688-4082-8FAE-6E4C84249352}' : ChooseMng,
-	'{4CA2655E-EC4E-433C-9706-8E3864D5DBD2}' : Arc3dParam,
-	'{05A4578F-A41F-48F2-92F9-A0F0856BCBC0}' : TreeNodeParam,
-	'{7A86E2BA-6DE3-4DB3-AEB6-9738DAA69CFC}' : AssociationViewParam,
-	'{34AFC10F-4FBB-40F0-8A23-74B1250F42EF}' : ViewColorParam,
-	'{705962E9-5E9B-4379-8504-FA754D11FC66}' : AxisLineParam,
-	'{02286DB8-98D4-4D0B-97D7-E2EED32EEBD6}' : TextDocumentParam,
-	'{F37A40F6-4E15-4E01-B4F0-25C49175227A}' : RemoteElementParam,
-	'{9807E658-53C5-4445-A389-3F800FB3BB8A}' : DeletedCopyCollection,
-	'{8867DEAC-C699-41B6-BD3D-C470A52B1B9C}' : CopyObjectParam,
-	'{2A8AE692-45A3-4C22-88B5-76B4830F2235}' : ThreadDefinition,
-	'{E41D019C-2D40-452D-8F7B-3FB5FE2D3E8E}' : OverlapObjectOptions,
-	'{620BFE17-2F66-4102-A8EA-4DD33C081061}' : Attribute3D,
-	'{17CAB61A-770A-4FCE-8FC5-F291CDADF80A}' : Attribute3DCollection,
-	'{7DAB018D-9EF9-4D0F-84BB-54B3DC0558D3}' : ComponentPositioner,
-	'{ABBA6CE1-CB4C-4A32-98B4-B639352C75BA}' : ObjectsFilter3D,
-	'{ABBA6CE1-CB4C-4A32-98B4-B639352C75BB}' : ParametrizationParam,
-	'{DC7D3EDF-80EE-4BAF-930F-F221AC7E5A7A}' : Macro3DDefinition,
-	'{C6BD0D90-C8BE-4378-9A71-835597A7D1E9}' : AxisConefaceDefinition,
-	'{BA53B169-1DC8-4CCA-BAA4-27B0FB87AE26}' : UnionComponentsDefinition,
-	'{FC4D7C29-C608-44D5-B927-1EC9FC147B18}' : MoldCavityDefinition,
-	'{17150452-8320-4721-9765-13353F08AE7E}' : Coordinate3dCollection,
+	'{508A0CCC-9D74-11D6-95CE-00C0262D30E3}' : entity,
+	'{74D745F1-9A3A-11D6-95CE-00C0262D30E3}' : ksDocumentTxt,
 	'{ED41E352-E8A8-4B12-893F-17F064985CEE}' : IntersectionResult,
-	'{D7844AFC-91B0-4C08-8622-0E4595BA6551}' : PlaneMiddleDefinition,
-	'{3DA1922B-1FAB-4990-8D9A-8F03AFDB18D9}' : ControlPointDefinition,
-	'{88BD7F23-21A6-4C90-B784-0B38FB7FD0F3}' : ConjunctivePointDefinition,
-	'{9B59D68B-3502-4FE9-9E09-AC691443BF3E}' : ChooseBodies,
+	'{74D745F3-9A3A-11D6-95CE-00C0262D30E3}' : DocumentTxt,
+	'{923A48A1-C159-4959-B13E-E8C558534C89}' : Tessellation,
+	'{87CD4F95-083C-4514-B8B4-025C8907D8F1}' : FeatureCollection,
+	'{404E7D5A-A13F-4CFF-8214-FEA7012110CB}' : ksStampNotify,
+	'{A421368A-34B6-4DDF-9A52-73B3488EE83F}' : ksSelectionMngNotify,
+	'{97337DAF-B7CD-4FB8-8E18-23F0230E5CBE}' : ksAxisConefaceDefinition,
+	'{25AE92BA-055F-431E-AC3E-EA2E793D446C}' : NurbsPoint3dCollection,
+	'{54152184-0B08-4DFB-8249-4579A7368BF4}' : Curve3D,
+	'{111CEFE1-A0A7-11D6-95CE-00C0262D30E3}' : ksDocument3D,
+	'{111CEFE3-A0A7-11D6-95CE-00C0262D30E3}' : Document3D,
+	'{111CEFE4-A0A7-11D6-95CE-00C0262D30E3}' : ksModelLibrary,
+	'{111CEFE6-A0A7-11D6-95CE-00C0262D30E3}' : ModelLibrary,
+	'{22B81342-42D6-4907-A91E-F75A959F2270}' : Document3DNotify,
+	'{C77421D3-13EC-4595-A198-677EFB45AEF3}' : Mathematic2D,
+	'{DEEFEFE1-C3E2-11D6-8734-00C0262CDD2C}' : ksBaseExtrusionDefinition,
+	'{DEEFEFE3-C3E2-11D6-8734-00C0262CDD2C}' : BaseExtrusionDefinition,
+	'{DEEFEFE4-C3E2-11D6-8734-00C0262CDD2C}' : ksBossExtrusionDefinition,
+	'{DEEFEFE6-C3E2-11D6-8734-00C0262CDD2C}' : BossExtrusionDefinition,
+	'{DEEFEFE7-C3E2-11D6-8734-00C0262CDD2C}' : ksCutExtrusionDefinition,
+	'{DEEFEFE9-C3E2-11D6-8734-00C0262CDD2C}' : CutExtrusionDefinition,
+	'{DEEFEFEA-C3E2-11D6-8734-00C0262CDD2C}' : ksBaseLoftDefinition,
+	'{DEEFEFEC-C3E2-11D6-8734-00C0262CDD2C}' : BaseLoftDefinition,
+	'{DEEFEFED-C3E2-11D6-8734-00C0262CDD2C}' : ksBossLoftDefinition,
+	'{DEEFEFEF-C3E2-11D6-8734-00C0262CDD2C}' : BossLoftDefinition,
+	'{DEEFEFF0-C3E2-11D6-8734-00C0262CDD2C}' : ksCutLoftDefinition,
+	'{DEEFEFF2-C3E2-11D6-8734-00C0262CDD2C}' : CutLoftDefinition,
+	'{DEEFEFF3-C3E2-11D6-8734-00C0262CDD2C}' : ksInclineDefinition,
+	'{DEEFEFF5-C3E2-11D6-8734-00C0262CDD2C}' : InclineDefinition,
+	'{DEEFEFF6-C3E2-11D6-8734-00C0262CDD2C}' : ksShellDefinition,
+	'{DEEFEFF8-C3E2-11D6-8734-00C0262CDD2C}' : ShellDefinition,
+	'{DEEFEFF9-C3E2-11D6-8734-00C0262CDD2C}' : ksBaseEvolutionDefinition,
+	'{DC2E4057-7F8E-4652-860D-6B9E1F6F43AA}' : SelectionMngNotify,
+	'{DEEFEFFC-C3E2-11D6-8734-00C0262CDD2C}' : ksBossEvolutionDefinition,
+	'{5B8082B8-6AD3-4509-826D-D23B7F613213}' : ksEllipse3dParam,
+	'{DEEFEFFE-C3E2-11D6-8734-00C0262CDD2C}' : BossEvolutionDefinition,
+	'{DEEFEFFF-C3E2-11D6-8734-00C0262CDD2C}' : ksCutEvolutionDefinition,
+	'{BF65B990-C2DC-4A12-9EB7-3E868608AF47}' : ksViewProjection,
+	'{DEEFF002-C3E2-11D6-8734-00C0262CDD2C}' : ksRibDefinition,
 	'{8E8A474C-5ED5-4C72-AED6-EB04C317C7DE}' : AggregateDefinition,
-	'{BC662523-43E2-41FF-A04B-3D92F8097DF9}' : ChangeLeaderParam,
-	'{08B7A093-D829-44A9-A238-2BFF31770112}' : ksChooseParts,
-	'{9FD4E52C-5B9B-4D07-B788-8D188EF940FD}' : ChooseParts,
-	'{1E3E9348-DB9B-4967-A62A-B412DF95146A}' : ksBodyParts,
-	'{4F6A3404-8F06-4363-AF66-4CDCC4E09462}' : ksEmbodiment3D,
+	'{DEEFF004-C3E2-11D6-8734-00C0262CDD2C}' : RibDefinition,
+	'{DEEFF005-C3E2-11D6-8734-00C0262CDD2C}' : ksCutByPlaneDefinition,
+	'{DEEFF007-C3E2-11D6-8734-00C0262CDD2C}' : CutByPlaneDefinition,
+	'{DEEFF008-C3E2-11D6-8734-00C0262CDD2C}' : ksCutBySketchDefinition,
+	'{DEEFF00A-C3E2-11D6-8734-00C0262CDD2C}' : CutBySketchDefinition,
+	'{DEEFF00B-C3E2-11D6-8734-00C0262CDD2C}' : ksPlaneOffsetDefinition,
+	'{DEEFF00D-C3E2-11D6-8734-00C0262CDD2C}' : PlaneOffsetDefinition,
+	'{DEEFF00E-C3E2-11D6-8734-00C0262CDD2C}' : ksPlaneAngleDefinition,
+	'{17150452-8320-4721-9765-13353F08AE7E}' : Coordinate3dCollection,
+	'{DEEFF010-C3E2-11D6-8734-00C0262CDD2C}' : PlaneAngleDefinition,
+	'{DEEFF011-C3E2-11D6-8734-00C0262CDD2C}' : ksPlane3PointsDefinition,
+	'{DEEFF013-C3E2-11D6-8734-00C0262CDD2C}' : Plane3PointsDefinition,
+	'{DEEFF014-C3E2-11D6-8734-00C0262CDD2C}' : ksPlaneNormalToSurfaceDefinition,
+	'{DEEFF016-C3E2-11D6-8734-00C0262CDD2C}' : PlaneNormalToSurfaceDefinition,
+	'{DEEFF017-C3E2-11D6-8734-00C0262CDD2C}' : ksPlaneTangentToSurfaceDefinition,
+	'{DEEFF019-C3E2-11D6-8734-00C0262CDD2C}' : PlaneTangentToSurfaceDefinition,
+	'{DEEFF01A-C3E2-11D6-8734-00C0262CDD2C}' : ksPlaneEdgePointDefinition,
+	'{DEEFF01C-C3E2-11D6-8734-00C0262CDD2C}' : PlaneEdgePointDefinition,
+	'{DEEFF01D-C3E2-11D6-8734-00C0262CDD2C}' : ksPlaneParallelDefinition,
+	'{DEEFF01F-C3E2-11D6-8734-00C0262CDD2C}' : PlaneParallelDefinition,
+	'{DEEFF020-C3E2-11D6-8734-00C0262CDD2C}' : ksPlanePerpendicularDefinition,
+	'{DEEFF022-C3E2-11D6-8734-00C0262CDD2C}' : PlanePerpendicularDefinition,
+	'{DEEFF023-C3E2-11D6-8734-00C0262CDD2C}' : ksPlaneLineToEdgeDefinition,
+	'{DEEFF025-C3E2-11D6-8734-00C0262CDD2C}' : PlaneLineToEdgeDefinition,
+	'{DEEFF026-C3E2-11D6-8734-00C0262CDD2C}' : ksPlaneLineToPlaneDefinition,
+	'{DEEFF028-C3E2-11D6-8734-00C0262CDD2C}' : PlaneLineToPlaneDefinition,
+	'{DEEFF029-C3E2-11D6-8734-00C0262CDD2C}' : ksThinParam,
+	'{DEEFF02B-C3E2-11D6-8734-00C0262CDD2C}' : ThinParam,
+	'{DEEFF02C-C3E2-11D6-8734-00C0262CDD2C}' : ksExtrusionParam,
 	'{FEC5FF26-3F47-49B2-ABAE-5563A4D7AD94}' : ksSnapInfo,
+	'{DEEFF02E-C3E2-11D6-8734-00C0262CDD2C}' : ExtrusionParam,
+	'{DEEFF02F-C3E2-11D6-8734-00C0262CDD2C}' : ksRotatedParam,
+	'{DEEFF031-C3E2-11D6-8734-00C0262CDD2C}' : RotatedParam,
+	'{3EA3B143-96A5-408A-897E-27D852E6EE9B}' : LoopCollection,
+	'{ABBA6CE1-CB4C-4A32-98B4-B639352C75BB}' : ParametrizationParam,
+	'{CE0D05E1-9B2A-11D6-95CE-00C0262D30E3}' : ksColumnInfoParam,
+	'{CE0D05E3-9B2A-11D6-95CE-00C0262D30E3}' : ColumnInfoParam,
+	'{CE0D05E4-9B2A-11D6-95CE-00C0262D30E3}' : ksAttributeParam,
+	'{CE0D05E6-9B2A-11D6-95CE-00C0262D30E3}' : AttributeParam,
+	'{77C095F7-3ABC-4292-B9E1-C112620AFC56}' : ConstraintParam,
+	'{4F3C6D95-FBDC-4C53-AE82-9AF9C05093FF}' : NurbsPoint3dParam,
+	'{22BC5C86-CF58-45E4-AA46-5E8D5A825798}' : ksLoop,
+	'{ABC7F8EE-CF07-4AA8-98A1-0DE35DB35B9E}' : ksIntersectionResult,
+	'{A2BD36E2-C99B-40FE-A6A7-E5A9CCDCF63D}' : NurbsPoint3dCollCollection,
+	'{02286DB8-98D4-4D0B-97D7-E2EED32EEBD6}' : TextDocumentParam,
+	'{84AF9C81-1795-4631-B58A-101732262E75}' : ksNurbsPoint3dCollCollection,
+	'{364521A3-94B5-11D6-8732-00C0262CDD2C}' : ksSpecRoughParam,
+	'{364521A5-94B5-11D6-8732-00C0262CDD2C}' : SpecRoughParam,
+	'{364521A6-94B5-11D6-8732-00C0262CDD2C}' : ksEllipseParam,
+	'{364521A8-94B5-11D6-8732-00C0262CDD2C}' : EllipseParam,
+	'{364521A9-94B5-11D6-8732-00C0262CDD2C}' : ksEllipseArcParam,
+	'{364521AB-94B5-11D6-8732-00C0262CDD2C}' : EllipseArcParam,
+	'{364521AC-94B5-11D6-8732-00C0262CDD2C}' : ksEllipseArcParam1,
+	'{364521AE-94B5-11D6-8732-00C0262CDD2C}' : EllipseArcParam1,
+	'{364521AF-94B5-11D6-8732-00C0262CDD2C}' : ksEquidistantParam,
+	'{C82A3D03-4BEE-467F-9240-C1C58FDB144E}' : SphereParam,
+	'{364521B1-94B5-11D6-8732-00C0262CDD2C}' : EquidistantParam,
+	'{364521B2-94B5-11D6-8732-00C0262CDD2C}' : ksParagraphParam,
+	'{364521B4-94B5-11D6-8732-00C0262CDD2C}' : ParagraphParam,
+	'{364521B7-94B5-11D6-8732-00C0262CDD2C}' : ksTextItemParam,
+	'{2E29C343-C521-4B0F-B37D-587D0347B7BA}' : ksObject2DNotify,
+	'{364521B9-94B5-11D6-8732-00C0262CDD2C}' : TextItemParam,
+	'{364521BA-94B5-11D6-8732-00C0262CDD2C}' : ksTextLineParam,
+	'{4D91CD9A-6E02-409D-9360-CF7FEF60D31C}' : ksDynamicArray,
+	'{364521BD-94B5-11D6-8732-00C0262CDD2C}' : ksTextItemFont,
+	'{364521BF-94B5-11D6-8732-00C0262CDD2C}' : TextItemFont,
+	'{DB947005-AA19-4ED2-9775-E7BD80BE872E}' : EvolutionSurfaceDefinition,
+	'{6EF08DCB-A1D4-43A2-ACAF-AF32FDE5F338}' : OrientedEdgeCollection,
+	'{4693323B-42A7-42CC-902E-7123DD916FB4}' : MassInertiaParam,
+	'{F37A40F6-4E15-4E01-B4F0-25C49175227A}' : RemoteElementParam,
+	'{44277B89-EEB4-456C-8EF9-2DC48D61EC91}' : ksAggregateDefinition,
+	'{E4091969-1C4E-4959-8D93-C2421564418B}' : ksCoordinate3dCollection,
+	'{A99FFD41-AA46-4BFC-B6F2-32E1A956E0B1}' : body,
+	'{C66FB80F-97BE-4437-A8A0-AEDCFCBCF982}' : OrientedEdge,
+	'{7F7D6FB7-97DA-11D6-8732-00C0262CDD2C}' : ksLBreakDimSource,
+	'{CFC49C01-7653-4845-93FD-13428F5D58EC}' : ksBodyCollection,
+	'{88BD7F23-21A6-4C90-B784-0B38FB7FD0F3}' : ConjunctivePointDefinition,
+	'{7DCBCC76-5041-4C1E-9B33-12B1352D6D57}' : ksArc3dParam,
+	'{1B9B9B4E-DCD7-496E-A583-547EC1E91E47}' : Document2DNotify,
+	'{FBCC5B81-996C-11D6-8732-00C0262CDD2C}' : ksTechnicalDemandParam,
+	'{4CA2655E-EC4E-433C-9706-8E3864D5DBD2}' : Arc3dParam,
+	'{FBCC5B86-996C-11D6-8732-00C0262CDD2C}' : OrdinatedSourceParam,
+	'{0307BB81-C193-11D6-8734-00C0262CDD2C}' : ksAxis2PlanesDefinition,
+	'{0307BB83-C193-11D6-8734-00C0262CDD2C}' : Axis2PlanesDefinition,
+	'{0307BB84-C193-11D6-8734-00C0262CDD2C}' : ksAxisOperationsDefinition,
+	'{0307BB86-C193-11D6-8734-00C0262CDD2C}' : AxisOperationsDefinition,
+	'{0307BB87-C193-11D6-8734-00C0262CDD2C}' : ksAxis2PointsDefinition,
+	'{0307BB89-C193-11D6-8734-00C0262CDD2C}' : Axis2PointsDefinition,
+	'{0307BB8A-C193-11D6-8734-00C0262CDD2C}' : ksAxisEdgeDefinition,
+	'{0307BB8C-C193-11D6-8734-00C0262CDD2C}' : AxisEdgeDefinition,
+	'{0307BB8D-C193-11D6-8734-00C0262CDD2C}' : ksMeshCopyDefinition,
+	'{0307BB8F-C193-11D6-8734-00C0262CDD2C}' : MeshCopyDefinition,
+	'{3AD5E519-74E2-4D3B-B6A3-B1E81F1006F1}' : ksNurbsPoint3dCollection,
+	'{0307BB92-C193-11D6-8734-00C0262CDD2C}' : CircularCopyDefinition,
+	'{0307BB93-C193-11D6-8734-00C0262CDD2C}' : ksCurveCopyDefinition,
+	'{0307BB95-C193-11D6-8734-00C0262CDD2C}' : CurveCopyDefinition,
+	'{0307BB96-C193-11D6-8734-00C0262CDD2C}' : ksMirrorCopyDefinition,
+	'{ABBA6CE0-CB4C-4A32-98B4-B639352C75BB}' : ksParametrizationParam,
+	'{0307BB98-C193-11D6-8734-00C0262CDD2C}' : MirrorCopyDefinition,
+	'{0307BB99-C193-11D6-8734-00C0262CDD2C}' : ksMirrorCopyAllDefinition,
+	'{CD1C0144-98DC-11D6-95CE-00C0262D30E3}' : ksViewPointerParam,
+	'{0307BB9C-C193-11D6-8734-00C0262CDD2C}' : ksConicSpiralDefinition,
+	'{CD1C0146-98DC-11D6-95CE-00C0262D30E3}' : ViewPointerParam,
+	'{0307BB9E-C193-11D6-8734-00C0262CDD2C}' : ConicSpiralDefinition,
+	'{0307BB9F-C193-11D6-8734-00C0262CDD2C}' : ksCylindricSpiralDefinition,
+	'{0307BBA1-C193-11D6-8734-00C0262CDD2C}' : CylindricSpiralDefinition,
+	'{0307BBA2-C193-11D6-8734-00C0262CDD2C}' : ksPolyLineDefinition,
+	'{0307BBA4-C193-11D6-8734-00C0262CDD2C}' : PolyLineDefinition,
+	'{0307BBA5-C193-11D6-8734-00C0262CDD2C}' : ksSplineDefinition,
+	'{03CEAC81-C0B8-11D6-8734-00C0262CDD2C}' : ksVariableCollection,
+	'{0307BBA7-C193-11D6-8734-00C0262CDD2C}' : SplineDefinition,
+	'{0307BBA8-C193-11D6-8734-00C0262CDD2C}' : ksFaceDefinition,
+	'{03CEAC84-C0B8-11D6-8734-00C0262CDD2C}' : ksMateConstraintCollection,
+	'{0307BBAA-C193-11D6-8734-00C0262CDD2C}' : faceDefinition,
+	'{2BD4C79E-E2C3-42E8-8FCC-B51FFBDE9F69}' : ksEvolutionSurfaceDefinition,
+	'{03CEAC87-C0B8-11D6-8734-00C0262CDD2C}' : ksPartCollection,
+	'{0307BBAD-C193-11D6-8734-00C0262CDD2C}' : EdgeDefinition,
+	'{0307BBAE-C193-11D6-8734-00C0262CDD2C}' : ksChamferDefinition,
+	'{508A0CC1-9D74-11D6-95CE-00C0262D30E3}' : ksVariable,
+	'{0307BBB1-C193-11D6-8734-00C0262CDD2C}' : ksFilletDefinition,
+	'{508A0CC3-9D74-11D6-95CE-00C0262D30E3}' : Variable,
+	'{508A0CC4-9D74-11D6-95CE-00C0262D30E3}' : ksMateConstraint,
+	'{508A0CC6-9D74-11D6-95CE-00C0262D30E3}' : MateConstraint,
+	'{508A0CC7-9D74-11D6-95CE-00C0262D30E3}' : ksDefaultObject,
+	'{82F60797-D69C-4EB4-9F1A-24D625D5EAFA}' : ksDeletedCopyCollection,
+	'{508A0CC9-9D74-11D6-95CE-00C0262D30E3}' : DefaultObject,
+	'{508A0CCA-9D74-11D6-95CE-00C0262D30E3}' : ksEntity,
+	'{FBE002A6-1E06-4703-AEC5-9AD8A10FA1FA}' : KompasInvisible5,
+	'{508A0CCD-9D74-11D6-95CE-00C0262D30E3}' : ksPart,
+	'{508A0CCF-9D74-11D6-95CE-00C0262D30E3}' : part,
+	'{9AF8E350-98A0-11D6-95CE-00C0262D30E3}' : ksType6,
+	'{7F7D6F81-97DA-11D6-8732-00C0262CDD2C}' : ksRDimParam,
+	'{4FD7CE89-9968-11D6-95CE-00C0262D30E3}' : ToleranceParam,
+	'{7F7D6F83-97DA-11D6-8732-00C0262CDD2C}' : RDimParam,
+	'{7F7D6F84-97DA-11D6-8732-00C0262CDD2C}' : ksLineSegParam,
+	'{DC7D3EDF-80EE-4BAF-930F-F221AC7E5A7A}' : Macro3DDefinition,
+	'{7F7D6F86-97DA-11D6-8732-00C0262CDD2C}' : LineSegParam,
+	'{7F7D6F87-97DA-11D6-8732-00C0262CDD2C}' : ksCircleParam,
+	'{7F7D6F89-97DA-11D6-8732-00C0262CDD2C}' : CircleParam,
+	'{7F7D6F8A-97DA-11D6-8732-00C0262CDD2C}' : ksArcByAngleParam,
+	'{7F7D6F8C-97DA-11D6-8732-00C0262CDD2C}' : ArcByAngleParam,
+	'{7F7D6F8D-97DA-11D6-8732-00C0262CDD2C}' : ksArcByPointParam,
+	'{E07C6920-E361-4A4D-9140-95969C26A9ED}' : Measurer,
+	'{7F7D6F8F-97DA-11D6-8732-00C0262CDD2C}' : ArcByPointParam,
+	'{7F7D6F90-97DA-11D6-8732-00C0262CDD2C}' : ksPointParam,
+	'{7F7D6F92-97DA-11D6-8732-00C0262CDD2C}' : PointParam,
+	'{7F7D6F93-97DA-11D6-8732-00C0262CDD2C}' : ksHatchParam,
+	'{4FD7CE8C-9968-11D6-95CE-00C0262D30E3}' : SpcColumnParam,
+	'{7F7D6F95-97DA-11D6-8732-00C0262CDD2C}' : HatchParam,
+	'{7F7D6F96-97DA-11D6-8732-00C0262CDD2C}' : ksTextParam,
+	'{CA35F3C6-7E2D-4700-BE12-BAA26DC1945B}' : Object3DNotify,
+	'{7F7D6F98-97DA-11D6-8732-00C0262CDD2C}' : TextParam,
+	'{7F7D6F99-97DA-11D6-8732-00C0262CDD2C}' : ksNurbsPointParam,
+	'{C7EBA9A1-9E76-436E-B362-A80C5763944C}' : Object2DNotify,
+	'{7F7D6F9B-97DA-11D6-8732-00C0262CDD2C}' : NurbsPointParam,
+	'{7F7D6F9C-97DA-11D6-8732-00C0262CDD2C}' : ksDoubleValue,
+	'{7F7D6F9E-97DA-11D6-8732-00C0262CDD2C}' : DoubleValue,
+	'{7F7D6F9F-97DA-11D6-8732-00C0262CDD2C}' : ksNurbsParam,
+	'{7F7D6FA1-97DA-11D6-8732-00C0262CDD2C}' : NurbsParam,
+	'{7F7D6FA2-97DA-11D6-8732-00C0262CDD2C}' : ksConicArcParam,
+	'{7F7D6FA4-97DA-11D6-8732-00C0262CDD2C}' : ConicArcParam,
+	'{7F7D6FA5-97DA-11D6-8732-00C0262CDD2C}' : ksCentreParam,
+	'{4FD7CE8F-9968-11D6-95CE-00C0262D30E3}' : RecordTypeAttrParam,
+	'{7F7D6FA7-97DA-11D6-8732-00C0262CDD2C}' : CentreParam,
+	'{7F7D6FA8-97DA-11D6-8732-00C0262CDD2C}' : ksPlacementParam,
+	'{7F7D6FAA-97DA-11D6-8732-00C0262CDD2C}' : PlacementParam,
+	'{7F7D6FAB-97DA-11D6-8732-00C0262CDD2C}' : ksRasterParam,
+	'{7F7D6FAD-97DA-11D6-8732-00C0262CDD2C}' : RasterParam,
+	'{7F7D6FAE-97DA-11D6-8732-00C0262CDD2C}' : ksPolylineParam,
+	'{7F7D6FB0-97DA-11D6-8732-00C0262CDD2C}' : PolylineParam,
+	'{7F7D6FB1-97DA-11D6-8732-00C0262CDD2C}' : ksInsertFragmentParam,
+	'{7F7D6FB3-97DA-11D6-8732-00C0262CDD2C}' : InsertFragmentParam,
+	'{7F7D6FB4-97DA-11D6-8732-00C0262CDD2C}' : ksViewParam,
+	'{7F7D6FB6-97DA-11D6-8732-00C0262CDD2C}' : ViewParam,
+	'{DC32EB43-4615-4717-8C67-48875A357B06}' : SpcDocumentNotify,
+	'{AFE694D7-C1E5-468F-99B0-FE4C60C49899}' : ksAxisLineParam,
+	'{7F7D6FB9-97DA-11D6-8732-00C0262CDD2C}' : LBreakDimSource,
+	'{7F7D6FBA-97DA-11D6-8732-00C0262CDD2C}' : ksBreakDimDrawing,
+	'{7F7D6FBC-97DA-11D6-8732-00C0262CDD2C}' : BreakDimDrawing,
+	'{7F7D6FBD-97DA-11D6-8732-00C0262CDD2C}' : ksLBreakDimParam,
+	'{7F7D6FBF-97DA-11D6-8732-00C0262CDD2C}' : LBreakDimParam,
+	'{7F7D6FC0-97DA-11D6-8732-00C0262CDD2C}' : ksABreakDimParam,
+	'{7F7D6FC2-97DA-11D6-8732-00C0262CDD2C}' : ABreakDimParam,
+	'{7F7D6FC3-97DA-11D6-8732-00C0262CDD2C}' : ksInsertFragmentParamEx,
+	'{7F7D6FC5-97DA-11D6-8732-00C0262CDD2C}' : InsertFragmentParamEx,
+	'{7F7D6FC6-97DA-11D6-8732-00C0262CDD2C}' : ksBezierParam,
+	'{B7833CCA-936D-4689-BD90-90B5209D94E8}' : TorusParam,
+	'{7F7D6FC8-97DA-11D6-8732-00C0262CDD2C}' : BezierParam,
+	'{7F7D6FC9-97DA-11D6-8732-00C0262CDD2C}' : ksBezierPointParam,
+	'{4FD7CE95-9968-11D6-95CE-00C0262D30E3}' : SpcStyleColumnParam,
+	'{7F7D6FCB-97DA-11D6-8732-00C0262CDD2C}' : BezierPointParam,
+	'{7F7D6FCC-97DA-11D6-8732-00C0262CDD2C}' : ksDimTextParam,
+	'{7F7D6FCE-97DA-11D6-8732-00C0262CDD2C}' : DimTextParam,
+	'{7F7D6FCF-97DA-11D6-8732-00C0262CDD2C}' : ksLDimSourceParam,
+	'{7F7D6FD1-97DA-11D6-8732-00C0262CDD2C}' : LDimSourceParam,
+	'{7F7D6FD2-97DA-11D6-8732-00C0262CDD2C}' : ksDimDrawingParam,
+	'{0E95ACE0-0E73-406F-AE94-E8A0592E298D}' : ksFaceCollection,
+	'{7F7D6FD4-97DA-11D6-8732-00C0262CDD2C}' : DimDrawingParam,
+	'{7F7D6FD5-97DA-11D6-8732-00C0262CDD2C}' : ksLDimParam,
+	'{7F7D6FD7-97DA-11D6-8732-00C0262CDD2C}' : LDimParam,
+	'{7F7D6FD8-97DA-11D6-8732-00C0262CDD2C}' : ksADimSourceParam,
+	'{7F7D6FDA-97DA-11D6-8732-00C0262CDD2C}' : ADimSourceParam,
+	'{7F7D6FDB-97DA-11D6-8732-00C0262CDD2C}' : ksDimensionPartsParam,
+	'{7F7D6FDD-97DA-11D6-8732-00C0262CDD2C}' : DimensionPartsParam,
+	'{7F7D6FDE-97DA-11D6-8732-00C0262CDD2C}' : ksADimParam,
+	'{7F7D6FE0-97DA-11D6-8732-00C0262CDD2C}' : ADimParam,
+	'{7F7D6FE1-97DA-11D6-8732-00C0262CDD2C}' : ksRBreakDrawingParam,
+	'{7F7D6FE3-97DA-11D6-8732-00C0262CDD2C}' : RBreakDrawingParam,
+	'{7F7D6FE4-97DA-11D6-8732-00C0262CDD2C}' : ksRBreakDimParam,
+	'{7F7D6FE6-97DA-11D6-8732-00C0262CDD2C}' : RBreakDimParam,
+	'{7F7D6FE7-97DA-11D6-8732-00C0262CDD2C}' : ksQualityItemParam,
+	'{13F0BE95-3361-4AD9-90AF-D935EA64A127}' : ksDocument2DNotify,
+	'{7F7D6FEA-97DA-11D6-8732-00C0262CDD2C}' : ksQualityContensParam,
+	'{7F7D6FEC-97DA-11D6-8732-00C0262CDD2C}' : QualityContensParam,
+	'{4FD7CE9B-9968-11D6-95CE-00C0262D30E3}' : SpcSubSectionParam,
+	'{0331AB4B-F25B-4EB9-9C8A-BFEA414E3822}' : ksSpecificationNotify,
+	'{4FD7CE9E-9968-11D6-95CE-00C0262D30E3}' : SpcTuningSectionParam,
+	'{910EC541-958D-11D6-95CE-00C0262D30E3}' : ksCurvePicture,
+	'{910EC543-958D-11D6-95CE-00C0262D30E3}' : CurvePicture,
+	'{910EC544-958D-11D6-95CE-00C0262D30E3}' : ksCurvePattern,
+	'{910EC546-958D-11D6-95CE-00C0262D30E3}' : CurvePattern,
+	'{910EC549-958D-11D6-95CE-00C0262D30E3}' : ksCurvePatternEx,
+	'{910EC54B-958D-11D6-95CE-00C0262D30E3}' : CurvePatternEx,
+	'{910EC54C-958D-11D6-95CE-00C0262D30E3}' : ksCurveStyleParam,
+	'{910EC54E-958D-11D6-95CE-00C0262D30E3}' : CurveStyleParam,
+	'{B1C40242-CD49-4207-B728-B67057BEC339}' : Surface,
+	'{BC662523-43E2-41FF-A04B-3D92F8097DF9}' : ChangeLeaderParam,
+	'{0307BB9B-C193-11D6-8734-00C0262CDD2C}' : MirrorCopyAllDefinition,
+	'{7F7D6FE9-97DA-11D6-8732-00C0262CDD2C}' : QualityItemParam,
+	'{E06B18BF-D2AF-4201-99BE-B7FA9EECF7A8}' : ksChooseBodies,
+	'{8867DEAC-C699-41B6-BD3D-C470A52B1B9C}' : CopyObjectParam,
+	'{364521BC-94B5-11D6-8732-00C0262CDD2C}' : TextLineParam,
+	'{1A91A8AB-AF8C-4EE3-86D4-0A9C00123195}' : ksRasterFormatParam,
+	'{9807E658-53C5-4445-A389-3F800FB3BB8A}' : DeletedCopyCollection,
+	'{5DDB6B14-6F3D-431F-B62F-C5FCCAFC3632}' : ksThreadDefinition,
+	'{4FD7CEAB-9968-11D6-95CE-00C0262D30E3}' : ksSpcObjParam,
+	'{9CC1A2E2-29A8-49BB-ABF6-792FA2D38014}' : CON,
+	'{FC4D7C29-C608-44D5-B927-1EC9FC147B18}' : MoldCavityDefinition,
 	'{CF0E948C-5A9D-49A3-BC86-EEA3050193E0}' : ksSaveToPreviusParam,
+	'{379D658E-47BB-414F-A952-FB41037F17AC}' : CylinderParam,
+	'{9F8CA523-173C-4206-8F2A-AB221138692E}' : TAN,
+	'{8F2AA755-D9D1-42A0-97BF-C92548CE7232}' : ksChooseMng,
+	'{81317653-9BBA-46FE-9877-AEEE62BD8AA4}' : NurbsKnotCollection,
+	'{E6E78D61-C0FA-11D6-8734-00C0262CDD2C}' : ksMeshPartArrayDefinition,
+	'{E6E78D63-C0FA-11D6-8734-00C0262CDD2C}' : MeshPartArrayDefinition,
+	'{3940C963-446D-4701-883C-A93BBDAC5469}' : ConeParam,
+	'{7572648A-D4EE-41FE-8D74-EC7D1F91BDE2}' : ksCurve3D,
+	'{F829344F-B49F-43A3-AC93-E817EF8D3319}' : Nurbs3dParam,
+	'{E79C2503-9584-11D6-8732-00C0262CDD2C}' : CornerParam,
+	'{82758442-C9EB-48F7-B304-083C5E64D4E0}' : ksCircle3dParam,
+	'{4DDDAEDB-2819-42D9-BDBB-4CCBC98D76DF}' : ksNurbs3dParam,
+	'{705962E9-5E9B-4379-8504-FA754D11FC66}' : AxisLineParam,
+	'{F2D5AE01-45DE-4496-B01B-9958CAEF5943}' : ksMathematic2D,
+	'{FBCC5B87-996C-11D6-8732-00C0262CDD2C}' : ksOrdinatedDimParam,
+	'{BA53B169-1DC8-4CCA-BAA4-27B0FB87AE26}' : UnionComponentsDefinition,
+	'{1E3E9348-DB9B-4967-A62A-B412DF95146A}' : ksBodyParts,
+	'{E79C250D-9584-11D6-8732-00C0262CDD2C}' : ksRegularPolygonParam,
+	'{C175BFB8-D7D6-4325-BFDA-2A282B9D1119}' : ksCON,
+	'{C6BD0D90-C8BE-4378-9A71-835597A7D1E9}' : AxisConefaceDefinition,
+	'{CC26DA63-9B22-11D6-95CE-00C0262D30E3}' : AttributeTypeParam,
+	'{AC5004D1-C240-41FC-AB84-7EB5C793AE7F}' : ksSpcObjectNotify,
+	'{E79C2510-9584-11D6-8732-00C0262CDD2C}' : ksRectangleParam,
+	'{EB61A981-F63E-47E1-BEE8-2D1612C78E78}' : ksAttribute3DCollection,
+	'{9AF8E341-98A0-11D6-95CE-00C0262D30E3}' : ksMarkerLeaderParam,
+	'{9AF8E343-98A0-11D6-95CE-00C0262D30E3}' : markerLeaderParam,
+	'{9AF8E344-98A0-11D6-95CE-00C0262D30E3}' : ksType1,
+	'{9AF8E346-98A0-11D6-95CE-00C0262D30E3}' : Type1,
+	'{9AF8E347-98A0-11D6-95CE-00C0262D30E3}' : ksType2,
+	'{9AF8E349-98A0-11D6-95CE-00C0262D30E3}' : Type2,
+	'{9AF8E34A-98A0-11D6-95CE-00C0262D30E3}' : ksType3,
+	'{9AF8E34C-98A0-11D6-95CE-00C0262D30E3}' : Type3,
+	'{9AF8E34D-98A0-11D6-95CE-00C0262D30E3}' : ksType5,
+	'{9AF8E34F-98A0-11D6-95CE-00C0262D30E3}' : Type5,
+	'{9F8DE1DC-1268-4785-9217-1B0DD59B85FA}' : ksTreeNodeParam,
+	'{9AF8E352-98A0-11D6-95CE-00C0262D30E3}' : Type6,
+	'{9AF8E353-98A0-11D6-95CE-00C0262D30E3}' : ksPhantom,
+	'{9AF8E355-98A0-11D6-95CE-00C0262D30E3}' : phantom,
+	'{9AF8E356-98A0-11D6-95CE-00C0262D30E3}' : ksRequestInfo,
+	'{9AF8E358-98A0-11D6-95CE-00C0262D30E3}' : RequestInfo,
+	'{7519BF63-27B3-415F-AC25-904910CB27B5}' : EdgeCollection,
+	'{CCFA0D95-0834-4F92-988B-6E477AD67589}' : ksConeParam,
+	'{1BD030F4-4058-4A86-9F4F-1AEEF8BE8D23}' : ksSpcDocumentNotify,
+	'{02CBC423-BC8C-40DE-BE65-03A67DF1C834}' : SpcObjectNotify,
+	'{5CE6E053-3EC8-427B-BCB5-82B01D4BCBF3}' : VertexDefinition,
+	'{13DF9CCA-122C-4CEC-87FA-CF16818E013A}' : AdditionFormatParam,
+	'{03CEAC86-C0B8-11D6-8734-00C0262CDD2C}' : MateConstraintCollection,
 }
 CLSIDToPackageMap = {}
 win32com.client.CLSIDToClass.RegisterCLSIDsFromDict( CLSIDToClassMap )
@@ -21778,292 +21724,292 @@ VTablesToClassMap = {
 
 
 NamesToIIDMap = {
-	'KompasObject' : '{E36BC97C-39D6-4402-9C25-C7008A217E02}',
-	'ksDocument2D' : '{AF4E160D-5C89-4F21-B0F2-D53397BDAF78}',
-	'ksObject2DNotify' : '{2E29C343-C521-4B0F-B37D-587D0347B7BA}',
-	'ksSelectionMngNotify' : '{A421368A-34B6-4DDF-9A52-73B3488EE83F}',
-	'ksObject2DNotifyResult' : '{1FE1EB28-CD28-4700-8E46-25CCFE9C0EC8}',
-	'ksDocument2DNotify' : '{13F0BE95-3361-4AD9-90AF-D935EA64A127}',
-	'ksDocument3D' : '{111CEFE1-A0A7-11D6-95CE-00C0262D30E3}',
-	'ksDocument3DNotify' : '{B6C1BCFD-68DA-4A0A-A95C-296084C6A01A}',
-	'ksEntity' : '{508A0CCA-9D74-11D6-95CE-00C0262D30E3}',
-	'ksAttribute3DCollection' : '{EB61A981-F63E-47E1-BEE8-2D1612C78E78}',
-	'ksAttribute3D' : '{3EEB2B43-56FF-49C0-AFCF-69E990A7D84C}',
-	'ksFeatureCollection' : '{CE6A46FF-02B4-4C7E-AF50-3F3707C8B122}',
-	'ksFeature' : '{088BF9A8-37D3-4B15-A7CA-8C52FF1DBC41}',
-	'ksEntityCollection' : '{B0170141-C02C-11D6-8734-00C0262CDD2C}',
-	'ksPart' : '{508A0CCD-9D74-11D6-95CE-00C0262D30E3}',
-	'ksObject3DNotify' : '{BFA024B6-679E-4A95-B6C2-1EA47A7CD0E9}',
-	'ksObject3DNotifyResult' : '{9C3ECC92-E72F-4892-8921-7886F34CA9AD}',
-	'ksPlacement' : '{2DFACC64-C4A4-11D6-8734-00C0262CDD2C}',
-	'ksComponentPositioner' : '{508B5962-DF59-4CEE-8611-AD10FDF0C811}',
-	'ksKompasObjectNotify' : '{C7CB743A-C59D-4C27-8CB6-971C2A393F2F}',
-	'ksDocumentFileNotify' : '{324C1A45-67AD-41FB-BE57-624F930646F1}',
-	'ksDocument3DNotifyResult' : '{9F88CAAA-A50F-46F4-904A-846C792FA649}',
-	'ksSpecRoughParam' : '{364521A3-94B5-11D6-8732-00C0262CDD2C}',
-	'ksEllipseParam' : '{364521A6-94B5-11D6-8732-00C0262CDD2C}',
-	'ksEllipseArcParam' : '{364521A9-94B5-11D6-8732-00C0262CDD2C}',
-	'ksEllipseArcParam1' : '{364521AC-94B5-11D6-8732-00C0262CDD2C}',
-	'ksEquidistantParam' : '{364521AF-94B5-11D6-8732-00C0262CDD2C}',
-	'ksParagraphParam' : '{364521B2-94B5-11D6-8732-00C0262CDD2C}',
-	'ksTextItemParam' : '{364521B7-94B5-11D6-8732-00C0262CDD2C}',
-	'ksTextLineParam' : '{364521BA-94B5-11D6-8732-00C0262CDD2C}',
-	'ksTextItemFont' : '{364521BD-94B5-11D6-8732-00C0262CDD2C}',
-	'ksCornerParam' : '{E79C2501-9584-11D6-8732-00C0262CDD2C}',
-	'ksContourParam' : '{E79C2504-9584-11D6-8732-00C0262CDD2C}',
-	'ksLayerParam' : '{E79C2507-9584-11D6-8732-00C0262CDD2C}',
-	'ksLineParam' : '{E79C250A-9584-11D6-8732-00C0262CDD2C}',
-	'ksRegularPolygonParam' : '{E79C250D-9584-11D6-8732-00C0262CDD2C}',
-	'ksRectangleParam' : '{E79C2510-9584-11D6-8732-00C0262CDD2C}',
-	'ksBaseParam' : '{E79C2513-9584-11D6-8732-00C0262CDD2C}',
-	'ksLtVariant' : '{E79C2516-9584-11D6-8732-00C0262CDD2C}',
-	'ksUserParam' : '{E79C2519-9584-11D6-8732-00C0262CDD2C}',
-	'ksMathPointParam' : '{3198E121-9585-11D6-95CE-00C0262D30E3}',
-	'ksCurvePicture' : '{910EC541-958D-11D6-95CE-00C0262D30E3}',
-	'ksCurvePattern' : '{910EC544-958D-11D6-95CE-00C0262D30E3}',
-	'ksTAN' : '{8075EDE4-6C85-4711-8685-68FBE359D4C4}',
-	'ksCON' : '{C175BFB8-D7D6-4325-BFDA-2A282B9D1119}',
-	'ksInertiaParam' : '{EA92E649-239E-4105-BBD3-AEF4817BD783}',
-	'ksMassInertiaParam' : '{283F77EB-7E2C-4F71-8B16-4D286FA4857E}',
-	'ksMathematic2D' : '{F2D5AE01-45DE-4496-B01B-9958CAEF5943}',
-	'ksDynamicArray' : '{4D91CD9A-6E02-409D-9360-CF7FEF60D31C}',
-	'ksRDimDrawingParam' : '{2A4D4542-95B3-11D6-8732-00C0262CDD2C}',
-	'ksRDimSourceParam' : '{2A4D4545-95B3-11D6-8732-00C0262CDD2C}',
-	'ksRDimParam' : '{7F7D6F81-97DA-11D6-8732-00C0262CDD2C}',
-	'ksLineSegParam' : '{7F7D6F84-97DA-11D6-8732-00C0262CDD2C}',
-	'ksCircleParam' : '{7F7D6F87-97DA-11D6-8732-00C0262CDD2C}',
-	'ksArcByAngleParam' : '{7F7D6F8A-97DA-11D6-8732-00C0262CDD2C}',
-	'ksArcByPointParam' : '{7F7D6F8D-97DA-11D6-8732-00C0262CDD2C}',
-	'ksPointParam' : '{7F7D6F90-97DA-11D6-8732-00C0262CDD2C}',
-	'ksHatchParam' : '{7F7D6F93-97DA-11D6-8732-00C0262CDD2C}',
-	'ksTextParam' : '{7F7D6F96-97DA-11D6-8732-00C0262CDD2C}',
-	'ksNurbsPointParam' : '{7F7D6F99-97DA-11D6-8732-00C0262CDD2C}',
-	'ksDoubleValue' : '{7F7D6F9C-97DA-11D6-8732-00C0262CDD2C}',
-	'ksNurbsParam' : '{7F7D6F9F-97DA-11D6-8732-00C0262CDD2C}',
-	'ksConicArcParam' : '{7F7D6FA2-97DA-11D6-8732-00C0262CDD2C}',
-	'ksCentreParam' : '{7F7D6FA5-97DA-11D6-8732-00C0262CDD2C}',
-	'ksPlacementParam' : '{7F7D6FA8-97DA-11D6-8732-00C0262CDD2C}',
-	'ksRasterParam' : '{7F7D6FAB-97DA-11D6-8732-00C0262CDD2C}',
-	'ksPolylineParam' : '{7F7D6FAE-97DA-11D6-8732-00C0262CDD2C}',
-	'ksInsertFragmentParam' : '{7F7D6FB1-97DA-11D6-8732-00C0262CDD2C}',
-	'ksViewParam' : '{7F7D6FB4-97DA-11D6-8732-00C0262CDD2C}',
-	'ksLBreakDimSource' : '{7F7D6FB7-97DA-11D6-8732-00C0262CDD2C}',
-	'ksBreakDimDrawing' : '{7F7D6FBA-97DA-11D6-8732-00C0262CDD2C}',
-	'ksLBreakDimParam' : '{7F7D6FBD-97DA-11D6-8732-00C0262CDD2C}',
-	'ksABreakDimParam' : '{7F7D6FC0-97DA-11D6-8732-00C0262CDD2C}',
-	'ksInsertFragmentParamEx' : '{7F7D6FC3-97DA-11D6-8732-00C0262CDD2C}',
-	'ksBezierParam' : '{7F7D6FC6-97DA-11D6-8732-00C0262CDD2C}',
-	'ksBezierPointParam' : '{7F7D6FC9-97DA-11D6-8732-00C0262CDD2C}',
-	'ksDimTextParam' : '{7F7D6FCC-97DA-11D6-8732-00C0262CDD2C}',
-	'ksLDimSourceParam' : '{7F7D6FCF-97DA-11D6-8732-00C0262CDD2C}',
-	'ksDimDrawingParam' : '{7F7D6FD2-97DA-11D6-8732-00C0262CDD2C}',
-	'ksLDimParam' : '{7F7D6FD5-97DA-11D6-8732-00C0262CDD2C}',
-	'ksADimSourceParam' : '{7F7D6FD8-97DA-11D6-8732-00C0262CDD2C}',
-	'ksDimensionPartsParam' : '{7F7D6FDB-97DA-11D6-8732-00C0262CDD2C}',
-	'ksADimParam' : '{7F7D6FDE-97DA-11D6-8732-00C0262CDD2C}',
-	'ksRBreakDrawingParam' : '{7F7D6FE1-97DA-11D6-8732-00C0262CDD2C}',
-	'ksRBreakDimParam' : '{7F7D6FE4-97DA-11D6-8732-00C0262CDD2C}',
-	'ksQualityItemParam' : '{7F7D6FE7-97DA-11D6-8732-00C0262CDD2C}',
-	'ksQualityContensParam' : '{7F7D6FEA-97DA-11D6-8732-00C0262CDD2C}',
-	'ksIterator' : '{D06C9101-98CA-11D6-8732-00C0262CDD2C}',
-	'ksFragment' : '{D06C9104-98CA-11D6-8732-00C0262CDD2C}',
-	'ksFragmentLibrary' : '{D06C910A-98CA-11D6-8732-00C0262CDD2C}',
-	'ksTechnicalDemandParam' : '{FBCC5B81-996C-11D6-8732-00C0262CDD2C}',
-	'ksOrdinatedSourceParam' : '{FBCC5B84-996C-11D6-8732-00C0262CDD2C}',
-	'ksOrdinatedDimParam' : '{FBCC5B87-996C-11D6-8732-00C0262CDD2C}',
-	'ksOrdinatedDrawingParam' : '{FBCC5B8A-996C-11D6-8732-00C0262CDD2C}',
-	'ksSheetSize' : '{FBCC5B8D-996C-11D6-8732-00C0262CDD2C}',
-	'ksStandartSheet' : '{FBCC5B90-996C-11D6-8732-00C0262CDD2C}',
-	'ksSheetPar' : '{FBCC5B93-996C-11D6-8732-00C0262CDD2C}',
-	'ksDocumentParam' : '{FBCC5B96-996C-11D6-8732-00C0262CDD2C}',
-	'ksDimensionsOptions' : '{FBCC5B99-996C-11D6-8732-00C0262CDD2C}',
-	'ksSnapOptions' : '{FBCC5B9C-996C-11D6-8732-00C0262CDD2C}',
-	'ksLibraryStyleParam' : '{FBCC5B9F-996C-11D6-8732-00C0262CDD2C}',
-	'ksStampNotify' : '{404E7D5A-A13F-4CFF-8214-FEA7012110CB}',
-	'ksStamp' : '{FBCC5BA5-996C-11D6-8732-00C0262CDD2C}',
-	'ksSheetOptions' : '{FBCC5BA8-996C-11D6-8732-00C0262CDD2C}',
-	'ksCurvePatternEx' : '{910EC549-958D-11D6-95CE-00C0262D30E3}',
-	'ksCurveStyleParam' : '{910EC54C-958D-11D6-95CE-00C0262D30E3}',
-	'ksTextStyleParam' : '{3F715E24-97D9-11D6-95CE-00C0262D30E3}',
-	'ksHatchLineParam' : '{3F715E27-97D9-11D6-95CE-00C0262D30E3}',
-	'ksHatchStyleParam' : '{3F715E2A-97D9-11D6-95CE-00C0262D30E3}',
-	'ksRectParam' : '{3F715E2D-97D9-11D6-95CE-00C0262D30E3}',
-	'ksShelfPar' : '{3F715E30-97D9-11D6-95CE-00C0262D30E3}',
-	'ksRoughPar' : '{3F715E33-97D9-11D6-95CE-00C0262D30E3}',
-	'ksRoughParam' : '{3F715E36-97D9-11D6-95CE-00C0262D30E3}',
-	'ksChar255' : '{3F715E39-97D9-11D6-95CE-00C0262D30E3}',
-	'ksLeaderParam' : '{3F715E40-97D9-11D6-95CE-00C0262D30E3}',
-	'ksPosLeaderParam' : '{3F715E43-97D9-11D6-95CE-00C0262D30E3}',
-	'ksBrandLeaderParam' : '{3F715E46-97D9-11D6-95CE-00C0262D30E3}',
-	'ksMarkerLeaderParam' : '{9AF8E341-98A0-11D6-95CE-00C0262D30E3}',
-	'ksType1' : '{9AF8E344-98A0-11D6-95CE-00C0262D30E3}',
-	'ksType2' : '{9AF8E347-98A0-11D6-95CE-00C0262D30E3}',
-	'ksType3' : '{9AF8E34A-98A0-11D6-95CE-00C0262D30E3}',
-	'ksType5' : '{9AF8E34D-98A0-11D6-95CE-00C0262D30E3}',
-	'ksType6' : '{9AF8E350-98A0-11D6-95CE-00C0262D30E3}',
-	'ksPhantom' : '{9AF8E353-98A0-11D6-95CE-00C0262D30E3}',
-	'ksRequestInfo' : '{9AF8E356-98A0-11D6-95CE-00C0262D30E3}',
-	'ksViewPointerParam' : '{CD1C0144-98DC-11D6-95CE-00C0262D30E3}',
-	'ksCutLineParam' : '{4FD7CE81-9968-11D6-95CE-00C0262D30E3}',
-	'ksToleranceBranch' : '{4FD7CE84-9968-11D6-95CE-00C0262D30E3}',
-	'ksToleranceParam' : '{4FD7CE87-9968-11D6-95CE-00C0262D30E3}',
-	'ksSpcColumnParam' : '{4FD7CE8A-9968-11D6-95CE-00C0262D30E3}',
-	'ksRecordTypeAttrParam' : '{4FD7CE8D-9968-11D6-95CE-00C0262D30E3}',
-	'ksNumberTypeAttrParam' : '{4FD7CE90-9968-11D6-95CE-00C0262D30E3}',
-	'ksSpcStyleColumnParam' : '{4FD7CE93-9968-11D6-95CE-00C0262D30E3}',
-	'ksSpcStyleSectionParam' : '{4FD7CE96-9968-11D6-95CE-00C0262D30E3}',
-	'ksSpcSubSectionParam' : '{4FD7CE99-9968-11D6-95CE-00C0262D30E3}',
-	'ksSpcTuningSectionParam' : '{4FD7CE9C-9968-11D6-95CE-00C0262D30E3}',
-	'ksSpcTuningStyleParam' : '{4FD7CE9F-9968-11D6-95CE-00C0262D30E3}',
-	'ksSpcStyleParam' : '{4FD7CEA2-9968-11D6-95CE-00C0262D30E3}',
-	'ksSpcDescrParam' : '{4FD7CEA5-9968-11D6-95CE-00C0262D30E3}',
-	'ksDocAttachedSpcParam' : '{4FD7CEA8-9968-11D6-95CE-00C0262D30E3}',
-	'ksSpcObjParam' : '{4FD7CEAB-9968-11D6-95CE-00C0262D30E3}',
-	'ksLibStyle' : '{4FD7CEAE-9968-11D6-95CE-00C0262D30E3}',
-	'ksDataBaseObject' : '{0981CD01-9A49-11D6-8732-00C0262CDD2C}',
-	'ksSpcDocumentNotify' : '{1BD030F4-4058-4A86-9F4F-1AEEF8BE8D23}',
-	'ksSpcDocument' : '{51E74521-9A3A-11D6-95CE-00C0262D30E3}',
-	'ksSpcObjectNotify' : '{AC5004D1-C240-41FC-AB84-7EB5C793AE7F}',
-	'ksSpecificationNotify' : '{0331AB4B-F25B-4EB9-9C8A-BFEA414E3822}',
-	'ksSpecification' : '{51E74524-9A3A-11D6-95CE-00C0262D30E3}',
-	'ksDocumentTxt' : '{74D745F1-9A3A-11D6-95CE-00C0262D30E3}',
-	'ksAttributeTypeParam' : '{CC26DA61-9B22-11D6-95CE-00C0262D30E3}',
-	'ksColumnInfoParam' : '{CE0D05E1-9B2A-11D6-95CE-00C0262D30E3}',
-	'ksAttributeParam' : '{CE0D05E4-9B2A-11D6-95CE-00C0262D30E3}',
-	'ksVariable' : '{508A0CC1-9D74-11D6-95CE-00C0262D30E3}',
-	'ksLibraryAttrTypeParam' : '{FA93AA21-9B3D-11D6-95CE-00C0262D30E3}',
-	'ksAttributeObject' : '{FA93AA24-9B3D-11D6-95CE-00C0262D30E3}',
-	'ksRequestInfo3D' : '{E9807824-9D55-11D6-95CE-00C0262D30E3}',
-	'ksMateConstraint' : '{508A0CC4-9D74-11D6-95CE-00C0262D30E3}',
-	'ksDefaultObject' : '{508A0CC7-9D74-11D6-95CE-00C0262D30E3}',
-	'ksModelLibrary' : '{111CEFE4-A0A7-11D6-95CE-00C0262D30E3}',
-	'ksVariableCollection' : '{03CEAC81-C0B8-11D6-8734-00C0262CDD2C}',
-	'ksMateConstraintCollection' : '{03CEAC84-C0B8-11D6-8734-00C0262CDD2C}',
-	'ksPartCollection' : '{03CEAC87-C0B8-11D6-8734-00C0262CDD2C}',
-	'ksMeshPartArrayDefinition' : '{E6E78D61-C0FA-11D6-8734-00C0262CDD2C}',
-	'ksCircularPartArrayDefinition' : '{DDD05143-C180-11D6-8734-00C0262CDD2C}',
-	'ksCurvePartArrayDefinition' : '{DDD05146-C180-11D6-8734-00C0262CDD2C}',
-	'ksDerivativePartArrayDefinition' : '{DDD05149-C180-11D6-8734-00C0262CDD2C}',
-	'ksAxis2PlanesDefinition' : '{0307BB81-C193-11D6-8734-00C0262CDD2C}',
-	'ksAxisOperationsDefinition' : '{0307BB84-C193-11D6-8734-00C0262CDD2C}',
-	'ksAxis2PointsDefinition' : '{0307BB87-C193-11D6-8734-00C0262CDD2C}',
-	'ksAxisEdgeDefinition' : '{0307BB8A-C193-11D6-8734-00C0262CDD2C}',
-	'ksMeshCopyDefinition' : '{0307BB8D-C193-11D6-8734-00C0262CDD2C}',
-	'ksCircularCopyDefinition' : '{0307BB90-C193-11D6-8734-00C0262CDD2C}',
-	'ksCurveCopyDefinition' : '{0307BB93-C193-11D6-8734-00C0262CDD2C}',
-	'ksMirrorCopyDefinition' : '{0307BB96-C193-11D6-8734-00C0262CDD2C}',
-	'ksMirrorCopyAllDefinition' : '{0307BB99-C193-11D6-8734-00C0262CDD2C}',
-	'ksConicSpiralDefinition' : '{0307BB9C-C193-11D6-8734-00C0262CDD2C}',
-	'ksCylindricSpiralDefinition' : '{0307BB9F-C193-11D6-8734-00C0262CDD2C}',
-	'ksPolyLineDefinition' : '{0307BBA2-C193-11D6-8734-00C0262CDD2C}',
-	'ksPolyLineVertexParam' : '{1BCC4F0F-1091-41A3-895B-0608D20715B7}',
-	'ksSplineDefinition' : '{0307BBA5-C193-11D6-8734-00C0262CDD2C}',
-	'ksBaseExtrusionDefinition' : '{DEEFEFE1-C3E2-11D6-8734-00C0262CDD2C}',
-	'ksBossExtrusionDefinition' : '{DEEFEFE4-C3E2-11D6-8734-00C0262CDD2C}',
-	'ksCutExtrusionDefinition' : '{DEEFEFE7-C3E2-11D6-8734-00C0262CDD2C}',
-	'ksExtrusionSurfaceDefinition' : '{B20E24C3-5E4A-4CDA-A1ED-6BB8EBC81A29}',
-	'ksFaceDefinition' : '{0307BBA8-C193-11D6-8734-00C0262CDD2C}',
-	'ksEdgeDefinition' : '{0307BBAB-C193-11D6-8734-00C0262CDD2C}',
-	'ksChamferDefinition' : '{0307BBAE-C193-11D6-8734-00C0262CDD2C}',
-	'ksFilletDefinition' : '{0307BBB1-C193-11D6-8734-00C0262CDD2C}',
-	'ksBaseLoftDefinition' : '{DEEFEFEA-C3E2-11D6-8734-00C0262CDD2C}',
-	'ksBossLoftDefinition' : '{DEEFEFED-C3E2-11D6-8734-00C0262CDD2C}',
-	'ksCutLoftDefinition' : '{DEEFEFF0-C3E2-11D6-8734-00C0262CDD2C}',
-	'ksLoftSurfaceDefinition' : '{E04339B5-AA08-4717-8E50-90ED0E375624}',
-	'ksInclineDefinition' : '{DEEFEFF3-C3E2-11D6-8734-00C0262CDD2C}',
-	'ksShellDefinition' : '{DEEFEFF6-C3E2-11D6-8734-00C0262CDD2C}',
-	'ksBaseEvolutionDefinition' : '{DEEFEFF9-C3E2-11D6-8734-00C0262CDD2C}',
-	'ksBossEvolutionDefinition' : '{DEEFEFFC-C3E2-11D6-8734-00C0262CDD2C}',
-	'ksCutEvolutionDefinition' : '{DEEFEFFF-C3E2-11D6-8734-00C0262CDD2C}',
-	'ksEvolutionSurfaceDefinition' : '{2BD4C79E-E2C3-42E8-8FCC-B51FFBDE9F69}',
-	'ksRibDefinition' : '{DEEFF002-C3E2-11D6-8734-00C0262CDD2C}',
-	'ksCutByPlaneDefinition' : '{DEEFF005-C3E2-11D6-8734-00C0262CDD2C}',
-	'ksCutBySketchDefinition' : '{DEEFF008-C3E2-11D6-8734-00C0262CDD2C}',
-	'ksPlaneOffsetDefinition' : '{DEEFF00B-C3E2-11D6-8734-00C0262CDD2C}',
-	'ksPlaneAngleDefinition' : '{DEEFF00E-C3E2-11D6-8734-00C0262CDD2C}',
-	'ksPlane3PointsDefinition' : '{DEEFF011-C3E2-11D6-8734-00C0262CDD2C}',
-	'ksPlaneNormalToSurfaceDefinition' : '{DEEFF014-C3E2-11D6-8734-00C0262CDD2C}',
-	'ksPlaneTangentToSurfaceDefinition' : '{DEEFF017-C3E2-11D6-8734-00C0262CDD2C}',
-	'ksPlaneEdgePointDefinition' : '{DEEFF01A-C3E2-11D6-8734-00C0262CDD2C}',
-	'ksPlaneParallelDefinition' : '{DEEFF01D-C3E2-11D6-8734-00C0262CDD2C}',
-	'ksPlanePerpendicularDefinition' : '{DEEFF020-C3E2-11D6-8734-00C0262CDD2C}',
-	'ksPlaneLineToEdgeDefinition' : '{DEEFF023-C3E2-11D6-8734-00C0262CDD2C}',
-	'ksPlaneLineToPlaneDefinition' : '{DEEFF026-C3E2-11D6-8734-00C0262CDD2C}',
-	'ksThinParam' : '{DEEFF029-C3E2-11D6-8734-00C0262CDD2C}',
-	'ksExtrusionParam' : '{DEEFF02C-C3E2-11D6-8734-00C0262CDD2C}',
-	'ksRotatedParam' : '{DEEFF02F-C3E2-11D6-8734-00C0262CDD2C}',
-	'ksColorParam' : '{2DFACC61-C4A4-11D6-8734-00C0262CDD2C}',
-	'ksBaseRotatedDefinition' : '{2DFACC67-C4A4-11D6-8734-00C0262CDD2C}',
-	'ksBossRotatedDefinition' : '{2DFACC6A-C4A4-11D6-8734-00C0262CDD2C}',
-	'ksCutRotatedDefinition' : '{2DFACC6D-C4A4-11D6-8734-00C0262CDD2C}',
-	'ksRotatedSurfaceDefinition' : '{FD27841D-1374-4F7F-AE8A-C2A44F89120D}',
-	'ksSketchDefinition' : '{2DFACC70-C4A4-11D6-8734-00C0262CDD2C}',
-	'ksRasterFormatParam' : '{1A91A8AB-AF8C-4EE3-86D4-0A9C00123195}',
-	'ksAdditionFormatParam' : '{0FD25FF9-AB0A-48F3-BAD4-F193116C0887}',
-	'ksConstraintParam' : '{862E250D-9DB1-47E8-8EE2-9BE2D2453D5A}',
-	'ksImportedSurfaceDefinition' : '{78A2C35E-A7DA-414E-B90A-F19998EC7BD1}',
-	'ksFaceCollection' : '{0E95ACE0-0E73-406F-AE94-E8A0592E298D}',
-	'ksVertexDefinition' : '{A7257E73-EB61-4602-BC8B-2D00EA4AA062}',
-	'ksTessellation' : '{B810650E-7819-485C-90D2-ADEB647AE5E2}',
-	'ksFacet' : '{EB6AFBC0-C387-4E07-B24E-DDF2B7926A26}',
-	'ksMeasurer' : '{ABC84FE5-3945-4A0B-820A-719BF4B79224}',
-	'ksBodyCollection' : '{CFC49C01-7653-4845-93FD-13428F5D58EC}',
-	'ksBody' : '{03EFC9DD-E05A-4277-BC7C-4FD499A252DE}',
-	'ksSurface' : '{963CB6E1-B9BF-4234-964A-13BFE6C0282A}',
-	'ksEdgeCollection' : '{6096A4FD-970B-468C-815E-37CA1970A203}',
-	'ksOrientedEdge' : '{88C32A80-3735-4E18-A02E-9B2A8F0A90E3}',
-	'ksOrientedEdgeCollection' : '{5CE8909D-CF3D-418F-A9B9-0A12B23916C0}',
-	'ksLoop' : '{22BC5C86-CF58-45E4-AA46-5E8D5A825798}',
-	'ksLoopCollection' : '{1BD7207E-36AA-47DF-913E-AD26DE6C16E8}',
-	'ksCurve3D' : '{7572648A-D4EE-41FE-8D74-EC7D1F91BDE2}',
-	'ksLineSeg3dParam' : '{DC8F6A7B-FF16-46FF-986D-2F7E1F6B25C4}',
-	'ksCircle3dParam' : '{82758442-C9EB-48F7-B304-083C5E64D4E0}',
-	'ksEllipse3dParam' : '{5B8082B8-6AD3-4509-826D-D23B7F613213}',
-	'ksPlaneParam' : '{6A6F6B95-D100-4D54-A430-70A42D342917}',
-	'ksConeParam' : '{CCFA0D95-0834-4F92-988B-6E477AD67589}',
-	'ksCylinderParam' : '{5D462836-CF69-4995-AB78-8C7A83D09BD7}',
-	'ksSphereParam' : '{C32977F3-3CA7-4D56-8AE7-4963E6851B75}',
-	'ksTorusParam' : '{FDA3B147-BAF1-4F75-99AA-39D11323EA97}',
-	'ksNurbsPoint3dParam' : '{F1CD604D-1D26-4F6B-8F94-F112133E6162}',
-	'ksNurbsSurfaceParam' : '{A12B63E8-9E0A-4854-B724-E18275B9FF20}',
-	'ksNurbs3dParam' : '{4DDDAEDB-2819-42D9-BDBB-4CCBC98D76DF}',
-	'ksNurbsKnotCollection' : '{483E9889-E1CA-4CA5-BE4E-ECB3D5CF0126}',
-	'ksNurbsPoint3dCollCollection' : '{84AF9C81-1795-4631-B58A-101732262E75}',
-	'ksNurbsPoint3dCollection' : '{3AD5E519-74E2-4D3B-B6A3-B1E81F1006F1}',
-	'ksViewProjection' : '{BF65B990-C2DC-4A12-9EB7-3E868608AF47}',
-	'ksViewProjectionCollection' : '{A174F872-C800-409E-9FB2-FF5B89D8B4B8}',
-	'ksSelectionMng' : '{BE41850C-CFC5-40D4-AE49-37AA391BCF4B}',
-	'ksChooseMng' : '{8F2AA755-D9D1-42A0-97BF-C92548CE7232}',
-	'ksArc3dParam' : '{7DCBCC76-5041-4C1E-9B33-12B1352D6D57}',
-	'ksTreeNodeParam' : '{9F8DE1DC-1268-4785-9217-1B0DD59B85FA}',
-	'ksAssociationViewParam' : '{C81EB1DA-BCB0-491A-8D22-923BF817D572}',
-	'ksViewColorParam' : '{5A42B962-8F78-4557-B17A-1B871F8DBDB5}',
-	'ksAxisLineParam' : '{AFE694D7-C1E5-468F-99B0-FE4C60C49899}',
-	'ksTextDocumentParam' : '{33706D56-D085-4840-833B-435AEB00BE2A}',
-	'ksRemoteElementParam' : '{25076616-4949-455E-A45C-1B801884D825}',
-	'ksDeletedCopyCollection' : '{82F60797-D69C-4EB4-9F1A-24D625D5EAFA}',
-	'ksCopyObjectParam' : '{AACAD820-7790-46EB-B17F-06AE42215ED7}',
-	'ksThreadDefinition' : '{5DDB6B14-6F3D-431F-B62F-C5FCCAFC3632}',
-	'ksOverlapObjectOptions' : '{F78E6B71-BEF3-4A4D-AE50-FE96426F6FD1}',
-	'ksObjectsFilter3D' : '{ABBA6CE0-CB4C-4A32-98B4-B639352C75BA}',
-	'ksParametrizationParam' : '{ABBA6CE0-CB4C-4A32-98B4-B639352C75BB}',
-	'ksMacro3DDefinition' : '{02556461-D088-4F00-AE61-D366082DB9BC}',
-	'ksAxisConefaceDefinition' : '{97337DAF-B7CD-4FB8-8E18-23F0230E5CBE}',
-	'ksUnionComponentsDefinition' : '{99797F89-FBA4-4582-812F-226AFB50ED7D}',
-	'ksMoldCavityDefinition' : '{BE5F10F5-B198-49D9-9140-B2B91E060533}',
-	'ksCoordinate3dCollection' : '{E4091969-1C4E-4959-8D93-C2421564418B}',
-	'ksIntersectionResult' : '{ABC7F8EE-CF07-4AA8-98A1-0DE35DB35B9E}',
-	'ksPlaneMiddleDefinition' : '{CC5E3539-5B35-46FC-AFE1-19BB0168D52F}',
 	'ksControlPointDefinition' : '{BC4C15A4-16E9-4CFA-A33E-CC86BA2FB546}',
-	'ksConjunctivePointDefinition' : '{177CBAF3-87E6-4376-B6A9-669C0E661BFF}',
-	'ksChooseBodies' : '{E06B18BF-D2AF-4201-99BE-B7FA9EECF7A8}',
-	'ksAggregateDefinition' : '{44277B89-EEB4-456C-8EF9-2DC48D61EC91}',
-	'ksChangeLeaderParam' : '{391938AE-79B6-4E3B-9815-AC1A31D9EA9D}',
+	'ksBaseParam' : '{E79C2513-9584-11D6-8732-00C0262CDD2C}',
+	'ksTextDocumentParam' : '{33706D56-D085-4840-833B-435AEB00BE2A}',
+	'ksConicArcParam' : '{7F7D6FA2-97DA-11D6-8732-00C0262CDD2C}',
+	'ksLineSeg3dParam' : '{DC8F6A7B-FF16-46FF-986D-2F7E1F6B25C4}',
+	'ksNurbsKnotCollection' : '{483E9889-E1CA-4CA5-BE4E-ECB3D5CF0126}',
+	'ksDocument3DNotify' : '{B6C1BCFD-68DA-4A0A-A95C-296084C6A01A}',
+	'ksCoordinate3dCollection' : '{E4091969-1C4E-4959-8D93-C2421564418B}',
+	'ksConicSpiralDefinition' : '{0307BB9C-C193-11D6-8734-00C0262CDD2C}',
+	'ksExtrusionParam' : '{DEEFF02C-C3E2-11D6-8734-00C0262CDD2C}',
+	'ksInertiaParam' : '{EA92E649-239E-4105-BBD3-AEF4817BD783}',
+	'ksDynamicArray' : '{4D91CD9A-6E02-409D-9360-CF7FEF60D31C}',
+	'ksOrientedEdge' : '{88C32A80-3735-4E18-A02E-9B2A8F0A90E3}',
+	'ksBaseRotatedDefinition' : '{2DFACC67-C4A4-11D6-8734-00C0262CDD2C}',
+	'ksRasterParam' : '{7F7D6FAB-97DA-11D6-8732-00C0262CDD2C}',
+	'ksStamp' : '{FBCC5BA5-996C-11D6-8732-00C0262CDD2C}',
+	'ksRBreakDimParam' : '{7F7D6FE4-97DA-11D6-8732-00C0262CDD2C}',
+	'ksCurvePatternEx' : '{910EC549-958D-11D6-95CE-00C0262D30E3}',
+	'ksLineParam' : '{E79C250A-9584-11D6-8732-00C0262CDD2C}',
+	'ksAttribute3DCollection' : '{EB61A981-F63E-47E1-BEE8-2D1612C78E78}',
+	'ksRemoteElementParam' : '{25076616-4949-455E-A45C-1B801884D825}',
 	'ksChooseParts' : '{08B7A093-D829-44A9-A238-2BFF31770112}',
-	'ksBodyParts' : '{1E3E9348-DB9B-4967-A62A-B412DF95146A}',
-	'ksEmbodiment3D' : '{4F6A3404-8F06-4363-AF66-4CDCC4E09462}',
-	'ksSnapInfo' : '{FEC5FF26-3F47-49B2-ABAE-5563A4D7AD94}',
+	'ksFaceCollection' : '{0E95ACE0-0E73-406F-AE94-E8A0592E298D}',
+	'ksPlaneEdgePointDefinition' : '{DEEFF01A-C3E2-11D6-8734-00C0262CDD2C}',
+	'ksTextItemFont' : '{364521BD-94B5-11D6-8732-00C0262CDD2C}',
+	'ksQualityItemParam' : '{7F7D6FE7-97DA-11D6-8732-00C0262CDD2C}',
+	'ksDocument2DNotify' : '{13F0BE95-3361-4AD9-90AF-D935EA64A127}',
+	'ksCircleParam' : '{7F7D6F87-97DA-11D6-8732-00C0262CDD2C}',
+	'ksChooseMng' : '{8F2AA755-D9D1-42A0-97BF-C92548CE7232}',
+	'ksViewColorParam' : '{5A42B962-8F78-4557-B17A-1B871F8DBDB5}',
+	'ksEllipse3dParam' : '{5B8082B8-6AD3-4509-826D-D23B7F613213}',
+	'ksSpcStyleParam' : '{4FD7CEA2-9968-11D6-95CE-00C0262D30E3}',
+	'ksViewPointerParam' : '{CD1C0144-98DC-11D6-95CE-00C0262D30E3}',
+	'ksMateConstraintCollection' : '{03CEAC84-C0B8-11D6-8734-00C0262CDD2C}',
+	'ksUnionComponentsDefinition' : '{99797F89-FBA4-4582-812F-226AFB50ED7D}',
+	'ksArcByAngleParam' : '{7F7D6F8A-97DA-11D6-8732-00C0262CDD2C}',
+	'ksAssociationViewParam' : '{C81EB1DA-BCB0-491A-8D22-923BF817D572}',
+	'ksToleranceBranch' : '{4FD7CE84-9968-11D6-95CE-00C0262D30E3}',
+	'ksRDimSourceParam' : '{2A4D4545-95B3-11D6-8732-00C0262CDD2C}',
+	'ksNumberTypeAttrParam' : '{4FD7CE90-9968-11D6-95CE-00C0262D30E3}',
+	'ksMirrorCopyAllDefinition' : '{0307BB99-C193-11D6-8734-00C0262CDD2C}',
+	'ksLBreakDimParam' : '{7F7D6FBD-97DA-11D6-8732-00C0262CDD2C}',
+	'ksPolyLineVertexParam' : '{1BCC4F0F-1091-41A3-895B-0608D20715B7}',
+	'ksAxisOperationsDefinition' : '{0307BB84-C193-11D6-8734-00C0262CDD2C}',
+	'ksContourParam' : '{E79C2504-9584-11D6-8732-00C0262CDD2C}',
+	'ksBezierPointParam' : '{7F7D6FC9-97DA-11D6-8732-00C0262CDD2C}',
+	'ksRoughParam' : '{3F715E36-97D9-11D6-95CE-00C0262D30E3}',
+	'ksArc3dParam' : '{7DCBCC76-5041-4C1E-9B33-12B1352D6D57}',
+	'ksTAN' : '{8075EDE4-6C85-4711-8685-68FBE359D4C4}',
+	'ksSpcStyleSectionParam' : '{4FD7CE96-9968-11D6-95CE-00C0262D30E3}',
+	'ksObject2DNotifyResult' : '{1FE1EB28-CD28-4700-8E46-25CCFE9C0EC8}',
+	'ksObject3DNotifyResult' : '{9C3ECC92-E72F-4892-8921-7886F34CA9AD}',
+	'ksNurbs3dParam' : '{4DDDAEDB-2819-42D9-BDBB-4CCBC98D76DF}',
+	'ksFragment' : '{D06C9104-98CA-11D6-8732-00C0262CDD2C}',
+	'ksViewProjectionCollection' : '{A174F872-C800-409E-9FB2-FF5B89D8B4B8}',
+	'ksOrdinatedSourceParam' : '{FBCC5B84-996C-11D6-8732-00C0262CDD2C}',
+	'ksVariableCollection' : '{03CEAC81-C0B8-11D6-8734-00C0262CDD2C}',
+	'ksBrandLeaderParam' : '{3F715E46-97D9-11D6-95CE-00C0262D30E3}',
+	'ksCutBySketchDefinition' : '{DEEFF008-C3E2-11D6-8734-00C0262CDD2C}',
+	'ksMeasurer' : '{ABC84FE5-3945-4A0B-820A-719BF4B79224}',
+	'ksTessellation' : '{B810650E-7819-485C-90D2-ADEB647AE5E2}',
+	'ksObject3DNotify' : '{BFA024B6-679E-4A95-B6C2-1EA47A7CD0E9}',
+	'ksSpcTuningStyleParam' : '{4FD7CE9F-9968-11D6-95CE-00C0262D30E3}',
+	'ksRBreakDrawingParam' : '{7F7D6FE1-97DA-11D6-8732-00C0262CDD2C}',
+	'ksPointParam' : '{7F7D6F90-97DA-11D6-8732-00C0262CDD2C}',
+	'ksRectParam' : '{3F715E2D-97D9-11D6-95CE-00C0262D30E3}',
+	'ksLtVariant' : '{E79C2516-9584-11D6-8732-00C0262CDD2C}',
+	'ksImportedSurfaceDefinition' : '{78A2C35E-A7DA-414E-B90A-F19998EC7BD1}',
 	'ksSaveToPreviusParam' : '{CF0E948C-5A9D-49A3-BC86-EEA3050193E0}',
+	'ksPlane3PointsDefinition' : '{DEEFF011-C3E2-11D6-8734-00C0262CDD2C}',
+	'ksRegularPolygonParam' : '{E79C250D-9584-11D6-8732-00C0262CDD2C}',
+	'ksPlaneAngleDefinition' : '{DEEFF00E-C3E2-11D6-8734-00C0262CDD2C}',
+	'ksLeaderParam' : '{3F715E40-97D9-11D6-95CE-00C0262D30E3}',
+	'ksParametrizationParam' : '{ABBA6CE0-CB4C-4A32-98B4-B639352C75BB}',
+	'ksRequestInfo' : '{9AF8E356-98A0-11D6-95CE-00C0262D30E3}',
+	'ksKompasObjectNotify' : '{C7CB743A-C59D-4C27-8CB6-971C2A393F2F}',
+	'ksCylindricSpiralDefinition' : '{0307BB9F-C193-11D6-8734-00C0262CDD2C}',
+	'ksChooseBodies' : '{E06B18BF-D2AF-4201-99BE-B7FA9EECF7A8}',
+	'ksMarkerLeaderParam' : '{9AF8E341-98A0-11D6-95CE-00C0262D30E3}',
+	'ksLDimSourceParam' : '{7F7D6FCF-97DA-11D6-8732-00C0262CDD2C}',
+	'ksDataBaseObject' : '{0981CD01-9A49-11D6-8732-00C0262CDD2C}',
+	'ksArcByPointParam' : '{7F7D6F8D-97DA-11D6-8732-00C0262CDD2C}',
+	'ksCurvePartArrayDefinition' : '{DDD05146-C180-11D6-8734-00C0262CDD2C}',
+	'ksCutExtrusionDefinition' : '{DEEFEFE7-C3E2-11D6-8734-00C0262CDD2C}',
+	'ksEdgeDefinition' : '{0307BBAB-C193-11D6-8734-00C0262CDD2C}',
+	'ksEmbodiment3D' : '{4F6A3404-8F06-4363-AF66-4CDCC4E09462}',
+	'ksLDimParam' : '{7F7D6FD5-97DA-11D6-8732-00C0262CDD2C}',
+	'ksCornerParam' : '{E79C2501-9584-11D6-8732-00C0262CDD2C}',
+	'ksType5' : '{9AF8E34D-98A0-11D6-95CE-00C0262D30E3}',
+	'ksBossLoftDefinition' : '{DEEFEFED-C3E2-11D6-8734-00C0262CDD2C}',
+	'ksPlanePerpendicularDefinition' : '{DEEFF020-C3E2-11D6-8734-00C0262CDD2C}',
+	'ksEllipseArcParam1' : '{364521AC-94B5-11D6-8732-00C0262CDD2C}',
+	'ksConeParam' : '{CCFA0D95-0834-4F92-988B-6E477AD67589}',
+	'ksAxisConefaceDefinition' : '{97337DAF-B7CD-4FB8-8E18-23F0230E5CBE}',
+	'ksShelfPar' : '{3F715E30-97D9-11D6-95CE-00C0262D30E3}',
+	'ksSplineDefinition' : '{0307BBA5-C193-11D6-8734-00C0262CDD2C}',
+	'ksSpcTuningSectionParam' : '{4FD7CE9C-9968-11D6-95CE-00C0262D30E3}',
+	'ksTreeNodeParam' : '{9F8DE1DC-1268-4785-9217-1B0DD59B85FA}',
+	'ksBossRotatedDefinition' : '{2DFACC6A-C4A4-11D6-8734-00C0262CDD2C}',
+	'ksToleranceParam' : '{4FD7CE87-9968-11D6-95CE-00C0262D30E3}',
+	'ksBossExtrusionDefinition' : '{DEEFEFE4-C3E2-11D6-8734-00C0262CDD2C}',
+	'ksAttributeParam' : '{CE0D05E4-9B2A-11D6-95CE-00C0262D30E3}',
+	'ksCutEvolutionDefinition' : '{DEEFEFFF-C3E2-11D6-8734-00C0262CDD2C}',
+	'ksCentreParam' : '{7F7D6FA5-97DA-11D6-8732-00C0262CDD2C}',
+	'ksLayerParam' : '{E79C2507-9584-11D6-8732-00C0262CDD2C}',
+	'ksCurve3D' : '{7572648A-D4EE-41FE-8D74-EC7D1F91BDE2}',
+	'ksColumnInfoParam' : '{CE0D05E1-9B2A-11D6-95CE-00C0262D30E3}',
+	'ksLibraryAttrTypeParam' : '{FA93AA21-9B3D-11D6-95CE-00C0262D30E3}',
+	'ksDocument3DNotifyResult' : '{9F88CAAA-A50F-46F4-904A-846C792FA649}',
+	'ksTextParam' : '{7F7D6F96-97DA-11D6-8732-00C0262CDD2C}',
+	'ksRotatedParam' : '{DEEFF02F-C3E2-11D6-8734-00C0262CDD2C}',
+	'ksFeatureCollection' : '{CE6A46FF-02B4-4C7E-AF50-3F3707C8B122}',
+	'ksStandartSheet' : '{FBCC5B90-996C-11D6-8732-00C0262CDD2C}',
+	'ksBodyParts' : '{1E3E9348-DB9B-4967-A62A-B412DF95146A}',
+	'ksViewProjection' : '{BF65B990-C2DC-4A12-9EB7-3E868608AF47}',
+	'ksMateConstraint' : '{508A0CC4-9D74-11D6-95CE-00C0262D30E3}',
+	'ksRDimDrawingParam' : '{2A4D4542-95B3-11D6-8732-00C0262CDD2C}',
+	'ksNurbsPoint3dCollCollection' : '{84AF9C81-1795-4631-B58A-101732262E75}',
+	'ksShellDefinition' : '{DEEFEFF6-C3E2-11D6-8734-00C0262CDD2C}',
+	'ksMeshPartArrayDefinition' : '{E6E78D61-C0FA-11D6-8734-00C0262CDD2C}',
+	'ksViewParam' : '{7F7D6FB4-97DA-11D6-8732-00C0262CDD2C}',
+	'ksUserParam' : '{E79C2519-9584-11D6-8732-00C0262CDD2C}',
+	'ksLibraryStyleParam' : '{FBCC5B9F-996C-11D6-8732-00C0262CDD2C}',
+	'ksOrdinatedDimParam' : '{FBCC5B87-996C-11D6-8732-00C0262CDD2C}',
+	'ksCurveCopyDefinition' : '{0307BB93-C193-11D6-8734-00C0262CDD2C}',
+	'ksBezierParam' : '{7F7D6FC6-97DA-11D6-8732-00C0262CDD2C}',
+	'ksPlaneNormalToSurfaceDefinition' : '{DEEFF014-C3E2-11D6-8734-00C0262CDD2C}',
+	'ksMathPointParam' : '{3198E121-9585-11D6-95CE-00C0262D30E3}',
+	'ksIntersectionResult' : '{ABC7F8EE-CF07-4AA8-98A1-0DE35DB35B9E}',
+	'ksSnapInfo' : '{FEC5FF26-3F47-49B2-ABAE-5563A4D7AD94}',
+	'ksDocumentTxt' : '{74D745F1-9A3A-11D6-95CE-00C0262D30E3}',
+	'ksAdditionFormatParam' : '{0FD25FF9-AB0A-48F3-BAD4-F193116C0887}',
+	'ksEllipseArcParam' : '{364521A9-94B5-11D6-8732-00C0262CDD2C}',
+	'ksPlacement' : '{2DFACC64-C4A4-11D6-8734-00C0262CDD2C}',
+	'ksAxisEdgeDefinition' : '{0307BB8A-C193-11D6-8734-00C0262CDD2C}',
+	'ksLoftSurfaceDefinition' : '{E04339B5-AA08-4717-8E50-90ED0E375624}',
+	'ksPartCollection' : '{03CEAC87-C0B8-11D6-8734-00C0262CDD2C}',
+	'ksRasterFormatParam' : '{1A91A8AB-AF8C-4EE3-86D4-0A9C00123195}',
+	'ksSpcObjParam' : '{4FD7CEAB-9968-11D6-95CE-00C0262D30E3}',
+	'ksQualityContensParam' : '{7F7D6FEA-97DA-11D6-8732-00C0262CDD2C}',
+	'ksHatchLineParam' : '{3F715E27-97D9-11D6-95CE-00C0262D30E3}',
+	'ksPlaneMiddleDefinition' : '{CC5E3539-5B35-46FC-AFE1-19BB0168D52F}',
+	'ksCutByPlaneDefinition' : '{DEEFF005-C3E2-11D6-8734-00C0262CDD2C}',
+	'ksLineSegParam' : '{7F7D6F84-97DA-11D6-8732-00C0262CDD2C}',
+	'ksBreakDimDrawing' : '{7F7D6FBA-97DA-11D6-8732-00C0262CDD2C}',
+	'ksSpcStyleColumnParam' : '{4FD7CE93-9968-11D6-95CE-00C0262D30E3}',
+	'ksABreakDimParam' : '{7F7D6FC0-97DA-11D6-8732-00C0262CDD2C}',
+	'ksType2' : '{9AF8E347-98A0-11D6-95CE-00C0262D30E3}',
+	'ksExtrusionSurfaceDefinition' : '{B20E24C3-5E4A-4CDA-A1ED-6BB8EBC81A29}',
+	'ksObjectsFilter3D' : '{ABBA6CE0-CB4C-4A32-98B4-B639352C75BA}',
+	'ksBaseEvolutionDefinition' : '{DEEFEFF9-C3E2-11D6-8734-00C0262CDD2C}',
+	'ksConjunctivePointDefinition' : '{177CBAF3-87E6-4376-B6A9-669C0E661BFF}',
+	'ksAxis2PointsDefinition' : '{0307BB87-C193-11D6-8734-00C0262CDD2C}',
+	'ksIterator' : '{D06C9101-98CA-11D6-8732-00C0262CDD2C}',
+	'ksPlaneLineToEdgeDefinition' : '{DEEFF023-C3E2-11D6-8734-00C0262CDD2C}',
+	'ksTextItemParam' : '{364521B7-94B5-11D6-8732-00C0262CDD2C}',
+	'ksDocument2D' : '{AF4E160D-5C89-4F21-B0F2-D53397BDAF78}',
+	'ksCurvePattern' : '{910EC544-958D-11D6-95CE-00C0262D30E3}',
+	'ksEvolutionSurfaceDefinition' : '{2BD4C79E-E2C3-42E8-8FCC-B51FFBDE9F69}',
+	'ksPlaneLineToPlaneDefinition' : '{DEEFF026-C3E2-11D6-8734-00C0262CDD2C}',
+	'ksSpcObjectNotify' : '{AC5004D1-C240-41FC-AB84-7EB5C793AE7F}',
+	'ksModelLibrary' : '{111CEFE4-A0A7-11D6-95CE-00C0262D30E3}',
+	'ksEquidistantParam' : '{364521AF-94B5-11D6-8732-00C0262CDD2C}',
+	'ksLoopCollection' : '{1BD7207E-36AA-47DF-913E-AD26DE6C16E8}',
+	'ksNurbsParam' : '{7F7D6F9F-97DA-11D6-8732-00C0262CDD2C}',
+	'ksCylinderParam' : '{5D462836-CF69-4995-AB78-8C7A83D09BD7}',
+	'ksSpcDocumentNotify' : '{1BD030F4-4058-4A86-9F4F-1AEEF8BE8D23}',
+	'ksCopyObjectParam' : '{AACAD820-7790-46EB-B17F-06AE42215ED7}',
+	'ksRotatedSurfaceDefinition' : '{FD27841D-1374-4F7F-AE8A-C2A44F89120D}',
+	'ksInsertFragmentParamEx' : '{7F7D6FC3-97DA-11D6-8732-00C0262CDD2C}',
+	'ksBaseLoftDefinition' : '{DEEFEFEA-C3E2-11D6-8734-00C0262CDD2C}',
+	'ksDocAttachedSpcParam' : '{4FD7CEA8-9968-11D6-95CE-00C0262D30E3}',
+	'ksSpcColumnParam' : '{4FD7CE8A-9968-11D6-95CE-00C0262D30E3}',
+	'ksEdgeCollection' : '{6096A4FD-970B-468C-815E-37CA1970A203}',
+	'ksFaceDefinition' : '{0307BBA8-C193-11D6-8734-00C0262CDD2C}',
+	'ksOrientedEdgeCollection' : '{5CE8909D-CF3D-418F-A9B9-0A12B23916C0}',
+	'ksEntityCollection' : '{B0170141-C02C-11D6-8734-00C0262CDD2C}',
+	'ksDefaultObject' : '{508A0CC7-9D74-11D6-95CE-00C0262D30E3}',
+	'KompasObject' : '{E36BC97C-39D6-4402-9C25-C7008A217E02}',
+	'ksPlacementParam' : '{7F7D6FA8-97DA-11D6-8732-00C0262CDD2C}',
+	'ksDeletedCopyCollection' : '{82F60797-D69C-4EB4-9F1A-24D625D5EAFA}',
+	'ksPolyLineDefinition' : '{0307BBA2-C193-11D6-8734-00C0262CDD2C}',
+	'ksThreadDefinition' : '{5DDB6B14-6F3D-431F-B62F-C5FCCAFC3632}',
+	'ksCutLoftDefinition' : '{DEEFEFF0-C3E2-11D6-8734-00C0262CDD2C}',
+	'ksVariable' : '{508A0CC1-9D74-11D6-95CE-00C0262D30E3}',
+	'ksPlaneParam' : '{6A6F6B95-D100-4D54-A430-70A42D342917}',
+	'ksDocument3D' : '{111CEFE1-A0A7-11D6-95CE-00C0262D30E3}',
+	'ksAttributeObject' : '{FA93AA24-9B3D-11D6-95CE-00C0262D30E3}',
+	'ksDimDrawingParam' : '{7F7D6FD2-97DA-11D6-8732-00C0262CDD2C}',
+	'ksADimSourceParam' : '{7F7D6FD8-97DA-11D6-8732-00C0262CDD2C}',
+	'ksOrdinatedDrawingParam' : '{FBCC5B8A-996C-11D6-8732-00C0262CDD2C}',
+	'ksDerivativePartArrayDefinition' : '{DDD05149-C180-11D6-8734-00C0262CDD2C}',
+	'ksChamferDefinition' : '{0307BBAE-C193-11D6-8734-00C0262CDD2C}',
+	'ksAggregateDefinition' : '{44277B89-EEB4-456C-8EF9-2DC48D61EC91}',
+	'ksType6' : '{9AF8E350-98A0-11D6-95CE-00C0262D30E3}',
+	'ksMoldCavityDefinition' : '{BE5F10F5-B198-49D9-9140-B2B91E060533}',
+	'ksFragmentLibrary' : '{D06C910A-98CA-11D6-8732-00C0262CDD2C}',
+	'ksLBreakDimSource' : '{7F7D6FB7-97DA-11D6-8732-00C0262CDD2C}',
+	'ksCutRotatedDefinition' : '{2DFACC6D-C4A4-11D6-8734-00C0262CDD2C}',
+	'ksDocumentParam' : '{FBCC5B96-996C-11D6-8732-00C0262CDD2C}',
+	'ksInclineDefinition' : '{DEEFEFF3-C3E2-11D6-8734-00C0262CDD2C}',
+	'ksDimensionsOptions' : '{FBCC5B99-996C-11D6-8732-00C0262CDD2C}',
+	'ksColorParam' : '{2DFACC61-C4A4-11D6-8734-00C0262CDD2C}',
+	'ksRecordTypeAttrParam' : '{4FD7CE8D-9968-11D6-95CE-00C0262D30E3}',
+	'ksNurbsPoint3dCollection' : '{3AD5E519-74E2-4D3B-B6A3-B1E81F1006F1}',
+	'ksADimParam' : '{7F7D6FDE-97DA-11D6-8732-00C0262CDD2C}',
+	'ksTechnicalDemandParam' : '{FBCC5B81-996C-11D6-8732-00C0262CDD2C}',
+	'ksInsertFragmentParam' : '{7F7D6FB1-97DA-11D6-8732-00C0262CDD2C}',
+	'ksEntity' : '{508A0CCA-9D74-11D6-95CE-00C0262D30E3}',
+	'ksSurface' : '{963CB6E1-B9BF-4234-964A-13BFE6C0282A}',
+	'ksConstraintParam' : '{862E250D-9DB1-47E8-8EE2-9BE2D2453D5A}',
+	'ksRoughPar' : '{3F715E33-97D9-11D6-95CE-00C0262D30E3}',
+	'ksFeature' : '{088BF9A8-37D3-4B15-A7CA-8C52FF1DBC41}',
+	'ksDimTextParam' : '{7F7D6FCC-97DA-11D6-8732-00C0262CDD2C}',
+	'ksHatchStyleParam' : '{3F715E2A-97D9-11D6-95CE-00C0262D30E3}',
+	'ksSketchDefinition' : '{2DFACC70-C4A4-11D6-8734-00C0262CDD2C}',
+	'ksCurveStyleParam' : '{910EC54C-958D-11D6-95CE-00C0262D30E3}',
+	'ksHatchParam' : '{7F7D6F93-97DA-11D6-8732-00C0262CDD2C}',
+	'ksFacet' : '{EB6AFBC0-C387-4E07-B24E-DDF2B7926A26}',
+	'ksMirrorCopyDefinition' : '{0307BB96-C193-11D6-8734-00C0262CDD2C}',
+	'ksBossEvolutionDefinition' : '{DEEFEFFC-C3E2-11D6-8734-00C0262CDD2C}',
+	'ksChangeLeaderParam' : '{391938AE-79B6-4E3B-9815-AC1A31D9EA9D}',
+	'ksSpcSubSectionParam' : '{4FD7CE99-9968-11D6-95CE-00C0262D30E3}',
+	'ksLoop' : '{22BC5C86-CF58-45E4-AA46-5E8D5A825798}',
+	'ksTextLineParam' : '{364521BA-94B5-11D6-8732-00C0262CDD2C}',
+	'ksTorusParam' : '{FDA3B147-BAF1-4F75-99AA-39D11323EA97}',
+	'ksCutLineParam' : '{4FD7CE81-9968-11D6-95CE-00C0262D30E3}',
+	'ksLibStyle' : '{4FD7CEAE-9968-11D6-95CE-00C0262D30E3}',
+	'ksSnapOptions' : '{FBCC5B9C-996C-11D6-8732-00C0262CDD2C}',
+	'ksAttribute3D' : '{3EEB2B43-56FF-49C0-AFCF-69E990A7D84C}',
+	'ksChar255' : '{3F715E39-97D9-11D6-95CE-00C0262D30E3}',
+	'ksAxis2PlanesDefinition' : '{0307BB81-C193-11D6-8734-00C0262CDD2C}',
+	'ksComponentPositioner' : '{508B5962-DF59-4CEE-8611-AD10FDF0C811}',
+	'ksDoubleValue' : '{7F7D6F9C-97DA-11D6-8732-00C0262CDD2C}',
+	'ksType1' : '{9AF8E344-98A0-11D6-95CE-00C0262D30E3}',
+	'ksSpecificationNotify' : '{0331AB4B-F25B-4EB9-9C8A-BFEA414E3822}',
+	'ksDimensionPartsParam' : '{7F7D6FDB-97DA-11D6-8732-00C0262CDD2C}',
+	'ksSpcDescrParam' : '{4FD7CEA5-9968-11D6-95CE-00C0262D30E3}',
+	'ksBody' : '{03EFC9DD-E05A-4277-BC7C-4FD499A252DE}',
+	'ksSpecRoughParam' : '{364521A3-94B5-11D6-8732-00C0262CDD2C}',
+	'ksAxisLineParam' : '{AFE694D7-C1E5-468F-99B0-FE4C60C49899}',
+	'ksSelectionMngNotify' : '{A421368A-34B6-4DDF-9A52-73B3488EE83F}',
+	'ksPhantom' : '{9AF8E353-98A0-11D6-95CE-00C0262D30E3}',
+	'ksBodyCollection' : '{CFC49C01-7653-4845-93FD-13428F5D58EC}',
+	'ksPolylineParam' : '{7F7D6FAE-97DA-11D6-8732-00C0262CDD2C}',
+	'ksMathematic2D' : '{F2D5AE01-45DE-4496-B01B-9958CAEF5943}',
+	'ksMassInertiaParam' : '{283F77EB-7E2C-4F71-8B16-4D286FA4857E}',
+	'ksSelectionMng' : '{BE41850C-CFC5-40D4-AE49-37AA391BCF4B}',
+	'ksPart' : '{508A0CCD-9D74-11D6-95CE-00C0262D30E3}',
+	'ksCircularCopyDefinition' : '{0307BB90-C193-11D6-8734-00C0262CDD2C}',
+	'ksSpecification' : '{51E74524-9A3A-11D6-95CE-00C0262D30E3}',
+	'ksCircularPartArrayDefinition' : '{DDD05143-C180-11D6-8734-00C0262CDD2C}',
+	'ksSphereParam' : '{C32977F3-3CA7-4D56-8AE7-4963E6851B75}',
+	'ksPosLeaderParam' : '{3F715E43-97D9-11D6-95CE-00C0262D30E3}',
+	'ksRequestInfo3D' : '{E9807824-9D55-11D6-95CE-00C0262D30E3}',
+	'ksAttributeTypeParam' : '{CC26DA61-9B22-11D6-95CE-00C0262D30E3}',
+	'ksCurvePicture' : '{910EC541-958D-11D6-95CE-00C0262D30E3}',
+	'ksMeshCopyDefinition' : '{0307BB8D-C193-11D6-8734-00C0262CDD2C}',
+	'ksFilletDefinition' : '{0307BBB1-C193-11D6-8734-00C0262CDD2C}',
+	'ksVertexDefinition' : '{A7257E73-EB61-4602-BC8B-2D00EA4AA062}',
+	'ksSpcDocument' : '{51E74521-9A3A-11D6-95CE-00C0262D30E3}',
+	'ksNurbsPoint3dParam' : '{F1CD604D-1D26-4F6B-8F94-F112133E6162}',
+	'ksPlaneParallelDefinition' : '{DEEFF01D-C3E2-11D6-8734-00C0262CDD2C}',
+	'ksStampNotify' : '{404E7D5A-A13F-4CFF-8214-FEA7012110CB}',
+	'ksCON' : '{C175BFB8-D7D6-4325-BFDA-2A282B9D1119}',
+	'ksSheetOptions' : '{FBCC5BA8-996C-11D6-8732-00C0262CDD2C}',
+	'ksNurbsSurfaceParam' : '{A12B63E8-9E0A-4854-B724-E18275B9FF20}',
+	'ksDocumentFileNotify' : '{324C1A45-67AD-41FB-BE57-624F930646F1}',
+	'ksRDimParam' : '{7F7D6F81-97DA-11D6-8732-00C0262CDD2C}',
+	'ksBaseExtrusionDefinition' : '{DEEFEFE1-C3E2-11D6-8734-00C0262CDD2C}',
+	'ksObject2DNotify' : '{2E29C343-C521-4B0F-B37D-587D0347B7BA}',
+	'ksMacro3DDefinition' : '{02556461-D088-4F00-AE61-D366082DB9BC}',
+	'ksTextStyleParam' : '{3F715E24-97D9-11D6-95CE-00C0262D30E3}',
+	'ksSheetPar' : '{FBCC5B93-996C-11D6-8732-00C0262CDD2C}',
+	'ksThinParam' : '{DEEFF029-C3E2-11D6-8734-00C0262CDD2C}',
+	'ksNurbsPointParam' : '{7F7D6F99-97DA-11D6-8732-00C0262CDD2C}',
+	'ksRibDefinition' : '{DEEFF002-C3E2-11D6-8734-00C0262CDD2C}',
+	'ksType3' : '{9AF8E34A-98A0-11D6-95CE-00C0262D30E3}',
+	'ksPlaneTangentToSurfaceDefinition' : '{DEEFF017-C3E2-11D6-8734-00C0262CDD2C}',
+	'ksRectangleParam' : '{E79C2510-9584-11D6-8732-00C0262CDD2C}',
+	'ksPlaneOffsetDefinition' : '{DEEFF00B-C3E2-11D6-8734-00C0262CDD2C}',
+	'ksParagraphParam' : '{364521B2-94B5-11D6-8732-00C0262CDD2C}',
+	'ksEllipseParam' : '{364521A6-94B5-11D6-8732-00C0262CDD2C}',
+	'ksSheetSize' : '{FBCC5B8D-996C-11D6-8732-00C0262CDD2C}',
+	'ksCircle3dParam' : '{82758442-C9EB-48F7-B304-083C5E64D4E0}',
+	'ksOverlapObjectOptions' : '{F78E6B71-BEF3-4A4D-AE50-FE96426F6FD1}',
 }
 
 
